@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jul 2023 pada 20.30
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 17 Jul 2023 pada 00.13
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
 (1, 'S1', 'Sikap', 'Bertakwa Kepada Tuhan Yang Maha Esa dan Mampu Menunjuka Sikap Religius'),
 (2, 'P1', 'Pengetahuan', 'Memahami pengetahuan tentang ilmu kelautan dan/atau teknologi kelautan dan mampu mengaplikasikannya sesuai dengan bidang keilmuannya masing-masing'),
 (3, 'KU1', 'Kemampuan Umum', 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan implementasi ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya.'),
-(4, 'KK1', 'Kemampuan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer');
+(4, 'KK1', 'Kemampuan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer'),
+(8, 'S2', 'Sikap', 'asdasdasd');
 
 -- --------------------------------------------------------
 
@@ -56,8 +57,39 @@ CREATE TABLE `dosen` (
   `dsn_nama` varchar(255) NOT NULL,
   `dsn_fakultas` enum('Teknik') NOT NULL,
   `dsn_jurusan` enum('Teknik Informatika','Sistem Informasi','Teknik Lingkungan','Manajemen Informasi') NOT NULL,
-  `dsn_status` enum('Aktif',' Non Aktif') NOT NULL
+  `dsn_status` enum('Aktif','Non Aktif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `dosen`
+--
+
+INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `dsn_fakultas`, `dsn_jurusan`, `dsn_status`) VALUES
+(1, '0000000001', 'Istiqomah Sumadikarta', 'Teknik', 'Teknik Informatika', 'Aktif'),
+(2, '0000000002', 'Bosar Panjaitan', 'Teknik', 'Teknik Informatika', 'Aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `id` int(11) NOT NULL,
+  `jrs_kd` varchar(255) NOT NULL,
+  `jrs_nama` varchar(255) NOT NULL,
+  `jrs_fakultas` enum('Teknik','Ekonomi','FISIP','Perikanan') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jurusan`
+--
+
+INSERT INTO `jurusan` (`id`, `jrs_kd`, `jrs_nama`, `jrs_fakultas`) VALUES
+(1, 'TI', 'Teknik Informatika', 'Teknik'),
+(2, 'SI', 'Sistem Informasi', 'Teknik'),
+(3, 'TL', 'Teknik Lingkungan', 'Teknik'),
+(4, 'MI', 'Majanemen Informasi', 'Teknik');
 
 -- --------------------------------------------------------
 
@@ -81,7 +113,8 @@ CREATE TABLE `mahasiswa` (
 INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurusan`, `mhs_status`) VALUES
 (1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 'Aktif'),
 (2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 'Aktif'),
-(3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 'Non Aktif');
+(3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 'Non Aktif'),
+(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -197,6 +230,12 @@ ALTER TABLE `dosen`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
@@ -240,19 +279,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `matakuliah`
