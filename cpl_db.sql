@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jul 2023 pada 00.13
+-- Waktu pembuatan: 17 Jul 2023 pada 22.14
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -124,10 +124,34 @@ INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurus
 
 CREATE TABLE `matakuliah` (
   `id` int(11) NOT NULL,
+  `mk_smt` enum('1','2','3','4','5','6','7','8') NOT NULL,
   `mk_kd` varchar(255) NOT NULL,
   `mk_nama` varchar(255) NOT NULL,
-  `mk_jurusan` varchar(255) NOT NULL
+  `mk_sks` int(11) NOT NULL,
+  `mk_prasyarat` varchar(255) NOT NULL,
+  `mk_keterangan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `matakuliah`
+--
+
+INSERT INTO `matakuliah` (`id`, `mk_smt`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_prasyarat`, `mk_keterangan`) VALUES
+(1, '1', 'UN192003', 'Bahasa Inggris', 2, '', 'Wajib Universitas'),
+(3, '1', 'UN192006', 'Pancasila', 2, '', 'Wajib Universitas'),
+(6, '2', 'UN192004', 'Kewarganegaraan', 2, '', 'Wajib Universitas'),
+(8, '2', 'TI1133012', 'Sistem Digital', 3, '', 'Wajib Prodi'),
+(9, '3', 'Ti115171', 'Bahasa Inggris Teknik', 2, 'Bahasa Inggris', 'Wajib Prodi'),
+(10, '3', 'TI133008', 'Jaringan Komputer', 3, 'Komunikasi Data', 'Wajib Prodi'),
+(11, '4', 'TI113004', 'Sistem Operasi', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi'),
+(12, '4', 'TI115119', 'Teori Graf dan Bahasa Automata', 3, 'Matematika DIskrit', 'Wajib Prodi'),
+(13, '5', 'FT193007', 'Technopreneurship', 3, 'Kewirausahaan', 'Wajib Fakultas'),
+(14, '5', 'TI115181', 'Grafik Komputer', 3, 'Pemrograman Berorientasi Objek', 'Wajibi Prodi'),
+(15, '6', 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi'),
+(16, '6', 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi'),
+(17, '7', 'TI173028', 'Praktek Kerja Lapangan', 3, 'Minimal SKS 100, Manajemen Proyek Perangkat lunak', ''),
+(18, '7', 'TI172029', 'Riset Teknologi Informasi', 2, 'Kecerdasan Buatan', ''),
+(19, '8', 'TI186030', 'Skripsi', 6, 'Riset Teknologi Informasi, Minimal 120 SKS, dan menyelesaikan 133 SKS sebelum sidang', 'Wajib Profi');
 
 -- --------------------------------------------------------
 
@@ -136,8 +160,22 @@ CREATE TABLE `matakuliah` (
 --
 
 CREATE TABLE `nilai` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `id_mk` int(11) NOT NULL,
+  `id_mhs` int(11) NOT NULL,
+  `n_tugas` int(11) NOT NULL,
+  `n_uts` int(11) NOT NULL,
+  `n_uas` int(11) NOT NULL,
+  `n_akumulasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `nilai`
+--
+
+INSERT INTO `nilai` (`id`, `id_mk`, `id_mhs`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
+(1, 1, 1, 70, 70, 70, 70),
+(2, 4, 3, 80, 80, 80, 80);
 
 -- --------------------------------------------------------
 
@@ -303,13 +341,13 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT untuk tabel `matakuliah`
 --
 ALTER TABLE `matakuliah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`
