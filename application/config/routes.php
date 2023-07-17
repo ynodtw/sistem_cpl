@@ -25,10 +25,20 @@ $route['data-dosen'] = 'dosen';
 $route['data-dosen/add'] = 'dosen/add';
 $route['data-dosen/edit/(:num)'] = 'dosen/edit/$1';
 
-//CONTROLLER jurusan
+//CONTROLLER JURUSAN
 $route['data-jurusan'] = 'jurusan';
 $route['data-jurusan/add'] = 'jurusan/add';
 $route['data-jurusan/edit/(:num)'] = 'jurusan/edit/$1';
+
+//CONTROLLER MATAKULIAH
+$route['data-matakuliah'] = 'matakuliah';
+$route['data-matakuliah/add'] = 'matakuliah/add';
+$route['data-matakuliah/edit/(:num)'] = 'matakuliah/edit/$1';
+
+//CONTROLLER NILAI
+$route['data-nilai'] = 'nilai';
+$route['data-nilai/add'] = 'nilai/add';
+$route['data-nilai/edit/(:num)'] = 'nilai/edit/$1';
 
 
 

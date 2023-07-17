@@ -129,20 +129,29 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="<?= base_url("/data-tamu-lapor") ?>" class="nav-link <?= $title == "Data Tamu Lapor" ? "active" : "" ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Data Tamu Lapor
                 </p>
               </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
               <a href="<?= base_url("/laporan-data-tamu") ?>" class="nav-link <?= $title == "Data Tamu" ? "active" : "" ?>">
                 <i class="nav-icon fas fa-address-book"></i>
                 <p>
                   Laporan Data Tamu
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>
+                  Data Matakuliah
                 </p>
               </a>
             </li>

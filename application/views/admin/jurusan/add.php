@@ -7,12 +7,12 @@
 						<form method="POST" action="<?= base_url("jurusan/insert") ?>" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="jrs_kd">Kode</label>
-								<input type="jrs_kd" class="form-control" id="jrs_kd" name="jrs_kd" placeholder="Masukan NIM" required>
+								<input type="jrs_kd" class="form-control" id="jrs_kd" name="jrs_kd" placeholder="" required>
 							</div>
 
 							<div class="form-group">
 								<label for="jurusan">Jurusan</label>
-								<input type="text" class="form-control" id="jrs_nama" name="jrs_nama" placeholder="Masukan Nama Lengkap" required>
+								<input type="text" class="form-control" id="jrs_nama" name="jrs_nama" placeholder="" required>
 							</div>
 
 							<div class="form-group">

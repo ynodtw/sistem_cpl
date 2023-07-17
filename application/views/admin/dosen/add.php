@@ -7,12 +7,12 @@
 						<form method="POST" action="<?= base_url("dosen/insert") ?>" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="dsn_nid">NID</label>
-								<input type="dsn_nid" class="form-control" id="dsn_nid" name="dsn_nid" placeholder="Masukan NIM" required>
+								<input type="dsn_nid" class="form-control" id="dsn_nid" name="dsn_nid" placeholder="" required>
 							</div>
 
 							<div class="form-group">
 								<label for="fullname">Nama Lengkap</label>
-								<input type="text" class="form-control" id="dsn_nama" name="dsn_nama" placeholder="Masukan Nama Lengkap" required>
+								<input type="text" class="form-control" id="dsn_nama" name="dsn_nama" placeholder="" required>
 							</div>
 
 							<div class="form-group">

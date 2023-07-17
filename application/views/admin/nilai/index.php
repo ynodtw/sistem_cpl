@@ -10,32 +10,32 @@
 							<div class="form-row">
 								<div class="form-group col-4">
 									<label for="nik">NIK</label>
-									<input type="text" class="form-control" id="nik" name="nik" value="<?= @$_GET['nik'] ?>" placeholder="Cari NIK">
+									<input type="text" class="form-control" id="nik" name="nik" n="<?= @$_GET['nik'] ?>" placeholder="Cari NIK">
 								</div>
 
 								<div class="form-group col-4">
 									<label for="nama">Nama Lengkap</label>
-									<input type="text" class="form-control" id="nama" name="nama" value="<?= @$_GET['nama'] ?>" placeholder="Cari Nama Lengkap">
+									<input type="text" class="form-control" id="nama" name="nama" n="<?= @$_GET['nama'] ?>" placeholder="Cari Nama Lengkap">
 								</div>
 
 								<div class="form-group col-4">
 									<label for="telp">No Telp</label>
-									<input type="text" class="form-control" id="telp" name="telp" value="<?= @$_GET['telp'] ?>" placeholder="Cari No Telp">
+									<input type="text" class="form-control" id="telp" name="telp" n="<?= @$_GET['telp'] ?>" placeholder="Cari No Telp">
 								</div>
 
 								<div class="form-group col-4">
 									<label for="tgl_datang">Tanggal Datang</label>
-									<input type="date" class="form-control" id="tgl_datang" name="tgl_datang" value="<?= @$_GET['tgl_datang'] ?>">
+									<input type="date" class="form-control" id="tgl_datang" name="tgl_datang" n="<?= @$_GET['tgl_datang'] ?>">
 								</div>
 
 								<div class="form-group col-4">
 									<label for="tgl_pulang">Tanggal Pulang</label>
-									<input type="date" class="form-control" id="tgl_pulang" name="tgl_pulang" value="<?= @$_GET['tgl_pulang'] ?>">
+									<input type="date" class="form-control" id="tgl_pulang" name="tgl_pulang" n="<?= @$_GET['tgl_pulang'] ?>">
 								</div>
 							</div>
 							<button type="submit" class="btn btn-info float-right">Cari</button>
 						</form> -->
-						<a href="<?= base_url("data-matakuliah/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						<a href="<?= base_url("data-nilai/add") ?>" class=" btn btn-success">+ Tambah Data</a>
 
 					</div>
 				</div>
@@ -50,28 +50,33 @@
 									<th>Semester</th>
 									<th>Kode MK</th>
 									<th>Mata Kuliah</th>
-									<th>SKS</th>
-									<th>Prasyarat</th>
-									<th>Keterangan</th>
-									<th></th>
+									<th>NIM</th>
+									<th>Nama</th>
+									<th>Tugas</th>
+									<th>UTS</th>
+									<th>UAS</th>
+									<th>Akumulasi</th>
+									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								if (!empty($matakuliah)) {
-									foreach ($matakuliah as $mk) { ?>
+								if (!empty($nilai)) {
+									foreach ($nilai as $n) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $mk['mk_smt'] ?></td>
-											<td><?= $mk['mk_kd'] ?></td>
-											<td><?= $mk['mk_nama'] ?></td>
-											<td><?= $mk['mk_sks'] ?></td>
-											<td><?= $mk['mk_prasyarat'] ?></td>
-											<td><?= $mk['mk_keterangan'] ?></td>
+											<td><?= $n->mk_smt ?></td>
+											<td><?= $n->mk_kd ?></td>
+											<td><?= $n->mk_nama ?></td>
+											<td><?= $n->mhs_nim ?></td>
+											<td><?= $n->mhs_nama ?></td>
+											<td><?= $n->n_tugas ?></td>
+											<td><?= $n->n_uts ?></td>
+											<td><?= $n->n_uas ?></td>
+											<td><?= $n->n_akumulasi ?></td>
 											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $mk['id'] ?>">Lihat</a> -->
-												<a class="btn btn-warning" href="<?= base_url() . "data-matakuliah/edit/" . $mk['id'] ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "matakuliah/delete/" . $mk['id'] ?>" onclick="return confirm('Are you sure?')">Hapus</a>
+												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $n['id'] ?>">Lihat</a> -->
+												<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a>
 											</td>
 										</tr>
 									<?php } ?>
@@ -87,9 +92,9 @@
 
 
 <!-- MODAL -->
-<?php if (!empty($matakuliah)) { ?>
-	<?php foreach ($matakuliah as $mk) { ?>
-		<div class="modal fade" id="modalLihat-<?= $mk['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLihat-<?= $mk['id'] ?>Label" aria-hidden="true">
+<?php if (!empty($nilai)) { ?>
+	<?php foreach ($nilai as $n) { ?>
+		<div class="modal fade" id="modalLihat-<?= $n['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLihat-<?= $n['id'] ?>Label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -101,20 +106,20 @@
 					<div class="modal-body">
 						<table class="table table-bordered">
 							<tr>
-								<td>Kode MK</td>
-								<td><?= $mk['mk_kd'] ?></td>
+								<td>Kode n</td>
+								<td><?= $n['n_kd'] ?></td>
 							</tr>
 							<tr>
 								<td>Nama</td>
-								<td><?= $mk['mk_nama'] ?></td>
+								<td><?= $n['n_nama'] ?></td>
 							</tr>
 							<tr>
 								<td>Jenis Kelamin</td>
-								<td><?= $mk['mk_sks'] ?></td>
+								<td><?= $n['n_sks'] ?></td>
 							</tr>
 							<tr>
 								<td>Jurusan</td>
-								<td><?= $mk['mk_prasyarat'] ?></td>
+								<td><?= $n['n_prasyarat'] ?></td>
 							</tr>
 						</table>
 					</div>
