@@ -39,6 +39,11 @@ class Matakuliah extends CI_Controller
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/matakuliah/add";
 		$data['title'] = "Tambah Data matakuliah";
+		// $data['matakuliah'] = $this->Model_matakuliah->getData();
+		// echo '<pre>';
+		// print_r($data['matakuliah']);
+		// die;
+
 		$this->load->view('admin/template', $data);
 	}
 

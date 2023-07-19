@@ -4,45 +4,43 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-body">
-						<form method="POST" action="<?= base_url("matakuliah/insert") ?>" enctype="multipart/form-data">
+						<form method="POST" action="<?= base_url("nilai/insert") ?>" enctype="multipart/form-data">
+							<input type="hidden" name="id_mhs" value="<?= $id_mhs; ?>">
+							<?= $_GET['nama-mhs'];  ?>
+							<?= $_GET['nim-mhs'];  ?>
 							<div class="form-group">
-								<label for="mk_smt">Semester</label>
-								<select class="form-control" id="mk_smt" name="mk_smt" required>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
+								<label for="id_mk">Matakuliah</label>
+								<select class="form-control" id="id_mk" name="id_mk" required>
+									<?php foreach ($matakuliah as $mk) { ?>
+										<option value="<?= $mk['id'] ?>">(<?= $mk['mk_smt'];  ?>) <?= $mk['mk_kd'];  ?> - <?= $mk['mk_nama'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="mk_kd">Kode Matakuliah</label>
-								<input type="mk_kd" class="form-control" id="mk_kd" name="mk_kd" placeholder="" required>
+								<label for="n_tugas">Nilai Tugas</label>
+								<input type="text" class="form-control" id="n_tugas" name="n_tugas" placeholder="" required>
 							</div>
 
 							<div class="form-group">
-								<label for="mk_nama">Mata Kuliah</label>
-								<input type="text" class="form-control" id="mk_nama" name="mk_nama" placeholder="" required>
+								<label for="n_uts">Nilai UTS</label>
+								<input type="text" class="form-control" id="n_uts" name="n_uts" placeholder="" required>
 							</div>
 
 							<div class="form-group">
-								<label for="mk_sks">SKS</label>
-								<input type="text" class="form-control" id="mk_sks" name="mk_sks" placeholder="" required>
+								<label for="n_uas">Nilai UAS</label>
+								<input type="text" class="form-control" id="n_uas" name="n_uas" placeholder="" required>
 							</div>
 
 							<div class="form-group">
-								<label for="mk_prasyarat">Prasyarat</label>
-								<input type="text" class="form-control" id="mk_prasyarat" name="mk_prasyarat" placeholder="">
+								<label for="n_akumulasi">Akumulai</label>
+								<input type="text" class="form-control" id="n_akumulasi" name="n_akumulasi" placeholder="">
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="mk_keterangan">Keterangan</label>
 								<input type="text" class="form-control" id="mk_keterangan" name="mk_keterangan" placeholder="">
-							</div>
+							</div> -->
 
 							<button type="submit" class="btn btn-primary">Submit</button>
 

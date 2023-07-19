@@ -23,13 +23,13 @@ class Model_matakuliah extends CI_Model
             SELECT *
             FROM matakuliah
             WHERE id = '" . $id . "'
-            ORDER BY id ASC;
+            ORDER BY mk_smt ASC;
             ";
 		} else {
 			$sql = "
             SELECT *
             FROM matakuliah
-            ORDER BY id ASC;";
+            ORDER BY mk_smt ASC;";
 		}
 
 		$query = $this->db->query($sql);

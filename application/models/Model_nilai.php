@@ -15,28 +15,33 @@ class Model_nilai extends CI_Model
 		}
 	}
 
-	public function getData()
+	public function getData($id_mhs)
 	{
+		$this->db->select('nilai.*, matakuliah.mk_smt, matakuliah.mk_kd, matakuliah.mk_nama, mahasiswa.mhs_nim, mahasiswa.mhs_nama');
 		$this->db->from('nilai');
-		$this->db->select(
-			'nilai.id as nilai_id,
-			matakuliah.id as mk_id,
-			mahasiswa.id as mhs_id,
-			nilai.n_tugas,
-			nilai.n_uts,
-			nilai.n_uas,
-			nilai.n_akumulasi,
-			matakuliah.mk_smt,
-			matakuliah.mk_kd,
-			matakuliah.mk_nama,
-			mahasiswa.mhs_nim,
-			mahasiswa.mhs_nama'
-		);
+		// $this->db->select(
+		// 	'nilai.id as nilai_id,
+		// 	matakuliah.id as mk_id,
+		// 	mahasiswa.id as mhs_id,
+		// 	nilai.n_tugas,
+		// 	nilai.n_uts,
+		// 	nilai.n_uas,
+		// 	nilai.n_akumulasi,
+		// 	matakuliah.mk_smt,
+		// 	matakuliah.mk_kd,
+		// 	matakuliah.mk_nama,
+		// 	mahasiswa.mhs_nim,
+		// 	mahasiswa.mhs_nama'
+		// );
 
-		$this->db->join('matakuliah', 'nilai.id_mk = matakuliah.id');
-		$this->db->join('mahasiswa', 'nilai.id_mhs = mahasiswa.id');
+
+		// $this->db->join('matakuliah', 'nilai.id_mk = matakuliah.id');
+		// $this->db->join('mahasiswa', 'nilai.id_mhs = mahasiswa.id');
+		$this->db->join('matakuliah', 'matakuliah.id = nilai.id_mk');
+		$this->db->join('mahasiswa', 'mahasiswa.id = nilai.id_mhs');
+		$this->db->where('nilai.id_mhs', $id_mhs);
 		$query = $this->db->get();
-		return $query->result();
+		return $query->result_array();
 	}
 
 	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")

@@ -5,7 +5,9 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body d-flex justify-content-end">
-
+						<?= $nama ?>
+						<?= $nim ?>
+						<!-- <pre><?php print_r($nilai) ?></pre> -->
 						<!-- <form method="GET">
 							<div class="form-row">
 								<div class="form-group col-4">
@@ -35,7 +37,7 @@
 							</div>
 							<button type="submit" class="btn btn-info float-right">Cari</button>
 						</form> -->
-						<a href="<?= base_url("data-nilai/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						<a href="<?= base_url("data-nilai/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class=" btn btn-success">+ Tambah Data</a>
 
 					</div>
 				</div>
@@ -43,7 +45,7 @@
 				<div class="card">
 					<div class="card-body">
 						<!-- <a href="" class="btn btn-success"><i class="fas fa-print"></i> Print</a> -->
-						<table class="table table-bordered table-striped" id="example1">
+						<table class="table table-bordered table-striped datatable">
 							<thead>
 								<tr>
 									<th>No.</th>
@@ -65,15 +67,15 @@
 									foreach ($nilai as $n) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $n->mk_smt ?></td>
-											<td><?= $n->mk_kd ?></td>
-											<td><?= $n->mk_nama ?></td>
-											<td><?= $n->mhs_nim ?></td>
-											<td><?= $n->mhs_nama ?></td>
-											<td><?= $n->n_tugas ?></td>
-											<td><?= $n->n_uts ?></td>
-											<td><?= $n->n_uas ?></td>
-											<td><?= $n->n_akumulasi ?></td>
+											<td><?= $n['mk_smt'] ?></td>
+											<td><?= $n['mk_kd'] ?></td>
+											<td><?= $n['mk_nama'] ?></td>
+											<td><?= $n['mhs_nim'] ?></td>
+											<td><?= $n['mhs_nama'] ?></td>
+											<td><?= $n['n_tugas'] ?></td>
+											<td><?= $n['n_uts'] ?></td>
+											<td><?= $n['n_uas'] ?></td>
+											<td><?= $n['n_akumulasi'] ?></td>
 											<td>
 												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $n['id'] ?>">Lihat</a> -->
 												<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a>
