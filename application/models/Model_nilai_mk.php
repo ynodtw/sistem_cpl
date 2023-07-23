@@ -33,16 +33,16 @@ class Model_nilai_mk extends CI_Model
 		return $query->result_array();
 	}
 
-	// public function checkMdMk($mk_kd)
-	// {
-	// 	$sql = "
-	// 	SELECT mk_kd
-	// 	FROM matakuliah
-	// 	WHERE mk_kd = '" . $mk_kd . "';
-	// 	";
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
+	public function checkMdMk($id_mk, $id_mhs)
+	{
+		$this->db->select('*');
+		$this->db->from('nilai_mk');
+
+		$this->db->where('nilai_mk.id_mhs', $id_mhs);
+		$this->db->where('nilai_mk.id_mk', $id_mk);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
 	// {

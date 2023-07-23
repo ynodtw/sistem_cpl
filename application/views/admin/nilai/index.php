@@ -52,7 +52,6 @@
 									<th>Fakultas</th>
 									<th>Jurusan</th>
 									<th>Status</th>
-									<th>Nilai</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -68,11 +67,9 @@
 											<td><?= $m['mhs_jurusan'] ?></td>
 											<td><?= $m['mhs_status'] ?></td>
 											<td>
+												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $m['id'] ?>">Lihat</a> -->
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>">Matakuliah</a>
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>">CPL</a>
-											</td>
-											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $m['id'] ?>">Lihat</a> -->
 												<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
 												<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 											</td>

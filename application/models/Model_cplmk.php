@@ -15,19 +15,34 @@ class Model_cplmk extends CI_Model
 		}
 	}
 
-	public function getData()
+	public function getData($id_nilai_mk)
 	{
-		$this->db->select('cplmk.*, 
-		matakuliah.mk_smt, 
-		matakuliah.mk_kd, 
-		matakuliah.mk_nama, 
+		$this->db->select('cplmk.*,
+		nilai_mk.id_mk,
+		nilai_mk.id_mhs,
+		matakuliah.mk_nama,
+		matakuliah.mk_kd,
 		cpl.cpl_kd,
 		cpl.cpl_kategori,
 		cpl.cpl_deskripsi');
 		$this->db->from('cplmk');
 
-		$this->db->join('matakuliah', 'matakuliah.id = cplmk.id_mk');
+		$this->db->join('nilai_mk', 'nilai_mk.id = cplmk.id_nilai_mk');
+		$this->db->join('mahasiswa', 'mahasiswa.id = nilai_mk.id_mhs');
+		$this->db->join('matakuliah', 'matakuliah.id = nilai_mk.id_mk');
 		$this->db->join('cpl', 'cpl.id = cplmk.id_cpl');
+		$this->db->where('cplmk.id_nilai_mk', $id_nilai_mk);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function checkKdCpl($id_nilai_mk, $id_cpl)
+	{
+		$this->db->select('*');
+		$this->db->from('cplmk');
+
+		$this->db->where('cplmk.id_nilai_mk', $id_nilai_mk);
+		$this->db->where('cplmk.id_cpl', $id_cpl);
 		$query = $this->db->get();
 		return $query->result_array();
 	}

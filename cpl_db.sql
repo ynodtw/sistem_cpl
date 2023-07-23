@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jul 2023 pada 07.37
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 7.4.30
+-- Waktu pembuatan: 23 Jul 2023 pada 11.16
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,8 @@ INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
 (3, 'KU1', 'Kemampuan Umum', 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan implementasi ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya.'),
 (4, 'KK1', 'Kemampuan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer'),
 (8, 'S2', 'Sikap', 'asdasdasd'),
-(9, 'KK2', 'Kemampuan Khusus', 'Lorem');
+(9, 'KK2', 'Kemampuan Khusus', 'Lorem'),
+(10, 'S4', 'Sikap', 'Lorem');
 
 -- --------------------------------------------------------
 
@@ -54,21 +55,22 @@ INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
 
 CREATE TABLE `cplmk` (
   `id` int(11) NOT NULL,
-  `id_mk` int(11) NOT NULL,
-  `id_cpl` int(11) NOT NULL
+  `id_nilai_mk` int(11) NOT NULL,
+  `id_cpl` int(11) NOT NULL,
+  `n_cplmk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `cplmk`
 --
 
-INSERT INTO `cplmk` (`id`, `id_mk`, `id_cpl`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 1),
-(4, 2, 2),
-(5, 3, 1),
-(6, 3, 2);
+INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
+(1, 1, 1, 70),
+(2, 1, 2, 90),
+(3, 1, 3, 67),
+(4, 5, 4, 80),
+(5, 1, 10, 23),
+(6, 5, 1, 89);
 
 -- --------------------------------------------------------
 
@@ -228,12 +230,13 @@ INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_tugas`, `n_uts`, `n_uas`, `n
 (1, 1, 1, 70, 70, 70, 70),
 (2, 1, 2, 80, 80, 80, 80),
 (3, 1, 3, 88, 88, 88, 88),
-(4, 1, 4, 77, 77, 77, 77),
 (5, 2, 1, 99, 99, 99, 99),
 (6, 3, 1, 66, 66, 66, 66),
 (7, 5, 2, 56, 76, 98, 70),
 (8, 14, 2, 66, 66, 66, 66),
-(11, 13, 1, 23, 23, 98, 12);
+(11, 13, 1, 23, 23, 98, 12),
+(22, 1, 6, 56, 12, 23, 23),
+(23, 5, 1, 23, 23, 98, 23);
 
 -- --------------------------------------------------------
 
@@ -387,7 +390,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `cplmk`
@@ -429,7 +432,7 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`

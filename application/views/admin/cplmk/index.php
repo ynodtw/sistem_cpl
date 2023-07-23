@@ -6,9 +6,11 @@
 				<div class="card">
 					<div class="card-body d-flex">
 						<div class="col-10 d-flex justify-content-start">
+							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
+							<span style="font-size:x-large;"><?= $mk_kd ?> <?= $mk_nama ?></span>
 						</div>
 						<div class="col-2 d-flex justify-content-end">
-							<a href="<?= base_url("data-cplmk/") ?>" class="btn btn-success">+ Tambah Data</a>
+							<a href="<?= base_url("data-cplmk/add/" . $id_nilai_mk) ?>" class="btn btn-success">+ Tambah Data</a>
 						</div>
 					</div>
 				</div>
@@ -20,11 +22,10 @@
 							<thead>
 								<tr>
 									<th>No.</th>
-									<th>Kode MK</th>
-									<th>Mata Kuliah / Kode CPL</th>
-									<?php foreach ($cpl as $cpl) { ?>
-										<th><?= $cpl['cpl_kd'];  ?></th>
-									<?php } ?>
+									<th>Kode CPL</th>
+									<th>Kategori</th>
+									<th>Deskripsi</th>
+									<th>Nilai</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -34,23 +35,13 @@
 									foreach ($cplmk as $cm) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $cm['mk_kd'] ?></td>
-											<td><?= $cm['mk_nama'] ?></td>
-											<?php foreach ($cplmk as $cm2) { ?>
-												<td>
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<div class="input-group-text">
-																<input type="checkbox" aria-label="Checkbox for following text input">
-															</div>
-														</div>
-													</div>
-												</td>
-											<?php } ?>
+											<td><?= $cm['cpl_kd'] ?></td>
+											<td><?= $cm['cpl_kategori'] ?></td>
+											<td><?= $cm['cpl_deskripsi'] ?></td>
+											<td><?= $cm['n_cplmk'];  ?></td>
 											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $n['id'] ?>">Lihat</a> -->
-												<!-- <a class="btn btn-success" href="<?= base_url() . "#" ?>">+</a>
-												<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a> -->
+												<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a>
+												<a class="btn btn-danger" href="<?= base_url() . "#" ?>">Hapus</a>
 											</td>
 										</tr>
 									<?php } ?>

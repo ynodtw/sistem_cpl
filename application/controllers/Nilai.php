@@ -34,15 +34,12 @@ class Nilai_mk extends CI_Controller
 		// }
 
 		$data['nilai_mk'] = $this->Model_nilai_mk->getData($id_mhs);
-
+		$data['id_mhs'] = $id_mhs;
+		$data['nim'] = $data['nilai_mk'][0]['mhs_nim'];
+		$data['nama'] = $data['nilai_mk'][0]['mhs_nama'];
 		// echo '<pre>';
 		// print_r($data);
 		// die;
-
-		$data['id_mhs'] = $id_mhs;
-		$data['nim'] = @$data['nilai_mk'][0]['mhs_nim'];
-		$data['nama'] = @$data['nilai_mk'][0]['mhs_nama'];
-
 
 		$data['page'] = "admin/nilai_mk/index";
 		$data['title'] = "Data nilai";
@@ -72,17 +69,17 @@ class Nilai_mk extends CI_Controller
 		$n_uas = $this->input->post("n_uas");
 		$n_akumulasi = $this->input->post("n_akumulasi");
 
-		$cek_id_mk = $this->Model_nilai_mk->checkMdMk($id_mk, $id_mhs);
+		// $cek_mk_kd = $this->Model_nilai_mk->checkMdMk($mk_kd);
 
-		if (!empty($cek_id_mk)) {
-			echo "
-			<script>
-					alert('Matakuliah Sudah Terdaftar!')
-					history.back()
-			</script>
-			";
-			return false;
-		}
+		// if (!empty($cek_mk_kd)) {
+		// 	echo "
+		// 	<script>
+		// 			alert('Matakuliah Sudah Terdaftar!')
+		// 			history.back()
+		// 	</script>
+		// 	";
+		// 	return false;
+		// }
 
 		$data_insert = [
 			"id_mk" => $id_mk,
@@ -118,6 +115,6 @@ class Nilai_mk extends CI_Controller
 		$this->Model_nilai_mk->delete($id);
 
 		$this->session->set_flashdata('msg', 'Sukses Hapus Data');
-		redirect($this->agent->referrer());
+		redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
 	}
 }

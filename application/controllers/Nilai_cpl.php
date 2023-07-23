@@ -31,8 +31,8 @@ class Nilai_cpl extends CI_Controller
 
 		$data['nilai_cpl'] = $this->Model_nilai_cpl->getData($id_mhs);
 		$data['id_mhs'] = $id_mhs;
-		$data['nim'] = $data['nilai_cpl'][0]['mhs_nim'];
-		$data['nama'] = $data['nilai_cpl'][0]['mhs_nama'];
+		$data['nim'] = @$data['nilai_cpl'][0]['mhs_nim'];
+		$data['nama'] = @$data['nilai_cpl'][0]['mhs_nama'];
 		// echo '<pre>';
 		// print_r($data);
 		// die;
