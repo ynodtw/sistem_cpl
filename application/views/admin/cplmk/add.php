@@ -6,8 +6,12 @@
 					<div class="card-body">
 						<form method="POST" action="<?= base_url("nilai/insert") ?>" enctype="multipart/form-data">
 							<input type="hidden" name="id_mhs" value="<?= $id_mhs; ?>">
-							<?= $_GET['nama-mhs'];  ?>
-							<?= $_GET['nim-mhs'];  ?>
+							<strong style="">
+								<?= $_GET['nama-mhs'];  ?>
+								<?= $_GET['nim-mhs'];  ?>
+							</strong>
+							<br>
+							<br>
 							<div class="form-group">
 								<label for="id_mk">Matakuliah</label>
 								<select class="form-control" id="id_mk" name="id_mk" required>

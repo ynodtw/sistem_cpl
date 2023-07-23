@@ -24,6 +24,10 @@ class Cpl extends CI_Controller
 			$data['cpl'] = $this->Model_cpl->getData();
 		}
 
+		// $data['cpl_kd'] = $data['cpl'];
+		// echo "<pre>";
+		// print_r($data['cpl_kd']);
+		// die;
 
 		$data['page'] = "admin/cpl/index";
 		$data['title'] = "Data cpl";

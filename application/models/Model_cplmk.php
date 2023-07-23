@@ -1,6 +1,6 @@
 <?php
 
-class Model_nilai extends CI_Model
+class Model_cplmk extends CI_Model
 {
 	public function __construct()
 	{
@@ -10,36 +10,24 @@ class Model_nilai extends CI_Model
 	public function insert($data)
 	{
 		if ($data) {
-			$insert = $this->db->insert('nilai', $data);
+			$insert = $this->db->insert('cplmk', $data);
 			return ($insert == true) ? true : false;
 		}
 	}
 
-	public function getData($id_mhs)
+	public function getData()
 	{
-		$this->db->select('nilai.*, matakuliah.mk_smt, matakuliah.mk_kd, matakuliah.mk_nama, mahasiswa.mhs_nim, mahasiswa.mhs_nama');
-		$this->db->from('nilai');
-		// $this->db->select(
-		// 	'nilai.id as nilai_id,
-		// 	matakuliah.id as mk_id,
-		// 	mahasiswa.id as mhs_id,
-		// 	nilai.n_tugas,
-		// 	nilai.n_uts,
-		// 	nilai.n_uas,
-		// 	nilai.n_akumulasi,
-		// 	matakuliah.mk_smt,
-		// 	matakuliah.mk_kd,
-		// 	matakuliah.mk_nama,
-		// 	mahasiswa.mhs_nim,
-		// 	mahasiswa.mhs_nama'
-		// );
+		$this->db->select('cplmk.*, 
+		matakuliah.mk_smt, 
+		matakuliah.mk_kd, 
+		matakuliah.mk_nama, 
+		cpl.cpl_kd,
+		cpl.cpl_kategori,
+		cpl.cpl_deskripsi');
+		$this->db->from('cplmk');
 
-
-		// $this->db->join('matakuliah', 'nilai.id_mk = matakuliah.id');
-		// $this->db->join('mahasiswa', 'nilai.id_mhs = mahasiswa.id');
-		$this->db->join('matakuliah', 'matakuliah.id = nilai.id_mk');
-		$this->db->join('mahasiswa', 'mahasiswa.id = nilai.id_mhs');
-		$this->db->where('nilai.id_mhs', $id_mhs);
+		$this->db->join('matakuliah', 'matakuliah.id = cplmk.id_mk');
+		$this->db->join('cpl', 'cpl.id = cplmk.id_cpl');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -48,7 +36,7 @@ class Model_nilai extends CI_Model
 	// {
 	// 	$sql = "
 	//           SELECT *
-	//           FROM nilai
+	//           FROM cplmk
 	//           WHERE 
 	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
 	//       ";
@@ -75,7 +63,7 @@ class Model_nilai extends CI_Model
 	// {
 	// 	if ($data && $id) {
 	// 		$this->db->where('id', $id);
-	// 		$update = $this->db->update('nilai', $data);
+	// 		$update = $this->db->update('cplmk', $data);
 	// 		return ($update == true) ? true : false;
 	// 	}
 	// }
@@ -84,7 +72,7 @@ class Model_nilai extends CI_Model
 	// {
 	// 	if ($id) {
 	// 		$this->db->where('id', $id);
-	// 		$delete = $this->db->delete('nilai');
+	// 		$delete = $this->db->delete('cplmk');
 	// 		return ($delete == true) ? true : false;
 	// 	}
 	// }

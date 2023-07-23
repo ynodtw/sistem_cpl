@@ -23,13 +23,13 @@ class Model_cpl extends CI_Model
             SELECT *
             FROM cpl
             WHERE id = '" . $id . "'
-            ORDER BY id ASC;
+            ORDER BY cpl_kd ASC;
             ";
 		} else {
 			$sql = "
             SELECT *
             FROM cpl
-            ORDER BY id ASC;";
+            ORDER BY cpl_kd ASC;";
 		}
 
 		$query = $this->db->query($sql);

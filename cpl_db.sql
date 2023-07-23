@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jul 2023 pada 13.39
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 23 Jul 2023 pada 07.37
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,32 @@ INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
 (2, 'P1', 'Pengetahuan', 'Memahami pengetahuan tentang ilmu kelautan dan/atau teknologi kelautan dan mampu mengaplikasikannya sesuai dengan bidang keilmuannya masing-masing'),
 (3, 'KU1', 'Kemampuan Umum', 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan implementasi ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya.'),
 (4, 'KK1', 'Kemampuan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer'),
-(8, 'S2', 'Sikap', 'asdasdasd');
+(8, 'S2', 'Sikap', 'asdasdasd'),
+(9, 'KK2', 'Kemampuan Khusus', 'Lorem');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `cplmk`
+--
+
+CREATE TABLE `cplmk` (
+  `id` int(11) NOT NULL,
+  `id_mk` int(11) NOT NULL,
+  `id_cpl` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `cplmk`
+--
+
+INSERT INTO `cplmk` (`id`, `id_mk`, `id_cpl`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 1),
+(4, 2, 2),
+(5, 3, 1),
+(6, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -114,7 +139,8 @@ INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurus
 (1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 'Aktif'),
 (2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 'Aktif'),
 (3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 'Non Aktif'),
-(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif');
+(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif'),
+(6, '011601503125138', 'Tester', 'Teknik', 'Teknik Informatika', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -156,24 +182,49 @@ INSERT INTO `matakuliah` (`id`, `mk_smt`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_pras
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nilai`
+-- Struktur dari tabel `nilai_cpl`
 --
 
-CREATE TABLE `nilai` (
+CREATE TABLE `nilai_cpl` (
+  `id` int(11) NOT NULL,
+  `id_mhs` int(11) DEFAULT NULL,
+  `id_cpl` int(11) DEFAULT NULL,
+  `n_cpl` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `nilai_cpl`
+--
+
+INSERT INTO `nilai_cpl` (`id`, `id_mhs`, `id_cpl`, `n_cpl`) VALUES
+(1, 1, 1, 70),
+(2, 1, 2, 80),
+(3, 2, 1, 57),
+(4, 2, 2, 76),
+(5, 3, 1, 65),
+(6, 3, 2, 87);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `nilai_mk`
+--
+
+CREATE TABLE `nilai_mk` (
   `id` int(11) NOT NULL,
   `id_mk` int(11) NOT NULL,
   `id_mhs` int(11) NOT NULL,
   `n_tugas` int(11) NOT NULL,
   `n_uts` int(11) NOT NULL,
   `n_uas` int(11) NOT NULL,
-  `n_akumulasi` int(11) DEFAULT NULL
+  `n_akumulasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `nilai`
+-- Dumping data untuk tabel `nilai_mk`
 --
 
-INSERT INTO `nilai` (`id`, `id_mk`, `id_mhs`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
+INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
 (1, 1, 1, 70, 70, 70, 70),
 (2, 1, 2, 80, 80, 80, 80),
 (3, 1, 3, 88, 88, 88, 88),
@@ -181,7 +232,8 @@ INSERT INTO `nilai` (`id`, `id_mk`, `id_mhs`, `n_tugas`, `n_uts`, `n_uas`, `n_ak
 (5, 2, 1, 99, 99, 99, 99),
 (6, 3, 1, 66, 66, 66, 66),
 (7, 5, 2, 56, 76, 98, 70),
-(8, 14, 2, 66, 66, 66, 66);
+(8, 14, 2, 66, 66, 66, 66),
+(11, 13, 1, 23, 23, 98, 12);
 
 -- --------------------------------------------------------
 
@@ -255,7 +307,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `photo`, `status`, `role`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (9, 'Super Admin', 'superadmin@mail.com', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53'),
 (11, 'Admin', 'admin@mail.com', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '9-superadmin.png', 'active', 'admin', 9, '2023-05-31 14:41:44', 11, '2023-06-04 07:09:19'),
-(13, 'Dony Tanu Wijaya', 'donytanuwijaya@gmail.com', '$2y$10$zbFzfJTQhJvsh3uhLYLHAOmB5aDYW45ETN44UfksVSSGw5aQPHBc6', '9-superadmin.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 9, '2023-07-08 21:20:24');
+(13, 'Dony Tanu Wijaya', 'donytanuwijaya@gmail.com', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '9-superadmin.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 9, '2023-07-08 21:20:24');
 
 --
 -- Indexes for dumped tables
@@ -265,6 +317,12 @@ INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `photo`, `status`, `
 -- Indeks untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `cplmk`
+--
+ALTER TABLE `cplmk`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -292,9 +350,15 @@ ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `nilai`
+-- Indeks untuk tabel `nilai_cpl`
 --
-ALTER TABLE `nilai`
+ALTER TABLE `nilai_cpl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `nilai_mk`
+--
+ALTER TABLE `nilai_mk`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -323,7 +387,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `cplmk`
+--
+ALTER TABLE `cplmk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
@@ -341,7 +411,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `matakuliah`
@@ -350,10 +420,16 @@ ALTER TABLE `matakuliah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `nilai`
+-- AUTO_INCREMENT untuk tabel `nilai_cpl`
 --
-ALTER TABLE `nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `nilai_cpl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `nilai_mk`
+--
+ALTER TABLE `nilai_mk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`

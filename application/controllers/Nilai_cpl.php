@@ -1,46 +1,43 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Nilai extends CI_Controller
+class Nilai_cpl extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Model_tentang');
-		$this->load->model('Model_nilai');
-		$this->load->model('Model_matakuliah');
+		$this->load->model('Model_nilai_cpl');
+		$this->load->model('Model_cpl');
 	}
 
 	public function index($id_mhs)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-		$mk_smt = @$_GET['mk_smt'];
-		$mk_kd = @$_GET['mk_kd'];
-		$mk_nama = @$_GET['mk_nama'];
 		$mhs_nim = @$_GET['mhs_nim'];
 		$mhs_nama = @$_GET['mhs_nama'];
-		$n_tugas = @$_GET['n_tugas'];
-		$n_uts = @$_GET['n_uts'];
-		$n_uas = @$_GET['n_uas'];
-		$n_akumulasi = @$_GET['n_akumulasi'];
+		$cpl_kd = @$_GET['cpl_kd'];
+		$cpl_kategori = @$_GET['cpl_kategori'];
+		$cpl_deskripsi = @$_GET['cpl_deskripsi'];
+		$n_cpl = @$_GET['n_cpl'];
 
 
-		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mhs_nim != "" || $mhs_nama != "" || $n_tugas != "" || $n_uts != "" || $n_uas != "" || $n_akumulasi != "") {
-		// 	$data['nilai'] = $this->Model_nilai->getSearch($mk_smt, $mk_kd, $mk_nama, $mhs_nim, $mhs_nama, $n_tugas, $n_uts, $n_uas, $n_akumulasi);
+		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mhs_nim != "" || $mhs_nama != "" || $cpl_kd != "" || $cpl_kategori != "" || $cpl_deskripsi != "" || $n_cpl != "") {
+		// 	$data['nilai_cpl'] = $this->Model_nilai_cpl->getSearch($mk_smt, $mk_kd, $mk_nama, $mhs_nim, $mhs_nama, $cpl_kd, $cpl_kategori, $cpl_deskripsi, $n_cpl);
 		// } else {
-		// 	$data['nilai'] = $this->Model_nilai->getData();
+		// 	$data['nilai_cpl'] = $this->Model_nilai_cpl->getData();
 		// }
 
-		$data['nilai'] = $this->Model_nilai->getData($id_mhs);
+		$data['nilai_cpl'] = $this->Model_nilai_cpl->getData($id_mhs);
 		$data['id_mhs'] = $id_mhs;
-		$data['nim'] = $data['nilai'][0]['mhs_nim'];
-		$data['nama'] = $data['nilai'][0]['mhs_nama'];
+		$data['nim'] = $data['nilai_cpl'][0]['mhs_nim'];
+		$data['nama'] = $data['nilai_cpl'][0]['mhs_nama'];
 		// echo '<pre>';
-		// print_r($data['nilai']);
+		// print_r($data);
 		// die;
 
-		$data['page'] = "admin/nilai/index";
+		$data['page'] = "admin/nilai_cpl/index";
 		$data['title'] = "Data nilai";
 		$this->load->view('admin/template', $data);
 	}
@@ -49,8 +46,8 @@ class Nilai extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['id_mhs'] = $id_mhs;
-		$data['page'] = "admin/nilai/add";
-		$data['title'] = "Tambah Data Nilai";
+		$data['page'] = "admin/nilai_cpl/add";
+		$data['title'] = "Tambah Data Nilai_cpl";
 		$data['matakuliah'] = $this->Model_matakuliah->getData();
 		// echo '<pre>';
 		// print_r($data['matakuliah']);
@@ -63,10 +60,10 @@ class Nilai extends CI_Controller
 	{
 		$id_mk = $this->input->post("id_mk");
 		$id_mhs = $this->input->post("id_mhs");
-		$n_tugas = $this->input->post("n_tugas");
-		$n_uts = $this->input->post("n_uts");
-		$n_uas = $this->input->post("n_uas");
-		$n_akumulasi = $this->input->post("n_akumulasi");
+		$cpl_kd = $this->input->post("cpl_kd");
+		$cpl_kategori = $this->input->post("cpl_kategori");
+		$cpl_deskripsi = $this->input->post("cpl_deskripsi");
+		$n_cpl = $this->input->post("n_cpl");
 
 		$cek_id_mhs = $this->Model_matakuliah->checkKdMk($id_mhs);
 
@@ -83,21 +80,21 @@ class Nilai extends CI_Controller
 		$data_insert = [
 			"id_mk" => $id_mk,
 			"id_mhs" => $id_mhs,
-			"n_tugas" => $n_tugas,
-			"n_uts" => $n_uts,
-			"n_uas" => $n_uas,
-			"n_akumulasi" => $n_akumulasi
+			"cpl_kd" => $cpl_kd,
+			"cpl_kategori" => $cpl_kategori,
+			"cpl_deskripsi" => $cpl_deskripsi,
+			"n_cpl" => $n_cpl
 		];
 
 		// echo '<pre>';
 		// print_r($data_insert);
 		// die;
 
-		$insert = $this->Model_nilai->insert($data_insert);
+		$insert = $this->Model_nilai_cpl->insert($data_insert);
 
 		if ($insert) {
 			$this->session->set_flashdata('msg', 'Sukses Insert Data');
-			redirect(base_url("/data-nilai/" . $id_mhs));
+			redirect(base_url("/data-nilai_cpl/" . $id_mhs));
 		} else {
 			echo "
 					<script>

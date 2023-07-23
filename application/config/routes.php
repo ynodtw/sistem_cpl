@@ -37,12 +37,19 @@ $route['data-matakuliah/edit/(:num)'] = 'matakuliah/edit/$1';
 
 //CONTROLLER NILAI
 // $route['data-nilai'] = 'nilai';
-$route['data-nilai/(:num)'] = 'nilai/index/$1';
-$route['data-nilai/add/(:num)'] = 'nilai/add/$1';
-$route['data-nilai/edit/(:num)'] = 'nilai/edit/$1';
+$route['data-nilai-matakuliah/(:num)'] = 'nilai_mk/index/$1';
+$route['data-nilai-matakuliah/add/(:num)'] = 'nilai_mk/add/$1';
+$route['data-nilai-matakuliah/edit/(:num)'] = 'nilai_mk/edit/$1';
 
+//CONTROLLER CPLMK
+// $route['data-cplmk'] = 'cplmk';
+// $route['data-cplmk/add'] = 'cplmk/add';
+// $route['data-cplmk/edit/(:num)'] = 'cplmk/edit/$1';
 
-
+//CONTROLLER NILAI CPL
+$route['data-nilai-cpl/(:num)'] = 'nilai_cpl/index/$1';
+$route['data-nilai-cpl/add/(:num)'] = 'nilai_cpl/add/$1';
+$route['data-nilai-cpl/edit/(:num)'] = 'nilai_cpl/edit/$1';
 
 
 
