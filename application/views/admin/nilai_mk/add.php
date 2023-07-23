@@ -41,10 +41,10 @@
 								<input type="text" class="form-control" id="n_uas" name="n_uas" placeholder="" required>
 							</div>
 
-							<!-- <div class="form-group">
+							<div class="form-group">
 								<label for="n_akumulasi">Akumulai</label>
 								<input type="text" class="form-control" id="n_akumulasi" name="n_akumulasi" placeholder="">
-							</div> -->
+							</div>
 
 							<!-- <div class="form-group">
 								<label for="mk_keterangan">Keterangan</label>

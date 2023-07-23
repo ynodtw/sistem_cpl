@@ -102,9 +102,9 @@ class Nilai_mk extends CI_Controller
 			"n_akumulasi" => $n_akumulasi
 		];
 
-		echo '<pre>';
-		print_r($data_insert);
-		die;
+		// echo '<pre>';
+		// print_r($data_insert);
+		// die;
 
 		$insert = $this->Model_nilai_mk->insert($data_insert);
 
