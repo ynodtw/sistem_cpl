@@ -22,6 +22,11 @@
 							</div>
 
 							<div class="form-group">
+								<label for="n_absen">Nilai Absen</label>
+								<input type="text" class="form-control" id="n_absen" name="n_absen" placeholder="" required>
+							</div>
+
+							<div class="form-group">
 								<label for="n_tugas">Nilai Tugas</label>
 								<input type="text" class="form-control" id="n_tugas" name="n_tugas" placeholder="" required>
 							</div>
@@ -36,10 +41,10 @@
 								<input type="text" class="form-control" id="n_uas" name="n_uas" placeholder="" required>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="n_akumulasi">Akumulai</label>
 								<input type="text" class="form-control" id="n_akumulasi" name="n_akumulasi" placeholder="">
-							</div>
+							</div> -->
 
 							<!-- <div class="form-group">
 								<label for="mk_keterangan">Keterangan</label>

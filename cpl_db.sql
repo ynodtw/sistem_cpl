@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jul 2023 pada 11.16
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 23 Jul 2023 pada 19.05
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -157,29 +157,31 @@ CREATE TABLE `matakuliah` (
   `mk_nama` varchar(255) NOT NULL,
   `mk_sks` int(11) NOT NULL,
   `mk_prasyarat` varchar(255) NOT NULL,
-  `mk_keterangan` varchar(255) NOT NULL
+  `mk_keterangan` varchar(255) NOT NULL,
+  `bobot_absen` int(11) NOT NULL,
+  `bobot_tugas` int(11) NOT NULL,
+  `bobot_uts` int(11) NOT NULL,
+  `bobot_uas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `matakuliah`
 --
 
-INSERT INTO `matakuliah` (`id`, `mk_smt`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_prasyarat`, `mk_keterangan`) VALUES
-(1, '1', 'UN192003', 'Bahasa Inggris', 2, '', 'Wajib Universitas'),
-(2, '6', 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi'),
-(3, '1', 'UN192006', 'Pancasila', 2, '', 'Wajib Universitas'),
-(4, '7', 'TI173028', 'Praktek Kerja Lapangan', 3, 'Minimal SKS 100, Manajemen Proyek Perangkat lunak', ''),
-(5, '7', 'TI172029', 'Riset Teknologi Informasi', 2, 'Kecerdasan Buatan', ''),
-(6, '2', 'UN192004', 'Kewarganegaraan', 2, '', 'Wajib Universitas'),
-(7, '8', 'TI186030', 'Skripsi', 6, 'Riset Teknologi Informasi, Minimal 120 SKS, dan menyelesaikan 133 SKS sebelum sidang', 'Wajib Profi'),
-(8, '2', 'TI1133012', 'Sistem Digital', 3, '', 'Wajib Prodi'),
-(9, '3', 'Ti115171', 'Bahasa Inggris Teknik', 2, 'Bahasa Inggris', 'Wajib Prodi'),
-(10, '3', 'TI133008', 'Jaringan Komputer', 3, 'Komunikasi Data', 'Wajib Prodi'),
-(11, '4', 'TI113004', 'Sistem Operasi', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi'),
-(12, '4', 'TI115119', 'Teori Graf dan Bahasa Automata', 3, 'Matematika DIskrit', 'Wajib Prodi'),
-(13, '5', 'FT193007', 'Technopreneurship', 3, 'Kewirausahaan', 'Wajib Fakultas'),
-(14, '5', 'TI115181', 'Grafik Komputer', 3, 'Pemrograman Berorientasi Objek', 'Wajibi Prodi'),
-(15, '6', 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi');
+INSERT INTO `matakuliah` (`id`, `mk_smt`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_prasyarat`, `mk_keterangan`, `bobot_absen`, `bobot_tugas`, `bobot_uts`, `bobot_uas`) VALUES
+(1, '1', 'UN192003', 'Bahasa Inggris', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(2, '6', 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi', 10, 20, 30, 40),
+(3, '1', 'UN192006', 'Pancasila', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(5, '7', 'TI172029', 'Riset Teknologi Informasi', 2, 'Kecerdasan Buatan', '', 10, 20, 30, 40),
+(6, '2', 'UN192004', 'Kewarganegaraan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(8, '2', 'TI1133012', 'Sistem Digital', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(9, '3', 'Ti115171', 'Bahasa Inggris Teknik', 2, 'Bahasa Inggris', 'Wajib Prodi', 10, 20, 30, 40),
+(10, '3', 'TI133008', 'Jaringan Komputer', 3, 'Komunikasi Data', 'Wajib Prodi', 10, 20, 30, 40),
+(11, '4', 'TI113004', 'Sistem Operasi', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(12, '4', 'TI115119', 'Teori Graf dan Bahasa Automata', 3, 'Matematika DIskrit', 'Wajib Prodi', 10, 20, 30, 40),
+(13, '5', 'FT193007', 'Technopreneurship', 3, 'Kewirausahaan', 'Wajib Fakultas', 10, 20, 30, 40),
+(14, '5', 'TI115181', 'Grafik Komputer', 3, 'Pemrograman Berorientasi Objek', 'Wajibi Prodi', 10, 20, 30, 40),
+(15, '6', 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi', 10, 20, 30, 40);
 
 -- --------------------------------------------------------
 
@@ -216,6 +218,7 @@ CREATE TABLE `nilai_mk` (
   `id` int(11) NOT NULL,
   `id_mk` int(11) NOT NULL,
   `id_mhs` int(11) NOT NULL,
+  `n_absen` int(11) NOT NULL,
   `n_tugas` int(11) NOT NULL,
   `n_uts` int(11) NOT NULL,
   `n_uas` int(11) NOT NULL,
@@ -226,17 +229,13 @@ CREATE TABLE `nilai_mk` (
 -- Dumping data untuk tabel `nilai_mk`
 --
 
-INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
-(1, 1, 1, 70, 70, 70, 70),
-(2, 1, 2, 80, 80, 80, 80),
-(3, 1, 3, 88, 88, 88, 88),
-(5, 2, 1, 99, 99, 99, 99),
-(6, 3, 1, 66, 66, 66, 66),
-(7, 5, 2, 56, 76, 98, 70),
-(8, 14, 2, 66, 66, 66, 66),
-(11, 13, 1, 23, 23, 98, 12),
-(22, 1, 6, 56, 12, 23, 23),
-(23, 5, 1, 23, 23, 98, 23);
+INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
+(1, 1, 1, 0, 0, 0, 0, 0),
+(2, 1, 2, 0, 0, 0, 0, 0),
+(3, 1, 3, 0, 0, 0, 0, 0),
+(7, 5, 2, 0, 0, 0, 0, 0),
+(8, 14, 2, 0, 0, 0, 0, 0),
+(22, 1, 6, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -432,7 +431,7 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`

@@ -30,7 +30,7 @@ class Cpl extends CI_Controller
 		// die;
 
 		$data['page'] = "admin/cpl/index";
-		$data['title'] = "Data cpl";
+		$data['title'] = "Data CPL";
 		$this->load->view('admin/template', $data);
 	}
 

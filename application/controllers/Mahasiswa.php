@@ -28,7 +28,7 @@ class Mahasiswa extends CI_Controller
 
 
 		$data['page'] = "admin/mahasiswa/index";
-		$data['title'] = "Data mahasiswa";
+		$data['title'] = "Data Mahasiswa";
 		$this->load->view('admin/template', $data);
 	}
 

@@ -22,6 +22,10 @@ class Model_nilai_mk extends CI_Model
 		matakuliah.mk_smt, 
 		matakuliah.mk_kd, 
 		matakuliah.mk_nama, 
+		matakuliah.bobot_absen, 
+		matakuliah.bobot_tugas, 
+		matakuliah.bobot_uts, 
+		matakuliah.bobot_uas, 
 		mahasiswa.mhs_nim, 
 		mahasiswa.mhs_nama');
 		$this->db->from('nilai_mk');

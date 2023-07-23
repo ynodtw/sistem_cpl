@@ -19,8 +19,13 @@ class Nilai_mk extends CI_Controller
 		$mk_smt = @$_GET['mk_smt'];
 		$mk_kd = @$_GET['mk_kd'];
 		$mk_nama = @$_GET['mk_nama'];
+		$bobot_absen = @$_GET['bobot_absen'];
+		$bobot_tugas = @$_GET['bobot_tugas'];
+		$bobot_uts = @$_GET['bobot_uts'];
+		$bobot_uas = @$_GET['bobot_uas'];
 		$mhs_nim = @$_GET['mhs_nim'];
 		$mhs_nama = @$_GET['mhs_nama'];
+		$n_absen = @$_GET['n_absen'];
 		$n_tugas = @$_GET['n_tugas'];
 		$n_uts = @$_GET['n_uts'];
 		$n_uas = @$_GET['n_uas'];
@@ -65,12 +70,15 @@ class Nilai_mk extends CI_Controller
 
 	public function insert()
 	{
+
 		$id_mk = $this->input->post("id_mk");
 		$id_mhs = $this->input->post("id_mhs");
+		$n_absen = $this->input->post("n_absen");
 		$n_tugas = $this->input->post("n_tugas");
 		$n_uts = $this->input->post("n_uts");
 		$n_uas = $this->input->post("n_uas");
 		$n_akumulasi = $this->input->post("n_akumulasi");
+
 
 		$cek_id_mk = $this->Model_nilai_mk->checkMdMk($id_mk, $id_mhs);
 
@@ -87,15 +95,16 @@ class Nilai_mk extends CI_Controller
 		$data_insert = [
 			"id_mk" => $id_mk,
 			"id_mhs" => $id_mhs,
+			"n_absen" => $n_absen,
 			"n_tugas" => $n_tugas,
 			"n_uts" => $n_uts,
 			"n_uas" => $n_uas,
 			"n_akumulasi" => $n_akumulasi
 		];
 
-		// echo '<pre>';
-		// print_r($data_insert);
-		// die;
+		echo '<pre>';
+		print_r($data_insert);
+		die;
 
 		$insert = $this->Model_nilai_mk->insert($data_insert);
 
@@ -111,6 +120,23 @@ class Nilai_mk extends CI_Controller
 					";
 			return false;
 		}
+	}
+
+	public function akumulasi()
+	{
+	}
+
+	public function edit($id)
+	{
+		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['nilai_mk'] = $this->Model_nilai_mk->getData($id)[0];
+		$data['page'] = "admin/nilai_mk/edit";
+		$data['title'] = "Data Nilai Matakuliah";
+
+		echo "<pre>";
+		print_r($data);
+		die;
+		$this->load->view('admin/template', $data);
 	}
 
 	public function delete($id)

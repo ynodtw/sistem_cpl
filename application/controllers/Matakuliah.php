@@ -20,9 +20,13 @@ class Matakuliah extends CI_Controller
 		$mk_sks = @$_GET['mk_sks'];
 		$mk_prasyarat = @$_GET['mk_prasyarat'];
 		$mk_keterangan = @$_GET['mk_keterangan'];
+		$mk_bobot_absen = @$_GET['mk_bobot_absen'];
+		$mk_bobot_tugas = @$_GET['mk_bobot_tugas'];
+		$mk_bobot_uts = @$_GET['mk_bobot_uts'];
+		$mk_bobot_uas = @$_GET['mk_bobot_uas'];
 
 
-		if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mk_sks != "" || $mk_prasyarat != "" || $mk_keterangan != "") {
+		if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mk_sks != "" || $mk_prasyarat != "" || $mk_keterangan != "" || $mk_bobot_absen != "" || $mk_bobot_tugas != "" || $mk_bobot_uts != "" || $mk_bobot_uas != "") {
 			$data['matakuliah'] = $this->Model_matakuliah->getSearch($mk_smt, $mk_kd, $mk_nama, $mk_sks, $mk_prasyarat, $mk_keterangan);
 		} else {
 			$data['matakuliah'] = $this->Model_matakuliah->getData();
@@ -30,7 +34,7 @@ class Matakuliah extends CI_Controller
 
 
 		$data['page'] = "admin/matakuliah/index";
-		$data['title'] = "Data matakuliah";
+		$data['title'] = "Data Matakuliah";
 		$this->load->view('admin/template', $data);
 	}
 
@@ -55,6 +59,10 @@ class Matakuliah extends CI_Controller
 		$mk_sks = $this->input->post("mk_sks");
 		$mk_prasyarat = $this->input->post("mk_prasyarat");
 		$mk_keterangan = $this->input->post("mk_keterangan");
+		$bobot_absen = $this->input->post("bobot_absen");
+		$bobot_tugas = $this->input->post("bobot_tugas");
+		$bobot_uts = $this->input->post("bobot_uts");
+		$bobot_uas = $this->input->post("bobot_uas");
 
 		$cek_mk_kd = $this->Model_matakuliah->checkKdMk($mk_kd);
 
@@ -74,7 +82,11 @@ class Matakuliah extends CI_Controller
 			"mk_nama" => $mk_nama,
 			"mk_sks" => $mk_sks,
 			"mk_prasyarat" => $mk_prasyarat,
-			"mk_keterangan" => $mk_keterangan
+			"mk_keterangan" => $mk_keterangan,
+			"bobot_absen" => $bobot_absen,
+			"bobot_tugas" => $bobot_tugas,
+			"bobot_uts" => $bobot_uts,
+			"bobot_uas" => $bobot_uas
 		];
 
 		// echo '<pre>';
@@ -102,7 +114,7 @@ class Matakuliah extends CI_Controller
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['matakuliah'] = $this->Model_matakuliah->getData($id)[0];
 		$data['page'] = "admin/matakuliah/edit";
-		$data['title'] = "Data matakuliah";
+		$data['title'] = "Data Matakuliah";
 		$this->load->view('admin/template', $data);
 	}
 
@@ -115,6 +127,10 @@ class Matakuliah extends CI_Controller
 		$mk_sks = $this->input->post("mk_sks");
 		$mk_prasyarat = $this->input->post("mk_prasyarat");
 		$mk_keterangan = $this->input->post("mk_keterangan");
+		$mk_bobot_absen = $this->input->post("mk_bobot_absen");
+		$mk_bobot_tugas = $this->input->post("mk_bobot_tugas");
+		$mk_bobot_uts = $this->input->post("mk_bobot_uts");
+		$mk_bobot_uas = $this->input->post("mk_bobot_uas");
 
 
 		$data_insert = [
@@ -124,6 +140,10 @@ class Matakuliah extends CI_Controller
 			"mk_sks" => $mk_sks,
 			"mk_prasyarat" => $mk_prasyarat,
 			"mk_keterangan" => $mk_keterangan,
+			"mk_bobot_absen" => $mk_bobot_absen,
+			"mk_bobot_tugas" => $mk_bobot_tugas,
+			"mk_bobot_uts" => $mk_bobot_uts,
+			"mk_bobot_uas" => $mk_bobot_uas
 		];
 
 		// echo '<pre>';

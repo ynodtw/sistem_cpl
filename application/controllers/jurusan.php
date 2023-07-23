@@ -26,7 +26,7 @@ class Jurusan extends CI_Controller
 
 
 		$data['page'] = "admin/jurusan/index";
-		$data['title'] = "Data jurusan";
+		$data['title'] = "Data Fakultas";
 		$this->load->view('admin/template', $data);
 	}
 

@@ -53,6 +53,10 @@
 									<th>SKS</th>
 									<th>Prasyarat</th>
 									<th>Keterangan</th>
+									<th>Bobot Absen (%)</th>
+									<th>Bobot Tugas (%)</th>
+									<th>Bobot UTS (%)</th>
+									<th>Bobot UAS (%)</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -68,6 +72,10 @@
 											<td><?= $mk['mk_sks'] ?></td>
 											<td><?= $mk['mk_prasyarat'] ?></td>
 											<td><?= $mk['mk_keterangan'] ?></td>
+											<td><?= $mk['bobot_absen'] ?></td>
+											<td><?= $mk['bobot_tugas'] ?></td>
+											<td><?= $mk['bobot_uts'] ?></td>
+											<td><?= $mk['bobot_uas'] ?></td>
 											<td>
 												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $mk['id'] ?>">Lihat</a> -->
 												<a class="btn btn-warning" href="<?= base_url() . "data-matakuliah/edit/" . $mk['id'] ?>">Ubah</a>

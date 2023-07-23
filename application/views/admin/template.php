@@ -105,7 +105,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data jurusan" ? "active" : "" ?>">
+                <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data Fakultas" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Fakultas
@@ -151,7 +151,7 @@
 
 
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="<?= base_url("/data-tamu-lapor") ?>" class="nav-link <?= $title == "Data Tamu Lapor" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
@@ -167,7 +167,7 @@
                     Laporan Data Tamu
                   </p>
                 </a>
-              </li>
+              </li> -->
 
 
               <li class="nav-item">

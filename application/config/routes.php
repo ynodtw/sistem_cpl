@@ -35,7 +35,7 @@ $route['data-matakuliah'] = 'matakuliah';
 $route['data-matakuliah/add'] = 'matakuliah/add';
 $route['data-matakuliah/edit/(:num)'] = 'matakuliah/edit/$1';
 
-//CONTROLLER NILAI
+//CONTROLLER NILAI MATAKULIAH
 // $route['data-nilai'] = 'nilai';
 $route['data-nilai-matakuliah/(:num)'] = 'nilai_mk/index/$1';
 $route['data-nilai-matakuliah/add/(:num)'] = 'nilai_mk/add/$1';

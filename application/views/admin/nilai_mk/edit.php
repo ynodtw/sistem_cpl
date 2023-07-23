@@ -21,6 +21,16 @@
 							</div>
 
 							<div class="form-group">
+								<label for="id_mk">Matakuliah</label>
+								<select class="form-control" id="id_mk" name="id_mk" required>
+									<?php foreach ($matakuliah as $mk) { ?>
+										<option value="<?= $mk['id_mk'] ?>">(<?= $mk['mk_smt'];  ?>) <?= $mk['mk_kd']; ?> - <?= $mk['mk_nama'];  ?></option>
+										<!-- <option value="<?= $mk['id'] ?>">(<?= $mk['mk_smt'];  ?>) <?= $mk['mk_kd']; ?> - <?= $mk['mk_nama'];  ?></option> -->
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
 								<label for="mk_kd">Kode MK</label>
 								<input type="text" class="form-control" id="mk_kd" value="<?= $matakuliah["mk_kd"] ?>" name="mk_kd" placeholder="" readonly>
 							</div>

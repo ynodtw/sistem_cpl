@@ -28,7 +28,7 @@ class Dosen extends CI_Controller
 
 
 		$data['page'] = "admin/dosen/index";
-		$data['title'] = "Data dosen";
+		$data['title'] = "Data Dosen";
 		$this->load->view('admin/template', $data);
 	}
 
@@ -93,7 +93,7 @@ class Dosen extends CI_Controller
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['dosen'] = $this->Model_dosen->getData($id)[0];
 		$data['page'] = "admin/dosen/edit";
-		$data['title'] = "Data dosen";
+		$data['title'] = "Data Dosen";
 		$this->load->view('admin/template', $data);
 	}
 
