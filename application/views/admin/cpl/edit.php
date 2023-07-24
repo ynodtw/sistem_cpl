@@ -11,9 +11,19 @@
 								<input type="text" class="form-control" id="cpl_kd" value="<?= $cpl["cpl_kd"] ?>" name="cpl_kd" placeholder="" required>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="cpl_kategori">Kategori CPL</label>
 								<input type="text" class="form-control" id="cpl_kategori" value="<?= $cpl["cpl_kategori"] ?>" name="cpl_kategori" placeholder="" required>
+							</div> -->
+
+							<div class="form-group">
+								<label for="cpl_kategori">Kategori CPL</label>
+								<select class="form-control" id="cpl_kategori" name="cpl_kategori" required>
+									<option <?= $cpl["cpl_kategori"] == "Sikap" ? "selected" : "" ?> value="Sikap">Sikap</option>
+									<option <?= $cpl["cpl_kategori"] == "Pengetahuan" ? "selected" : "" ?> value="Pengetahuan">Pengetahuan</option>
+									<option <?= $cpl["cpl_kategori"] == "Keterampilan Umum" ? "selected" : "" ?> value="Keterampilan Umum">Keterampilan Umum</option>
+									<option <?= $cpl["cpl_kategori"] == "Keterampilan Khusus" ? "selected" : "" ?> value="Keterampilan Khusus">Keterampilan Khusus</option>
+								</select>
 							</div>
 
 							<div class="form-group">

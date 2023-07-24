@@ -10,9 +10,19 @@
 								<input type="text" class="form-control" id="cpl_kd" name="cpl_kd" placeholder="" required>
 							</div>
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="cpl_kategori">Kategori CPL</label>
 								<input type="text" class="form-control" id="cpl_kategori" name="cpl_kategori" placeholder="" required>
+							</div> -->
+
+							<div class="form-group">
+								<label for="cpl_kategori">Kategori</label>
+								<select class="form-control" id="cpl_kategori" name="cpl_kategori" required>
+									<option value="Sikap">Sikap</option>
+									<option value="Pengetahuan">Pengetahuan</option>
+									<option value="Keterampilan Umum">Keterampilan Umum</option>
+									<option value="Keterampilan Khusus">Keterampilan Khusus</option>
+								</select>
 							</div>
 
 							<div class="form-group">

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jul 2023 pada 00.13
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 7.4.30
+-- Waktu pembuatan: 24 Jul 2023 pada 22.12
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cpl` (
   `id` int(11) NOT NULL,
   `cpl_kd` varchar(255) NOT NULL,
-  `cpl_kategori` varchar(255) NOT NULL,
+  `cpl_kategori` enum('Sikap','Pengetahuan','Keterampilan Umum','Keterampilan Khusus') NOT NULL,
   `cpl_deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,13 +43,51 @@ INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
 (2, 'P1', 'Pengetahuan', 'Memahami pengetahuan tentang ilmu kelautan dan/atau teknologi kelautan dan mampu mengaplikasikannya sesuai dengan bidang keilmuannya masing-masing'),
 (3, 'KU1', 'Keterampilan Umum', 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan implementasi ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya.'),
 (4, 'KK1', 'Keterampilan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer'),
-(8, 'S2', 'Sikap', 'asdasdasd'),
+(8, 'S2', 'Sikap', 'Menjunjung tinggi nilai kemanusiaan dalam menjalankan tugas berdasarkan agama,moral, dan etika'),
 (9, 'KK2', 'Keterampilan Khusus', 'Menulis kode yang diperlukan untuk digunakan sebagai instruksi dalam membangun aplikasi komputer pada berbagai platform'),
-(10, 'S4', 'Sikap', 'Lorem'),
-(11, 'S9', 'Sikap', 'Menunjukkan sikap bertanggung jawab atas pekerjaan di bidang keahliannya secara mandiri.'),
-(12, 'KU3', 'Keterampilan Umum', 'Mampu mengkaji implikasi pengembangan atau implementasi ilmu pengetahuan teknologi yang memperhatikan dan menerapkan nilai humaniora sesuai dengan keahliannya berdasarkan kaidah, tata cara dan etika ilmiah dalam rangka menghasilkan solusi, gagasan, desain atau kritik seni'),
+(10, 'S4', 'Sikap', 'Berperan sebagai warga negara yang bangga dan cinta tanah air, memiliki nasionalisme serta rasa tanggungjawab pada negara dan bangsa'),
+(11, 'S9', 'Sikap', 'Menunjukkan sikap bertanggungjawab atas pekerjaan di bidang keahliannya secara mandiri'),
+(12, 'KU3', 'Keterampilan Umum', 'Mampu mengkaji implikasi pengembangan atau implementasi ilmu pengetahuan teknologi yang memperhatikan dan menerapkan nilai humaniora sesuai dengan keahliannya berdasarkan kaidah, tata cara dan etika ilmiah dalam rangka menghasilkan solusi, gagasan, desain atau kritik seni, menyusun deskripsi saintifik hasil kajiannya dalam bentuk skripsi atau laporan tugas akhir, dan mengunggahnya dalam laman perguruan tinggi'),
 (13, 'P7', 'Pengetahuan', 'Menguasai konsep-konsep bahasa pemrograman, serta mampu membandingkan berbagai solusi serta berbagai model bahasa pemrograman'),
-(14, 'P13', 'Pengetahuan', 'Menguasai bahasa dan algoritma pemrograman yang berkaitan dengan program aplikasi untuk memanipulasi model gambar, grafis dan citra');
+(14, 'P13', 'Pengetahuan', 'Menguasai bahasa dan algoritma pemrograman yang berkaitan dengan program aplikasi untuk memanipulasi model gambar, grafis dan citra'),
+(16, 'S4', 'Sikap', 'Menghargai keanekaragaman budaya, pandangan, agama, dan kepercayaan, serta pendapat atau temuan orisinal orang lain'),
+(17, 'S6', 'Sikap', 'Bekerja sama dan memiliki kepekaan sosial serta kepedulian terhadap masyarakat dan lingkungan'),
+(18, 'S7', 'Sikap', 'Taat hukum dan disiplin dalam kehidupan bermasyarakat dan bernegara'),
+(19, 'S8', 'Sikap', 'Menginternalisasi nilai, norma, dan etika akademik'),
+(20, 'S10', 'Sikap', 'Menginternalisasi semangat kemandirian, kejuangan, dan kewirausahaan'),
+(21, 'S11', 'Sikap', 'Bersikap proaktif, berorientasi pada tindakan, beradaptasi dan bersinergi disetiap kondisi apapun dalam masyarakat dan lingkungannya'),
+(22, 'S12', 'Sikap', 'Memiliki rasa keingintahuan ang tinggi dalam rangka pengembanga ipteks'),
+(23, 'S3', 'Sikap', 'Berkontribusi dalam peningkatan mutu kehidupan bermasyarakat, berbangsa, bernegara, dan kemajuan peradaban berdasarkan Pancasila'),
+(24, 'P2', 'Pengetahuan', 'Menguasai konsep-konsep matematika untuk memecahkan berbagai masalah yang berkaitan dengan logika'),
+(25, 'P3', 'Pengetahuan', 'Menguasai prinsip-prinsip pemodelan matematika, program linear serta metode numerik'),
+(26, 'P4', 'Pengetahuan', 'Menguasai konsep dan ilmu probabilitas dan statistik untuk mendukung dan menganalisis sistem komputasi'),
+(27, 'P5', 'Pengetahuan', 'Menguasai konsep dan teori konsep-konsep struktur diskrit, yang meliputi materi dasar matematika yang digunakan untuk memodelkan dan menganalisis sistem komputasi'),
+(28, 'P6', 'Pengetahuan', 'Menguasai teori dan konsep yang mendasari ilmu komputer'),
+(29, 'P8', 'Pengetahuan', 'Memahami teori dasar arsitektur komputer, termasuk perangkat keras komputer dan jaringan'),
+(30, 'P9', 'Pengetahuan', 'Menguasai bidang fokus pengetahuan ilmu komputer serta mampu beradaptasi dengan perkembangan ilmu pengetahuan dan teknologi'),
+(31, 'KU2', 'Keterampilan Umum', 'Mampu menunjukkan kinerja mandiri, bermutu, dan terukur'),
+(32, 'KU4', 'Keterampilan Umum', 'Menyusun deskripsi saintifik hasil kajian tersebut di atas dalam bentuk skripsi atau laporan tugas akhir, dan mengunggahnya dalam laman perguruan tinggi'),
+(33, 'KU5', 'Keterampilan Umum', 'Mampu mengambil keputusan secara tepat dalam konteks penyelesaian masalah di bidang keahliannya, berdasarkan hasil analisis informasi dan data'),
+(34, 'KU6', 'Keterampilan Umum', 'Mampu memelihara dan mengembang-kan jaringan kerja dengan pembimbing, kolega, sejawat baik di dalam maupun di luar lembaganya'),
+(35, 'KU7', 'Keterampilan Umum', 'Mampu bertanggungjawab atas pencapaian hasil kerja kelompok dan melakukan supervisi dan evaluasi terhadap penyelesaian pekerjaan yang ditugaskan kepada pekerja yang berada di bawah tanggungjawabnya'),
+(36, 'KU8', 'Keterampilan Umum', 'Mampu melakukan proses evaluasi diri terhadap kelompok kerja yang berada dibawah tanggung jawabnya, dan mampu mengelola pembelajaran secara mandiri'),
+(37, 'KU9', 'Keterampilan Umum', 'Mampu mendokumentasikan, menyimpan, mengamankan, dan menemukan kembali data untuk menjamin kesahihan dan mencegah plagiasi'),
+(38, 'KU10', 'Keterampilan Umum', 'Mampu berkomunikasi dengan efektif dalam masyarakat dan lingkungan'),
+(39, 'KU11', 'Keterampilan Umum', 'Mampu berbahasa Inggris dengan baik'),
+(40, 'KU12', 'Keterampilan Umum', 'Mampu memahami, menggunakan dan memanfaatkan Teknologi Informasi di masyarakat dan lingkungannya dengan bijak'),
+(41, 'KU13', 'Keterampilan Umum', 'Mampu mengembangkan potensi diri sesuai minat bakat yang dimiliki'),
+(42, 'KK3', 'Keterampilan Khusus', 'Memanfaatkan pengetahuan yang dimiliki berkaitan dengan konsep-konsep dasar pengembangan perangkat lunak dan kecakapan yang berhubungan dengan proses pengembangan perangkat lunak, serta mampu membuat program untuk meningkatkan efektivitas penggunaan komputer untuk memecahkan masalah tertentu'),
+(43, 'KK4', 'Keterampilan Khusus', 'Merancang dan mengembangkan program aplikasi untuk memanipulasi model gambar, grafis dan citra, serta dapat memvisualisasikannya'),
+(44, 'KK5', 'Keterampilan Khusus', 'Membangun dan mengevaluasi perangkat lunak dalam berbagai area, termasuk yang berkaitan dengan interaksi antara manusia dan komputer'),
+(45, 'KK6', 'Keterampilan Khusus', 'Membangun aplikasi perangkat lunak dalam berbagai area yang berkaitan dengan bidang robotik, pengenalan suara, sistem cerdas'),
+(46, 'KK7', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan manajemen informasi, termasuk menyusun pemodelan dan abstraksi data serta membangun aplikasi perangkat lunak untuk pengorganisasian data dan penjaminan keamanan akses data'),
+(47, 'KK8', 'Keterampilan Khusus', 'Menganalisis, merancang, dan menerapkan suatu sistem berbasis komputer secara efisien untuk menyelesaikan masalah, menggunakan pemrograman prosedural dan berorientasi objek'),
+(48, 'KK9', 'Keterampilan Khusus', 'Membangun sistem jaringan komputer dan sistem keamanannya serta melakukan pengelolaan secara kontinu terhadap proteksi profil yang ada'),
+(49, 'KK10', 'Keterampilan Khusus', 'Menganalisis dan mengembangkan sistem serta prosedur yang berkaitan dengan sistem komuter serta memberikan rekomendasi ang berkaitan dengan sistem komputer yang lebih efisien dan efektif'),
+(50, 'KK11', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan arsitektur dan organisasi komputer serta memanfaatkannya untuk menunjang aplikasi komputer'),
+(51, 'KK12', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan pengembangan berbasis platform serta mampu mengembangkan program aplikasi berbasis platform untuk berbagai area'),
+(52, 'KK13', 'Keterampilan Khusus', 'menerapkan konsep-konsep yang berkaitan dengan sensor dan mikrokontroler serta mampu mengembangkan suatu alat yang dapat memberikan informasi dan reaksi terhadap lingkungan atau kelautan menggunakan kemampuan Internet of Things'),
+(53, 'KK14', 'Keterampilan Khusus', 'Menggunakan teknologi informasi (Medsos, Adsense, dll) untuk meningkatkan pemasaran produk/jasa');
 
 -- --------------------------------------------------------
 
@@ -80,7 +118,21 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (9, 25, 13, 70),
 (10, 25, 14, 70),
 (11, 25, 9, 70),
-(12, 25, 15, 70);
+(12, 25, 15, 70),
+(13, 26, 50, 78),
+(14, 26, 39, 67),
+(15, 27, 21, 70),
+(16, 27, 36, 89),
+(17, 26, 11, 70),
+(18, 26, 13, 87),
+(19, 27, 50, 98),
+(20, 27, 39, 87),
+(21, 7, 4, 70),
+(22, 7, 49, 80),
+(23, 8, 4, 87),
+(24, 8, 49, 67),
+(25, 3, 4, 67),
+(26, 3, 49, 70);
 
 -- --------------------------------------------------------
 
@@ -151,8 +203,7 @@ INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurus
 (1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 'Aktif'),
 (2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 'Aktif'),
 (3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 'Non Aktif'),
-(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif'),
-(6, '011601503125138', 'Tester', 'Teknik', 'Teknik Informatika', 'Aktif');
+(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -192,7 +243,56 @@ INSERT INTO `matakuliah` (`id`, `mk_smt`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_pras
 (13, '5', 'FT193007', 'Technopreneurship', 3, 'Kewirausahaan', 'Wajib Fakultas', 10, 20, 30, 40),
 (14, '5', 'TI115181', 'Grafik Komputer', 3, 'Pemrograman Berorientasi Objek', 'Wajibi Prodi', 10, 20, 30, 40),
 (15, '6', 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi', 10, 20, 30, 40),
-(20, '1', 'TI113001', 'Algoritma dan Pemrograman', 3, '', 'Wajib Prodi', 10, 20, 30, 40);
+(20, '1', 'TI113001', 'Algoritma dan Pemrograman', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(21, '1', 'UN192002', 'Bahasa Indonesia', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(22, '1', 'TI113002', 'Matermatika Dasar', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(23, '1', 'FT192003', 'Kecapakan Antar Personal', 2, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(24, '1', 'TI113003', 'Pengantar Teknologi Informasi', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(25, '1', 'TI123007', 'Komunikasi Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(27, '2', 'TI123005', 'Basis Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(28, '2', 'FT193006', 'Statistik', 3, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(29, '2', 'FT193002', 'Kalkulus', 3, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(30, '2', 'TI133014', 'Struktur Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(31, '3', 'TI133009', 'Kumputasi Numerik', 3, 'Kalkulus', 'Wajib Prodi', 10, 20, 30, 40),
+(32, '3', 'TI133010', 'Organisasi dan Arsitektur Komputer', 3, 'Pengantar Teknologi Informasi', 'Wajib Prodi', 10, 20, 30, 40),
+(33, '3', 'TI133011', 'Pemrograman Berorientasi Objek', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
+(34, '3', 'TI143016', 'Matematika Diskrit', 3, 'Matematika Dasar', 'Lintas Prodi', 10, 20, 30, 40),
+(35, '3', 'TI153021', 'Aljabar Linear', 3, 'Matematika Dasar', 'Wajib Prodi', 10, 20, 30, 40),
+(36, '4', 'TI143015', 'Analisa dan Perancangan SIstem', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(37, '4', 'TI143018', 'Pemrograman Web', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
+(38, '4', 'TI143019', 'Sistem Terdistribusi', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
+(39, '4', 'TI153024', 'Kecerdasan Buatan', 3, 'Statistik', 'Wajib Prodi', 10, 20, 30, 40),
+(40, '4', 'UN193005', 'Kewirausahaan', 3, '', 'Wajib Universitas', 10, 20, 30, 40),
+(41, '5', 'TI114017', 'Pemrograman Jaringan', 3, 'Pemrograman Berorientasi Objek', 'Wajib Prodi', 10, 20, 30, 40),
+(42, '5', 'TI115022', 'Data Mining', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
+(43, '5', 'TI115023', 'Keamanan Jaringan Komputer', 3, 'Jaringan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(44, '5', 'TI153025', 'Rekayasa Perangkat Lunak', 3, 'Analisa dan Perancangan SIstem', 'Wajib Prodi', 10, 20, 30, 40),
+(45, '5', 'TI163026', 'Manajemen Proyek Perangkat Lunak', 3, 'Analisa dan Perancangan SIstem', 'Wajib Prodi', 10, 20, 30, 40),
+(46, '6', 'FT192001', 'Etika Bisnis dan Profesi', 2, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(47, '7', 'FT193005', 'Pemodelan dan Simulasi', 3, 'Statistik, Aljabar Linier', '', 10, 20, 30, 40),
+(48, '8', 'TI186030', 'Skripsi', 6, 'Riset Teknologi Informasi, Minimal 120 SKS, dan menyelesaikan 133 SKS sebelum sidang', 'Wajib Prodi', 10, 20, 30, 40),
+(49, '6', 'TI393001', 'Kriptografi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(50, '6', 'TI393002', 'Pmerograman Perangkat Mobile', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(51, '6', 'PS163023', 'Sistem Informasi Geografis Kelautan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(52, '6', 'TI393006', 'Pemrograman Game', 3, '', 'Mata Kuliah Pilihan', 0, 0, 0, 0),
+(53, '6', 'TL133014', 'Menggambar Teknik', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(54, '6', 'TI133013', 'SistemTemu Balik Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(55, '6', 'TI151192', 'Perancangan dan Manajeen Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(56, '7', 'TI115179', 'Sistem Pakar', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(57, '7', 'TI163027', 'Metodologi Penelitian', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(58, '7', 'FT193008', 'Teknik Riset Operasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(59, '7', 'SI183024', 'Big Data', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(60, '7', 'TI393004', 'Pengolahan Citra Digital', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(61, '7', 'TI393005', 'Internet of Things', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(62, '7', 'TI143020', 'Software Quality Assurance', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(63, '7', 'SI163017', 'Evaluasi dan Audit Sistem Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(64, '7', 'TI215161', 'Teknologi Antar Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(65, '2', 'UN192101', 'Agama Islam', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(66, '2', 'UN192201', 'Agama Kristen Protestan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(67, '2', 'UN192301', 'Agama Kristen Katolik', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(68, '2', 'UN192401', 'Agama Hindu', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(69, '2', 'UN192501', 'Agama Budha', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(70, '2', 'UN192601', 'Agama Konghucu', 2, '', 'Wajib Universitas', 10, 20, 30, 40);
 
 -- --------------------------------------------------------
 
@@ -204,7 +304,7 @@ CREATE TABLE `nilai_cpl` (
   `id` int(11) NOT NULL,
   `id_mhs` int(11) DEFAULT NULL,
   `id_cpl` int(11) DEFAULT NULL,
-  `n_cpl` int(11) DEFAULT NULL
+  `n_cpl` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -212,12 +312,12 @@ CREATE TABLE `nilai_cpl` (
 --
 
 INSERT INTO `nilai_cpl` (`id`, `id_mhs`, `id_cpl`, `n_cpl`) VALUES
-(1, 1, 1, 70),
-(2, 1, 2, 80),
-(3, 2, 1, 57),
-(4, 2, 2, 76),
-(5, 3, 1, 65),
-(6, 3, 2, 87);
+(1, 1, 1, '70'),
+(2, 1, 2, '80'),
+(3, 2, 1, '57'),
+(4, 2, 2, '76'),
+(5, 3, 1, '65'),
+(6, 3, 2, '87');
 
 -- --------------------------------------------------------
 
@@ -229,11 +329,11 @@ CREATE TABLE `nilai_mk` (
   `id` int(11) NOT NULL,
   `id_mk` int(11) NOT NULL,
   `id_mhs` int(11) NOT NULL,
-  `n_absen` int(11) NOT NULL,
-  `n_tugas` int(11) NOT NULL,
-  `n_uts` int(11) NOT NULL,
-  `n_uas` int(11) NOT NULL,
-  `n_akumulasi` int(11) NOT NULL
+  `n_absen` varchar(11) NOT NULL,
+  `n_tugas` varchar(11) NOT NULL,
+  `n_uts` varchar(11) NOT NULL,
+  `n_uas` varchar(11) NOT NULL,
+  `n_akumulasi` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -241,13 +341,14 @@ CREATE TABLE `nilai_mk` (
 --
 
 INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
-(1, 1, 1, 0, 0, 0, 0, 0),
-(2, 1, 2, 0, 0, 0, 0, 0),
-(3, 1, 3, 0, 0, 0, 0, 0),
-(7, 5, 2, 0, 0, 0, 0, 0),
-(8, 14, 2, 0, 0, 0, 0, 0),
-(22, 1, 6, 0, 0, 0, 0, 0),
-(25, 20, 1, 100, 100, 100, 100, 100);
+(3, 1, 3, '0', '0', '0', '0', '0'),
+(7, 5, 2, '0', '0', '0', '0', '0'),
+(8, 14, 2, '0', '0', '0', '0', '0'),
+(22, 1, 6, '0', '0', '0', '0', '0'),
+(25, 20, 1, '100', '78', '70', '67', '0'),
+(26, 21, 1, '80', '80', '80', '80', '80'),
+(27, 1, 1, '100', '67', '66', '98', '82.4'),
+(28, 3, 3, '90', '100', '80', '80', '85');
 
 -- --------------------------------------------------------
 
@@ -401,13 +502,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
@@ -431,7 +532,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT untuk tabel `matakuliah`
 --
 ALTER TABLE `matakuliah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_cpl`
@@ -443,7 +544,7 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`

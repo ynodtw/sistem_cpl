@@ -5,6 +5,7 @@ class Model_matakuliah extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->Model('Model_cpl');
 	}
 
 	public function insert($data)
@@ -20,19 +21,27 @@ class Model_matakuliah extends CI_Model
 
 		if ($id != "") {
 			$sql = "
-            SELECT *
-            FROM matakuliah
-            WHERE id = '" . $id . "'
-            ORDER BY mk_smt ASC;
-            ";
+		        SELECT *
+		        FROM matakuliah
+		        WHERE id = '" . $id . "'
+		        ORDER BY mk_smt ASC;
+		        ";
 		} else {
 			$sql = "
-            SELECT *
-            FROM matakuliah
-            ORDER BY mk_smt ASC;";
+		        SELECT *
+		        FROM matakuliah
+		        ORDER BY mk_smt ASC;";
 		}
 
+		// $this->db->select('matakuliah.*,
+		// cpl.cpl_kd,
+		// cpl.cpl_kategori,
+		// cpl.cpl_deskripsi');
+		// $this->db->from('matakuliah');
+
+		// $this->db->join('cpl', 'cpl.id = matakuliah.id_cpl');
 		$query = $this->db->query($sql);
+		// $query = $this->db->get();
 		return $query->result_array();
 	}
 

@@ -8,6 +8,7 @@ class Nilai_cpl extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_nilai_cpl');
+		$this->load->model('Model_cplmk');
 		$this->load->model('Model_cpl');
 	}
 
@@ -15,27 +16,40 @@ class Nilai_cpl extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-		$mhs_nim = @$_GET['mhs_nim'];
-		$mhs_nama = @$_GET['mhs_nama'];
-		$cpl_kd = @$_GET['cpl_kd'];
-		$cpl_kategori = @$_GET['cpl_kategori'];
-		$cpl_deskripsi = @$_GET['cpl_deskripsi'];
-		$n_cpl = @$_GET['n_cpl'];
 
+		$nilai_cpl = $this->Model_nilai_cpl->getDataNilaiCpl($id_mhs);
 
-		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mhs_nim != "" || $mhs_nama != "" || $cpl_kd != "" || $cpl_kategori != "" || $cpl_deskripsi != "" || $n_cpl != "") {
-		// 	$data['nilai_cpl'] = $this->Model_nilai_cpl->getSearch($mk_smt, $mk_kd, $mk_nama, $mhs_nim, $mhs_nama, $cpl_kd, $cpl_kategori, $cpl_deskripsi, $n_cpl);
-		// } else {
-		// 	$data['nilai_cpl'] = $this->Model_nilai_cpl->getData();
-		// }
+		$arr_nilai_cpl = [];
+		foreach ($nilai_cpl as $ncpl) {
+			$arr_nilai_cpl[$ncpl['cpl_kd']][] = $ncpl;
+		}
 
-		$data['nilai_cpl'] = $this->Model_nilai_cpl->getData($id_mhs);
+		$avg_nilai_cpl = [];
+		foreach ($arr_nilai_cpl as $k => $arr_ncpl) {
+			foreach ($arr_ncpl as $v) {
+				@$avg_nilai_cpl[@$k]["cpl_kd"] = $k;
+				@$avg_nilai_cpl[@$k]["mk_kd"] = $v['mk_kd'];
+				@$avg_nilai_cpl[@$k]["mk_nama"] = $v['mk_nama'];
+				@$avg_nilai_cpl[@$k]["cpl_deskripsi"] = $v['cpl_deskripsi'];
+				@$avg_nilai_cpl[@$k]["mhs_nama"] = $v['mhs_nama'];
+				@$avg_nilai_cpl[@$k]["mhs_nim"] = $v['mhs_nim'];
+				@$avg_nilai_cpl[@$k]["cpl_akumulasi"] += @$v["n_cplmk"] / count(@$arr_ncpl);
+			}
+		}
+
+		// echo '<pre>';
+		// print_r($arr_ncpl);
+		// print_r($avg_nilai_cpl);
+		// die;
+
+		$data['nilai_cpl'] = array_values($avg_nilai_cpl);
 		$data['id_mhs'] = $id_mhs;
+
+
+
 		$data['nim'] = @$data['nilai_cpl'][0]['mhs_nim'];
 		$data['nama'] = @$data['nilai_cpl'][0]['mhs_nama'];
-		// echo '<pre>';
-		// print_r($data);
-		// die;
+
 
 		$data['page'] = "admin/nilai_cpl/index";
 		$data['title'] = "Data nilai";

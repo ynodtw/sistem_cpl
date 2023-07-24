@@ -6,11 +6,11 @@
 				<div class="card">
 					<div class="card-body d-flex">
 						<div class="col-10 d-flex justify-content-start">
-							<!-- <span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span> -->
+							<span style="font-size:x-large;"><?= @$cpl[0]['mhs_nama'] ?> <?= @$cpl[0]['mhs_nim'] ?></span>
 						</div>
-						<div class="col-2 d-flex justify-content-end">
+						<!-- <div class="col-2 d-flex justify-content-end">
 							<a href="<?= base_url("data-nilai/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class="btn btn-success">+ Tambah Data</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -21,11 +21,11 @@
 							<thead>
 								<tr>
 									<th>No.</th>
-									<th>Kode</th>
-									<th>Kategori</th>
+									<th>Kode Matkul</th>
+									<th>Nama Mata Kuliah</th>
+									<th>Kode CPL</th>
 									<th>Deskripsi</th>
 									<th>Nilai</th>
-									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,15 +34,11 @@
 									foreach ($nilai_cpl as $nc) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
+											<td><?= $nc['mk_kd'] ?></td>
+											<td><?= $nc['mk_nama'] ?></td>
 											<td><?= $nc['cpl_kd'] ?></td>
-											<td><?= $nc['cpl_kategori'] ?></td>
 											<td><?= $nc['cpl_deskripsi'] ?></td>
-											<td><?= $nc['n_cpl'] ?></td>
-											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $nc['id'] ?>">Lihat</a> -->
-												<a class="btn btn-success" href="<?= base_url() . "#" ?>">+</a>
-												<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a>
-											</td>
+											<td><?= $nc['cpl_akumulasi'] ?></td>
 										</tr>
 									<?php } ?>
 								<?php } ?>

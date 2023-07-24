@@ -16,20 +16,16 @@ class Nilai_mk extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-		$mk_smt = @$_GET['mk_smt'];
-		$mk_kd = @$_GET['mk_kd'];
-		$mk_nama = @$_GET['mk_nama'];
-		$bobot_absen = @$_GET['bobot_absen'];
-		$bobot_tugas = @$_GET['bobot_tugas'];
-		$bobot_uts = @$_GET['bobot_uts'];
-		$bobot_uas = @$_GET['bobot_uas'];
-		$mhs_nim = @$_GET['mhs_nim'];
-		$mhs_nama = @$_GET['mhs_nama'];
-		$n_absen = @$_GET['n_absen'];
-		$n_tugas = @$_GET['n_tugas'];
-		$n_uts = @$_GET['n_uts'];
-		$n_uas = @$_GET['n_uas'];
-		$n_akumulasi = @$_GET['n_akumulasi'];
+		// $mk_smt = @$_GET['mk_smt'];
+		// $mk_kd = @$_GET['mk_kd'];
+		// $mk_nama = @$_GET['mk_nama'];
+		// $mhs_nim = @$_GET['mhs_nim'];
+		// $mhs_nama = @$_GET['mhs_nama'];
+		// $n_absen = @$_GET['n_absen'];
+		// $n_tugas = @$_GET['n_tugas'];
+		// $n_uts = @$_GET['n_uts'];
+		// $n_uas = @$_GET['n_uas'];
+		// $n_akumulasi = @$_GET['n_akumulasi'];
 
 
 		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mhs_nim != "" || $mhs_nama != "" || $n_tugas != "" || $n_uts != "" || $n_uas != "" || $n_akumulasi != "") {
@@ -62,7 +58,7 @@ class Nilai_mk extends CI_Controller
 		$data['title'] = "Tambah Data Nilai";
 		$data['matakuliah'] = $this->Model_matakuliah->getData();
 		// echo '<pre>';
-		// print_r($data['matakuliah']);
+		// print_r($data);
 		// die;
 
 		$this->load->view('admin/template', $data);
@@ -77,8 +73,6 @@ class Nilai_mk extends CI_Controller
 		$n_tugas = $this->input->post("n_tugas");
 		$n_uts = $this->input->post("n_uts");
 		$n_uas = $this->input->post("n_uas");
-		$n_akumulasi = $this->input->post("n_akumulasi");
-
 
 		$cek_id_mk = $this->Model_nilai_mk->checkMdMk($id_mk, $id_mhs);
 
@@ -92,6 +86,15 @@ class Nilai_mk extends CI_Controller
 			return false;
 		}
 
+		$matakuliah = $this->Model_matakuliah->getData($id_mk)[0];
+		// echo '<pre>';
+		// print_r($matakuliah);
+		// die;
+		$bobot_absen = $matakuliah['bobot_absen'];
+		$bobot_tugas = $matakuliah['bobot_tugas'];
+		$bobot_uts = $matakuliah['bobot_uts'];
+		$bobot_uas = $matakuliah['bobot_uas'];
+
 		$data_insert = [
 			"id_mk" => $id_mk,
 			"id_mhs" => $id_mhs,
@@ -99,7 +102,7 @@ class Nilai_mk extends CI_Controller
 			"n_tugas" => $n_tugas,
 			"n_uts" => $n_uts,
 			"n_uas" => $n_uas,
-			"n_akumulasi" => $n_akumulasi
+			"n_akumulasi" => ($n_absen * $bobot_absen) / 100 + ($n_tugas * $bobot_tugas) / 100 + ($n_uts * $bobot_uts) / 100 + ($n_uas * $bobot_uas) / 100
 		];
 
 		// echo '<pre>';
@@ -129,14 +132,63 @@ class Nilai_mk extends CI_Controller
 	public function edit($id)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['nilai_mk'] = $this->Model_nilai_mk->getData($id)[0];
+		$data['nilai_mk'] = $this->Model_nilai_mk->getDataById($id)[0];
 		$data['page'] = "admin/nilai_mk/edit";
 		$data['title'] = "Data Nilai Matakuliah";
+		$data['matakuliah'] = $this->Model_matakuliah->getData();
 
-		echo "<pre>";
-		print_r($data);
-		die;
+		// echo "<pre>";
+		// print_r($data['nilai_mk']);
+		// die;
 		$this->load->view('admin/template', $data);
+	}
+
+	public function update()
+	{
+		$id = $this->input->post("id");
+		$id_mk = $this->input->post("id_mk");
+		$id_mhs = $this->input->post("id_mhs");
+		$n_absen = $this->input->post("n_absen");
+		$n_tugas = $this->input->post("n_tugas");
+		$n_uts = $this->input->post("n_uts");
+		$n_uas = $this->input->post("n_uas");
+
+		$matakuliah = $this->Model_matakuliah->getData($id_mk)[0];
+		// echo '<pre>';
+		// print_r($matakuliah);
+		// die;
+		$bobot_absen = $matakuliah['bobot_absen'];
+		$bobot_tugas = $matakuliah['bobot_tugas'];
+		$bobot_uts = $matakuliah['bobot_uts'];
+		$bobot_uas = $matakuliah['bobot_uas'];
+
+		$data_insert = [
+			"id_mk" => $id_mk,
+			"n_absen" => $n_absen,
+			"n_tugas" => $n_tugas,
+			"n_uts" => $n_uts,
+			"n_uas" => $n_uas,
+			"n_akumulasi" => ($n_absen * $bobot_absen) / 100 + ($n_tugas * $bobot_tugas) / 100 + ($n_uts * $bobot_uts) / 100 + ($n_uas * $bobot_uas) / 100
+		];
+
+		// echo '<pre>';
+		// print_r($data_insert);
+		// die;
+
+		$insert = $this->Model_nilai_mk->update($id, $data_insert);
+
+		if ($insert) {
+			$this->session->set_flashdata('msg', 'Sukses Update Data');
+			redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
+		} else {
+			echo "
+	          <script>
+	              alert('Gagal update data!')
+	              history.back()
+	          </script>
+	          ";
+			return false;
+		}
 	}
 
 	public function delete($id)

@@ -31,6 +31,7 @@
 								<input type="text" class="form-control" id="n_tugas" name="n_tugas" placeholder="" required>
 							</div>
 
+
 							<div class="form-group">
 								<label for="n_uts">Nilai UTS</label>
 								<input type="text" class="form-control" id="n_uts" name="n_uts" placeholder="" required>
@@ -40,16 +41,6 @@
 								<label for="n_uas">Nilai UAS</label>
 								<input type="text" class="form-control" id="n_uas" name="n_uas" placeholder="" required>
 							</div>
-
-							<div class="form-group">
-								<label for="n_akumulasi">Akumulai</label>
-								<input type="text" class="form-control" id="n_akumulasi" name="n_akumulasi" placeholder="">
-							</div>
-
-							<!-- <div class="form-group">
-								<label for="mk_keterangan">Keterangan</label>
-								<input type="text" class="form-control" id="mk_keterangan" name="mk_keterangan" placeholder="">
-							</div> -->
 
 							<button type="submit" class="btn btn-primary">Submit</button>
 
