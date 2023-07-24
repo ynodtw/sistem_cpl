@@ -93,6 +93,23 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data Fakultas" ? "active" : "" ?>">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Fakultas
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>
+                  Data Matakuliah
+                </p>
+              </a>
+            </li>
 
             <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
               <li class="nav-item">
@@ -100,15 +117,6 @@
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Data CPL
-                  </p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data Fakultas" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Fakultas
                   </p>
                 </a>
               </li>
@@ -131,14 +139,7 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-address-book"></i>
-                  <p>
-                    Data Matakuliah
-                  </p>
-                </a>
-              </li>
+
               <!-- 
               <li class="nav-item">
                 <a href="<?= base_url("/data-cplmk") ?>" class="nav-link <?= $title == "Pemetaan Capaian Pembelajaran Lulusan" ? "active" : "" ?>">

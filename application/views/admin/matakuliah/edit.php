@@ -45,7 +45,7 @@
 								<input type="text" class="form-control" id="mk_keterangan" value="<?= $matakuliah["mk_keterangan"] ?>" name="mk_keterangan" placeholder="">
 							</div>
 
-							<!-- <div class="form-group">
+							<div class="form-group">
 								<label for="bobot_absen">Bobot Absen (%)</label>
 								<input type="text" class="form-control" id="bobot_absen" value="<?= $matakuliah["bobot_absen"] ?>" name="bobot_absen" placeholder="">
 							</div>
@@ -63,7 +63,7 @@
 							<div class="form-group">
 								<label for="bobot_uas">Bobot UAS (%)</label>
 								<input type="text" class="form-control" id="bobot_uas" value="<?= $matakuliah["bobot_uas"] ?>" name="bobot_uas" placeholder="">
-							</div> -->
+							</div>
 
 							<button type="submit" class="btn btn-primary">Submit</button>
 
