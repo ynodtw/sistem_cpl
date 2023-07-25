@@ -29,13 +29,6 @@ class Model_nilai_mk extends CI_Model
 		mahasiswa.mhs_nim, 
 		mahasiswa.mhs_nama');
 		$this->db->from('nilai_mk');
-		// $this->db->select('nilai_mk.*, 
-		// matakuliah.mk_smt, 
-		// matakuliah.mk_kd, 
-		// matakuliah.mk_nama, 
-		// mahasiswa.mhs_nim, 
-		// mahasiswa.mhs_nama');
-		// $this->db->from('nilai_mk');
 
 		$this->db->join('matakuliah', 'matakuliah.id = nilai_mk.id_mk');
 		$this->db->join('mahasiswa', 'mahasiswa.id = nilai_mk.id_mhs');

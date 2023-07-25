@@ -47,6 +47,8 @@ class Model_mahasiswa extends CI_Model
 		return $query->result_array();
 	}
 
+
+
 	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
 	// {
 	// 	$sql = "

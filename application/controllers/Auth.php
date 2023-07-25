@@ -23,15 +23,15 @@ class Auth extends CI_Controller
 
 	public function login()
 	{
-		$email = $this->input->post("email");
+		$username = $this->input->post("username");
 		$password = $this->input->post("password");
 
-		$login = $this->Model_auth->login($email, $password);
+		$login = $this->Model_auth->login($username, $password);
 
 		if ($login == FALSE) {
 			echo "
             <script>
-                alert('Login gagal! Periksa kembali email dan password anda.')
+                alert('Login gagal! Periksa kembali username dan password anda.')
                 history.back()
             </script>
             ";

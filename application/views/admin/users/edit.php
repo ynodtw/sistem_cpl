@@ -7,8 +7,8 @@
             <form method="POST" action="<?= base_url("users/update") ?>" enctype="multipart/form-data">
               <input name="id" value="<?= $users["id"] ?>" type="hidden">
               <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email" value="<?= $users["email"] ?>" readonly>
+                <label for="username">Username</label>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Masukan username" value="<?= $users["username"] ?>" readonly>
               </div>
 
               <div class="form-group">
@@ -20,7 +20,6 @@
               <div class="form-group" style='<?= $_SESSION['data_login']['role'] == "admin" ? "display:none" : "" ?>'>
                 <label for="role">Hak Akses</label>
                 <select class="form-control" id="role" name="role" required>
-                  <option <?= $users["role"] == "admin" ? "selected" : "" ?> value="admin">Admin</option>
                   <option <?= $users["role"] == "superadmin" ? "selected" : "" ?> value="superadmin">Super Admin</option>
                   <option <?= $users["role"] == "dosen" ? "selected" : "" ?> value="dosen">Dosen</option>
                   <option <?= $users["role"] == "mahasiswa" ? "selected" : "" ?> value="mahasiswa">Mahasiswa</option>

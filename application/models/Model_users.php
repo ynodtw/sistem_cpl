@@ -7,12 +7,12 @@ class Model_Users extends CI_Model
     parent::__construct();
   }
 
-  public function checkEmail($email)
+  public function checkUsername($username)
   {
     $sql = "
-		SELECT email
+		SELECT username
 		FROM users
-		WHERE email = '" . $email . "';
+		WHERE username = '" . $username . "';
 		";
     $query = $this->db->query($sql);
     return $query->result_array();

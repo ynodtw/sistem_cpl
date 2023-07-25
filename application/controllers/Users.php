@@ -29,18 +29,18 @@ class Users extends CI_Controller
 
     public function insert()
     {
-        $email = $this->input->post("email");
+        $username = $this->input->post("username");
         $fullname = $this->input->post("fullname");
         $role = $this->input->post("role");
         $password = $this->input->post("password");
         $password2 = $this->input->post("password2");
 
-        $cek_email = $this->Model_users->checkEmail($email);
+        $cek_username = $this->Model_users->checkUsername($username);
 
-        if (!empty($cek_email)) {
+        if (!empty($cek_username)) {
             echo "
             <script>
-                alert('Email sudah digunakan!')
+                alert('username sudah digunakan!')
                 history.back()
             </script>
             ";
@@ -63,7 +63,7 @@ class Users extends CI_Controller
         $uploaded_data = uploadFile($path, $file_name);
 
         $data_insert = [
-            "email" => $email,
+            "username" => $username,
             "fullname" => $fullname,
             "role" => $role,
             "password" => password_hash($password, PASSWORD_DEFAULT),

@@ -12,7 +12,7 @@
                 <tr>
                   <th>No.</th>
                   <th>Nama Lengkap</th>
-                  <th>Email</th>
+                  <th>Username</th>
                   <th>Role</th>
                   <th>Status</th>
                   <th></th>
@@ -25,7 +25,7 @@
                     <tr>
                       <td><?= $no++ ?></td>
                       <td><?= $user['fullname'] ?></td>
-                      <td><?= $user['email'] ?></td>
+                      <td><?= $user['username'] ?></td>
                       <td><?= $user['role'] ?></td>
                       <td><?= $user['status'] ?></td>
                       <td>
@@ -68,8 +68,8 @@
               <td><?= $user['fullname'] ?></td>
             </tr>
             <tr>
-              <td>Email</td>
-              <td><?= $user['email'] ?></td>
+              <td>Username</td>
+              <td><?= $user['username'] ?></td>
             </tr>
             <tr>
               <td>Role</td>

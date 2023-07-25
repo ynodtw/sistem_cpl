@@ -6,8 +6,8 @@
           <div class="card-body">
             <form method="POST" action="<?= base_url("users/insert") ?>" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email" required>
+                <label for="username">Username</label>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Masukan username" required>
               </div>
 
               <div class="form-group">

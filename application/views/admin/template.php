@@ -93,25 +93,56 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data Fakultas" ? "active" : "" ?>">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Fakultas
-                </p>
-              </a>
-            </li>
+            <?php if ($_SESSION['data_login']['role'] == "dosen") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-address-book"></i>
+                  <p>
+                    Data Matakuliah
+                  </p>
+                </a>
+              </li>
 
-            <li class="nav-item">
-              <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
-                <i class="nav-icon fas fa-address-book"></i>
-                <p>
-                  Data Matakuliah
-                </p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-mahasiswa") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Data Mahasiswa
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
+
+            <?php if ($_SESSION['data_login']['role'] == "mahasiswa") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-nilai-matakuliah/") ?>" class="nav-link <?= $title == "Data Nilai" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Nilai
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
 
             <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data Fakultas" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Fakultas
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-address-book"></i>
+                  <p>
+                    Data Matakuliah
+                  </p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="<?= base_url("/data-cpl") ?>" class="nav-link <?= $title == "Data CPL" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -138,38 +169,6 @@
                   </p>
                 </a>
               </li>
-
-
-              <!-- 
-              <li class="nav-item">
-                <a href="<?= base_url("/data-cplmk") ?>" class="nav-link <?= $title == "Pemetaan Capaian Pembelajaran Lulusan" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-address-book"></i>
-                  <p>
-                    Pemetaan CPL
-                  </p>
-                </a>
-              </li> -->
-
-
-
-              <!-- <li class="nav-item">
-                <a href="<?= base_url("/data-tamu-lapor") ?>" class="nav-link <?= $title == "Data Tamu Lapor" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Data Tamu Lapor
-                  </p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="<?= base_url("/laporan-data-tamu") ?>" class="nav-link <?= $title == "Data Tamu" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-address-book"></i>
-                  <p>
-                    Laporan Data Tamu
-                  </p>
-                </a>
-              </li> -->
-
 
               <li class="nav-item">
                 <a href="<?= base_url("/users") ?>" class="nav-link <?= $title == "Data User/Hak Akses" ? "active" : "" ?>">
