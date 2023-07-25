@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jul 2023 pada 14.46
+-- Waktu pembuatan: 25 Jul 2023 pada 21.10
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -132,7 +132,8 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (23, 8, 4, 87),
 (24, 8, 49, 67),
 (25, 3, 4, 67),
-(26, 3, 49, 70);
+(26, 3, 49, 70),
+(27, 27, 11, 89);
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,8 @@ INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurus
 (1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 'Aktif'),
 (2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 'Aktif'),
 (3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 'Non Aktif'),
-(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif');
+(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif'),
+(7, '011601503125138', 'Lorem', 'Teknik', 'Teknik Informatika', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -342,10 +344,10 @@ CREATE TABLE `nilai_mk` (
 
 INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
 (3, 1, 3, '0', '0', '0', '0', '0'),
-(7, 5, 2, '0', '0', '0', '0', '0'),
-(8, 14, 2, '0', '0', '0', '0', '0'),
+(7, 5, 2, '67', '89', '87', '78', '81.8'),
+(8, 14, 2, '90', '67', '87', '78', '79.7'),
 (22, 1, 6, '0', '0', '0', '0', '0'),
-(25, 20, 1, '100', '78', '70', '67', '0'),
+(25, 20, 1, '80', '78', '70', '67', '71.4'),
 (26, 21, 1, '80', '80', '80', '80', '80'),
 (27, 1, 1, '100', '67', '66', '98', '82.4'),
 (28, 3, 3, '90', '100', '80', '80', '85');
@@ -420,9 +422,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`, `role`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(9, 'Super Admin', '001', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53'),
-(11, 'Istiqomah Sumadikarta', '00001', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '9-superadmin.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-07-25 12:58:37'),
-(13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '9-superadmin.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 9, '2023-07-08 21:20:24');
+(9, 'Super Admin', 'admin', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53'),
+(11, 'Istiqomah Sumadikarta', '00001', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '9-superadmin.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-07-25 20:12:58'),
+(13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-25 20:10:40'),
+(14, 'DB Unknown', '011601503125140', '$2y$10$CG9qToP7Ev1MXUj/wfQ5xOUj.Iz0U2pugnTsNBDDcfv8M.vEN5cT2', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:03:09', 9, '2023-07-25 20:13:28'),
+(15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -508,7 +512,7 @@ ALTER TABLE `cpl`
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
@@ -526,7 +530,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `matakuliah`
@@ -562,7 +566,7 @@ ALTER TABLE `tentang`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
