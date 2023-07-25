@@ -28,7 +28,13 @@ class Model_nilai_cpl extends CI_Model
 
 	public function getDataNilaiCpl($id_mhs)
 	{
-		$this->db->select('nilai_mk.*,cplmk.*, mahasiswa.*, cpl.cpl_kd, cpl.cpl_deskripsi, matakuliah.mk_kd, matakuliah.mk_nama');
+		$this->db->select('nilai_mk.*,
+		cplmk.*, 
+		mahasiswa.*, 
+		cpl.cpl_kd, 
+		cpl.cpl_deskripsi, 
+		matakuliah.mk_kd, 
+		matakuliah.mk_nama');
 		$this->db->from('nilai_mk');
 
 		$this->db->join('cplmk', 'nilai_mk.id = cplmk.id_nilai_mk');

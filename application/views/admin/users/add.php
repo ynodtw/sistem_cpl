@@ -18,7 +18,6 @@
               <div class="form-group">
                 <label for="fullname">Hak Akses</label>
                 <select class="form-control" id="role" name="role" required>
-                  <option value="admin">Admin</option>
                   <option value="superadmin">Super Admin</option>
                   <option value="dosen">Dosen</option>
                   <option value="mahasiswa">Mahasiswa</option>

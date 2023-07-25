@@ -21,8 +21,8 @@
 							<thead>
 								<tr>
 									<th>No.</th>
-									<th>Kode Matkul</th>
-									<th>Nama Mata Kuliah</th>
+									<!-- <th>Kode Matkul</th>
+									<th>Nama Mata Kuliah</th> -->
 									<th>Kode CPL</th>
 									<th>Deskripsi</th>
 									<th>Nilai</th>
@@ -34,11 +34,11 @@
 									foreach ($nilai_cpl as $nc) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $nc['mk_kd'] ?></td>
-											<td><?= $nc['mk_nama'] ?></td>
+											<!-- <td><?= $nc['mk_kd'] ?></td>
+											<td><?= $nc['mk_nama'] ?></td> -->
 											<td><?= $nc['cpl_kd'] ?></td>
 											<td><?= $nc['cpl_deskripsi'] ?></td>
-											<td><?= $nc['cpl_akumulasi'] ?></td>
+											<td><?= number_format($nc['cpl_akumulasi'], 2) ?></td>
 										</tr>
 									<?php } ?>
 								<?php } ?>
