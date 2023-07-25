@@ -20,10 +20,19 @@ class Mahasiswa extends CI_Controller
 		$mhs_jurusan = @$_GET['mhs_jurusan'];
 		$mhs_status = @$_GET['mhs_status'];
 
+		// echo "<pre>";
+		// print_r($_SESSION['data_login']);
+		// die;
+
 		if ($mhs_nim != "" || $mhs_nama != "" || $mhs_fakultas != "" || $mhs_jurusan != "" || $mhs_status != "") {
 			$data['mahasiswa'] = $this->Model_mahasiswa->getSearch($mhs_nim, $mhs_nama, $mhs_fakultas, $mhs_jurusan, $mhs_status);
 		} else {
 			$data['mahasiswa'] = $this->Model_mahasiswa->getData();
+
+			if ($_SESSION['data_login']['role'] == "mahasiswa") {
+				$cek_nim_mhs = $this->Model_mahasiswa->checkNIM($_SESSION['data_login']['username']);
+				$data['mahasiswa'] = $this->Model_mahasiswa->getData($cek_nim_mhs[0]['id']);
+			}
 		}
 
 

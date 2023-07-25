@@ -9,9 +9,11 @@
 							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
 							<span style="font-size:x-large;"><?= $mk_kd ?> <?= $mk_nama ?></span>
 						</div>
-						<div class="col-2 d-flex justify-content-end">
-							<a href="<?= base_url("data-cplmk/add/" . $id_nilai_mk) ?>" class="btn btn-success">+ Tambah Data</a>
-						</div>
+						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+							<div class="col-2 d-flex justify-content-end">
+								<a href="<?= base_url("data-cplmk/add/" . $id_nilai_mk) ?>" class="btn btn-success">+ Tambah Data</a>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
 
@@ -26,7 +28,9 @@
 									<th>Kategori</th>
 									<th>Deskripsi</th>
 									<th>Nilai</th>
-									<th></th>
+									<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+										<th></th>
+									<?php } ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -39,10 +43,12 @@
 											<td><?= $cm['cpl_kategori'] ?></td>
 											<td><?= $cm['cpl_deskripsi'] ?></td>
 											<td><?= $cm['n_cplmk'];  ?></td>
-											<td>
-												<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "#" ?>">Hapus</a>
-											</td>
+											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+												<td>
+													<a class="btn btn-warning" href="<?= base_url() . "#" ?>">Ubah</a>
+													<a class="btn btn-danger" href="<?= base_url() . "#" ?>">Hapus</a>
+												</td>
+											<?php } ?>
 										</tr>
 									<?php } ?>
 								<?php } ?>

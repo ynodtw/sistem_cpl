@@ -6,7 +6,7 @@
 				<div class="card">
 					<div class="card-body d-flex">
 						<div class="col-10 d-flex justify-content-start">
-							<span style="font-size:x-large;"><?= @$cpl[0]['mhs_nama'] ?> <?= @$cpl[0]['mhs_nim'] ?></span>
+							<span style="font-size:x-large;"><?= @$nama ?> <?= @$nim ?></span>
 						</div>
 						<!-- <div class="col-2 d-flex justify-content-end">
 							<a href="<?= base_url("data-nilai/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class="btn btn-success">+ Tambah Data</a>

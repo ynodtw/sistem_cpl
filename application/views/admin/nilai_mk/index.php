@@ -8,9 +8,11 @@
 						<div class="col-10 d-flex justify-content-start">
 							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
 						</div>
-						<div class="col-2 d-flex justify-content-end">
-							<a href="<?= base_url("data-nilai-matakuliah/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class="btn btn-success">+ Tambah Data</a>
-						</div>
+						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+							<div class="col-2 d-flex justify-content-end">
+								<a href="<?= base_url("data-nilai-matakuliah/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class="btn btn-success">+ Tambah Data</a>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
 
@@ -30,7 +32,9 @@
 									<th>UAS</th>
 									<th>Akumulasi</th>
 									<th>Nilai</th>
-									<th></th>
+									<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+										<th></th>
+									<?php } ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -49,10 +53,12 @@
 											<td><?= $nm['n_akumulasi'] ?></td>
 											<td> <a class="btn btn-success" href="<?= base_url() . "data-cplmk/" . $nm['id'] ?>">CPLMK</a>
 											</td>
-											<td>
-												<a class="btn btn-warning" href="<?= base_url() . "nilai_mk/edit/" . $nm['id'] ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "nilai_mk/delete/" . $nm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
-											</td>
+											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+												<td>
+													<a class="btn btn-warning" href="<?= base_url() . "nilai_mk/edit/" . $nm['id'] ?>">Ubah</a>
+													<a class="btn btn-danger" href="<?= base_url() . "nilai_mk/delete/" . $nm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+												</td>
+											<?php } ?>
 										</tr>
 									<?php } ?>
 								<?php } ?>

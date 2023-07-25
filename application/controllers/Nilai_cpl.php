@@ -16,7 +16,6 @@ class Nilai_cpl extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-
 		$nilai_cpl = $this->Model_nilai_cpl->getDataNilaiCpl($id_mhs);
 
 		$arr_nilai_cpl = [];
