@@ -9,6 +9,9 @@ class Dosen extends CI_Controller
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_dosen');
 		$this->load->model('Model_prodi');
+		if (!$this->session->has_userdata('data_login')) {
+			redirect("/login");
+		}
 	}
 
 	public function index()

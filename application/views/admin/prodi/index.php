@@ -6,35 +6,6 @@
 				<div class="card">
 					<div class="card-body d-flex justify-content-end">
 
-						<!-- <form method="GET">
-							<div class="form-row">
-								<div class="form-group col-4">
-									<label for="nik">NIK</label>
-									<input type="text" class="form-control" id="nik" name="nik" value="<?= @$_GET['nik'] ?>" placeholder="Cari NIK">
-								</div>
-
-								<div class="form-group col-4">
-									<label for="nama">Nama Lengkap</label>
-									<input type="text" class="form-control" id="nama" name="nama" value="<?= @$_GET['nama'] ?>" placeholder="Cari Nama Lengkap">
-								</div>
-
-								<div class="form-group col-4">
-									<label for="telp">No Telp</label>
-									<input type="text" class="form-control" id="telp" name="telp" value="<?= @$_GET['telp'] ?>" placeholder="Cari No Telp">
-								</div>
-
-								<div class="form-group col-4">
-									<label for="tgl_datang">Tanggal Datang</label>
-									<input type="date" class="form-control" id="tgl_datang" name="tgl_datang" value="<?= @$_GET['tgl_datang'] ?>">
-								</div>
-
-								<div class="form-group col-4">
-									<label for="tgl_pulang">Tanggal Pulang</label>
-									<input type="date" class="form-control" id="tgl_pulang" name="tgl_pulang" value="<?= @$_GET['tgl_pulang'] ?>">
-								</div>
-							</div>
-							<button type="submit" class="btn btn-info float-right">Cari</button>
-						</form> -->
 						<a href="<?= base_url("data-prodi/add") ?>" class=" btn btn-success">+ Tambah Data</a>
 
 					</div>
@@ -63,7 +34,7 @@
 											<td><?= $p['prd_kd'] ?></td>
 											<td><?= $p['prd_jurusan'] ?></td>
 											<td><?= $p['fk_nama'] ?></td>
-											<td><?= $p['prd_kajur'] ?></td>
+											<td><?= "(" . $p['dsn_nid'] . ") " . $p['dsn_nama'] ?></td>
 											<td>
 												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $p['id'] ?>">Lihat</a> -->
 												<a class="btn btn-warning" href="<?= base_url() . "data-prodi/edit/" . $p['id'] ?>">Ubah</a>

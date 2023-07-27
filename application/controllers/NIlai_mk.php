@@ -10,6 +10,9 @@ class Nilai_mk extends CI_Controller
 		$this->load->model('Model_nilai_mk');
 		$this->load->model('Model_matakuliah');
 		$this->load->model('Model_mahasiswa');
+		if (!$this->session->has_userdata('data_login')) {
+			redirect("/login");
+		}
 	}
 
 	public function index($id_mhs)

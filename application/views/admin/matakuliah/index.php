@@ -48,6 +48,8 @@
 								<tr>
 									<th>No.</th>
 									<th>Semester</th>
+									<th>Fakultas</th>
+									<th>Jurusan</th>
 									<th>Kode MK</th>
 									<th>Mata Kuliah</th>
 									<th>SKS</th>
@@ -67,6 +69,8 @@
 										<tr>
 											<td><?= $no++ ?></td>
 											<td><?= $mk['mk_smt'] ?></td>
+											<td><?= $mk['prd_jurusan'] ?></td>
+											<td><?= $mk['fk_nama'] ?></td>
 											<td><?= $mk['mk_kd'] ?></td>
 											<td><?= $mk['mk_nama'] ?></td>
 											<td><?= $mk['mk_sks'] ?></td>

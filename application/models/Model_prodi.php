@@ -20,12 +20,14 @@ class Model_prodi extends CI_Model
 		$this->db->select('prodi.*,
 		prodi.prd_kd,
 		prodi.prd_jurusan,
-		prodi.prd_kajur,
-		fakultas.fk_nama');
+		fakultas.fk_nama,
+		dosen.dsn_nid,
+		dosen.dsn_nama');
 		$this->db->from('prodi');
 		// $this->db->from('fakultas');
 
 		$this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
+		$this->db->join('dosen', 'dosen.id = prodi.dsn_id');
 		// $this->db->where('prodi.id', $id);
 		$query = $this->db->get();
 		return $query->result_array();

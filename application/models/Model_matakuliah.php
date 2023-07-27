@@ -16,30 +16,20 @@ class Model_matakuliah extends CI_Model
 		}
 	}
 
-	public function getData($id = "")
+	public function getData()
 	{
 
-		if ($id != "") {
-			$sql = "
-		        SELECT *
-		        FROM matakuliah
-		        WHERE id = '" . $id . "'
-		        ORDER BY mk_smt ASC;
-		        ";
-		} else {
-			$sql = "
-		        SELECT *
-		        FROM matakuliah
-		        ORDER BY mk_smt ASC;";
-		}
+		$this->db->select('matakuliah.*,
+		prodi.prd_jurusan,
+		fakultas.fk_nama');
+		$this->db->from('matakuliah');
+		// $this->db->from('fakultas');
 
-		// $this->db->select('matakuliah.*,
-		// cpl.cpl_kd,
-		// cpl.cpl_kategori,
-		// cpl.cpl_deskripsi');
-		// $this->db->from('matakuliah');
-
-		// $this->db->join('cpl', 'cpl.id = matakuliah.id_cpl');
+		$this->db->join('prodi', 'prodi.id = matakuliah.prd_id');
+		$this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
+		// $this->db->where('dosen.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
 		$query = $this->db->query($sql);
 		// $query = $this->db->get();
 		return $query->result_array();

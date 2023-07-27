@@ -8,6 +8,9 @@ class Users extends CI_Controller
         parent::__construct();
         $this->load->model('Model_tentang');
         $this->load->model('Model_users');
+        if (!$this->session->has_userdata('data_login')) {
+            redirect("/login");
+        }
     }
 
     public function index()
@@ -98,6 +101,7 @@ class Users extends CI_Controller
 
     public function update()
     {
+        $username = $this->input->post("username");
         $fullname = $this->input->post("fullname");
         $role = $this->input->post("role");
         $status = $this->input->post("status");
@@ -111,6 +115,7 @@ class Users extends CI_Controller
             $data_insert['photo'] = $uploaded_data['file_name'];
         }
 
+        $data_insert["username"] = $username;
         $data_insert["fullname"] = $fullname;
         $data_insert["role"] = $role;
         $data_insert["status"] = $status;

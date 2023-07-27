@@ -8,7 +8,7 @@
               <input name="id" value="<?= $users["id"] ?>" type="hidden">
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="username" class="form-control" id="username" name="username" placeholder="Masukan username" value="<?= $users["username"] ?>" readonly>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Masukan username" value="<?= $users["username"] ?>" required>
               </div>
 
               <div class="form-group">

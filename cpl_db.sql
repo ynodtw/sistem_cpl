@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Jul 2023 pada 01.50
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 7.4.30
+-- Waktu pembuatan: 27 Jul 2023 pada 12.51
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -113,7 +113,7 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (4, 5, 4, 80),
 (5, 1, 10, 23),
 (6, 5, 1, 89),
-(7, 25, 11, 70),
+(7, 25, 11, 89),
 (8, 25, 12, 70),
 (9, 25, 13, 70),
 (10, 25, 14, 70),
@@ -158,7 +158,7 @@ CREATE TABLE `dosen` (
 INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `fk_id`, `prd_id`, `dsn_status`) VALUES
 (1, '00001', 'Istiqomah Sumadikarta', 1, 1, 'Aktif'),
 (2, '00002', 'Bosar Panjaitan', 1, 1, 'Aktif'),
-(4, '001', 'Zulkifli', 1, 2, 'Aktif'),
+(4, '00003', 'Zulkifli', 1, 2, 'Aktif'),
 (5, '00004', 'Agung', 1, 3, 'Aktif'),
 (6, '00005', 'Nama 1', 2, 5, 'Aktif'),
 (7, '00006', 'Nama 2', 2, 6, 'Aktif'),
@@ -224,6 +224,7 @@ INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `fk_id`, `prd_id`, `dsn_id
 CREATE TABLE `matakuliah` (
   `id` int(11) NOT NULL,
   `mk_smt` enum('1','2','3','4','5','6','7','8') NOT NULL,
+  `prd_id` int(11) NOT NULL,
   `mk_kd` varchar(255) NOT NULL,
   `mk_nama` varchar(255) NOT NULL,
   `mk_sks` int(11) NOT NULL,
@@ -239,70 +240,70 @@ CREATE TABLE `matakuliah` (
 -- Dumping data untuk tabel `matakuliah`
 --
 
-INSERT INTO `matakuliah` (`id`, `mk_smt`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_prasyarat`, `mk_keterangan`, `bobot_absen`, `bobot_tugas`, `bobot_uts`, `bobot_uas`) VALUES
-(1, '1', 'UN192003', 'Bahasa Inggris', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(2, '6', 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi', 10, 20, 30, 40),
-(3, '1', 'UN192006', 'Pancasila', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(5, '7', 'TI172029', 'Riset Teknologi Informasi', 2, 'Kecerdasan Buatan', '', 10, 20, 30, 40),
-(6, '2', 'UN192004', 'Kewarganegaraan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(8, '2', 'TI1133012', 'Sistem Digital', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(9, '3', 'Ti115171', 'Bahasa Inggris Teknik', 2, 'Bahasa Inggris', 'Wajib Prodi', 10, 20, 30, 40),
-(10, '3', 'TI133008', 'Jaringan Komputer', 3, 'Komunikasi Data', 'Wajib Prodi', 10, 20, 30, 40),
-(11, '4', 'TI113004', 'Sistem Operasi', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
-(12, '4', 'TI115119', 'Teori Graf dan Bahasa Automata', 3, 'Matematika DIskrit', 'Wajib Prodi', 10, 20, 30, 40),
-(13, '5', 'FT193007', 'Technopreneurship', 3, 'Kewirausahaan', 'Wajib Fakultas', 10, 20, 30, 40),
-(14, '5', 'TI115181', 'Grafik Komputer', 3, 'Pemrograman Berorientasi Objek', 'Wajibi Prodi', 10, 20, 30, 40),
-(15, '6', 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi', 10, 20, 30, 40),
-(20, '1', 'TI113001', 'Algoritma dan Pemrograman', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(21, '1', 'UN192002', 'Bahasa Indonesia', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(22, '1', 'TI113002', 'Matermatika Dasar', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(23, '1', 'FT192003', 'Kecapakan Antar Personal', 2, '', 'Wajib Fakultas', 10, 20, 30, 40),
-(24, '1', 'TI113003', 'Pengantar Teknologi Informasi', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(25, '1', 'TI123007', 'Komunikasi Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(27, '2', 'TI123005', 'Basis Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(28, '2', 'FT193006', 'Statistik', 3, '', 'Wajib Fakultas', 10, 20, 30, 40),
-(29, '2', 'FT193002', 'Kalkulus', 3, '', 'Wajib Fakultas', 10, 20, 30, 40),
-(30, '2', 'TI133014', 'Struktur Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
-(31, '3', 'TI133009', 'Kumputasi Numerik', 3, 'Kalkulus', 'Wajib Prodi', 10, 20, 30, 40),
-(32, '3', 'TI133010', 'Organisasi dan Arsitektur Komputer', 3, 'Pengantar Teknologi Informasi', 'Wajib Prodi', 10, 20, 30, 40),
-(33, '3', 'TI133011', 'Pemrograman Berorientasi Objek', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
-(34, '3', 'TI143016', 'Matematika Diskrit', 3, 'Matematika Dasar', 'Lintas Prodi', 10, 20, 30, 40),
-(35, '3', 'TI153021', 'Aljabar Linear', 3, 'Matematika Dasar', 'Wajib Prodi', 10, 20, 30, 40),
-(36, '4', 'TI143015', 'Analisa dan Perancangan SIstem', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
-(37, '4', 'TI143018', 'Pemrograman Web', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
-(38, '4', 'TI143019', 'Sistem Terdistribusi', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
-(39, '4', 'TI153024', 'Kecerdasan Buatan', 3, 'Statistik', 'Wajib Prodi', 10, 20, 30, 40),
-(40, '4', 'UN193005', 'Kewirausahaan', 3, '', 'Wajib Universitas', 10, 20, 30, 40),
-(41, '5', 'TI114017', 'Pemrograman Jaringan', 3, 'Pemrograman Berorientasi Objek', 'Wajib Prodi', 10, 20, 30, 40),
-(42, '5', 'TI115022', 'Data Mining', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
-(43, '5', 'TI115023', 'Keamanan Jaringan Komputer', 3, 'Jaringan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
-(44, '5', 'TI153025', 'Rekayasa Perangkat Lunak', 3, 'Analisa dan Perancangan SIstem', 'Wajib Prodi', 10, 20, 30, 40),
-(45, '5', 'TI163026', 'Manajemen Proyek Perangkat Lunak', 3, 'Analisa dan Perancangan SIstem', 'Wajib Prodi', 10, 20, 30, 40),
-(46, '6', 'FT192001', 'Etika Bisnis dan Profesi', 2, '', 'Wajib Fakultas', 10, 20, 30, 40),
-(47, '7', 'FT193005', 'Pemodelan dan Simulasi', 3, 'Statistik, Aljabar Linier', '', 10, 20, 30, 40),
-(48, '8', 'TI186030', 'Skripsi', 6, 'Riset Teknologi Informasi, Minimal 120 SKS, dan menyelesaikan 133 SKS sebelum sidang', 'Wajib Prodi', 10, 20, 30, 40),
-(49, '6', 'TI393001', 'Kriptografi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(50, '6', 'TI393002', 'Pmerograman Perangkat Mobile', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(51, '6', 'PS163023', 'Sistem Informasi Geografis Kelautan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(52, '6', 'TI393006', 'Pemrograman Game', 3, '', 'Mata Kuliah Pilihan', 0, 0, 0, 0),
-(53, '6', 'TL133014', 'Menggambar Teknik', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(54, '6', 'TI133013', 'SistemTemu Balik Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(55, '6', 'TI151192', 'Perancangan dan Manajeen Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(56, '7', 'TI115179', 'Sistem Pakar', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(57, '7', 'TI163027', 'Metodologi Penelitian', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(58, '7', 'FT193008', 'Teknik Riset Operasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(59, '7', 'SI183024', 'Big Data', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(60, '7', 'TI393004', 'Pengolahan Citra Digital', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(61, '7', 'TI393005', 'Internet of Things', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(62, '7', 'TI143020', 'Software Quality Assurance', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(63, '7', 'SI163017', 'Evaluasi dan Audit Sistem Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(64, '7', 'TI215161', 'Teknologi Antar Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(65, '2', 'UN192101', 'Agama Islam', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(66, '2', 'UN192201', 'Agama Kristen Protestan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(67, '2', 'UN192301', 'Agama Kristen Katolik', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(68, '2', 'UN192401', 'Agama Hindu', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(69, '2', 'UN192501', 'Agama Budha', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(70, '2', 'UN192601', 'Agama Konghucu', 2, '', 'Wajib Universitas', 10, 20, 30, 40);
+INSERT INTO `matakuliah` (`id`, `mk_smt`, `prd_id`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_prasyarat`, `mk_keterangan`, `bobot_absen`, `bobot_tugas`, `bobot_uts`, `bobot_uas`) VALUES
+(1, '1', 1, 'UN192003', 'Bahasa Inggris', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(2, '6', 1, 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi', 10, 20, 30, 40),
+(3, '1', 1, 'UN192006', 'Pancasila', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(5, '7', 1, 'TI172029', 'Riset Teknologi Informasi', 2, 'Kecerdasan Buatan', '', 10, 20, 30, 40),
+(6, '2', 1, 'UN192004', 'Kewarganegaraan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(8, '2', 1, 'TI1133012', 'Sistem Digital', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(9, '3', 1, 'Ti115171', 'Bahasa Inggris Teknik', 2, 'Bahasa Inggris', 'Wajib Prodi', 10, 20, 30, 40),
+(10, '3', 1, 'TI133008', 'Jaringan Komputer', 3, 'Komunikasi Data', 'Wajib Prodi', 10, 20, 30, 40),
+(11, '4', 1, 'TI113004', 'Sistem Operasi', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(12, '4', 1, 'TI115119', 'Teori Graf dan Bahasa Automata', 3, 'Matematika DIskrit', 'Wajib Prodi', 10, 20, 30, 40),
+(13, '5', 1, 'FT193007', 'Technopreneurship', 3, 'Kewirausahaan', 'Wajib Fakultas', 10, 20, 30, 40),
+(14, '5', 1, 'TI115181', 'Grafik Komputer', 3, 'Pemrograman Berorientasi Objek', 'Wajibi Prodi', 10, 20, 30, 40),
+(15, '6', 1, 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi', 10, 20, 30, 40),
+(20, '1', 1, 'TI113001', 'Algoritma dan Pemrograman', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(21, '1', 1, 'UN192002', 'Bahasa Indonesia', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(22, '1', 1, 'TI113002', 'Matermatika Dasar', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(23, '1', 1, 'FT192003', 'Kecapakan Antar Personal', 2, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(24, '1', 1, 'TI113003', 'Pengantar Teknologi Informasi', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(25, '1', 1, 'TI123007', 'Komunikasi Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(27, '2', 1, 'TI123005', 'Basis Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(28, '2', 1, 'FT193006', 'Statistik', 3, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(29, '2', 1, 'FT193002', 'Kalkulus', 3, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(30, '2', 1, 'TI133014', 'Struktur Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40),
+(31, '3', 1, 'TI133009', 'Kumputasi Numerik', 3, 'Kalkulus', 'Wajib Prodi', 10, 20, 30, 40),
+(32, '3', 1, 'TI133010', 'Organisasi dan Arsitektur Komputer', 3, 'Pengantar Teknologi Informasi', 'Wajib Prodi', 10, 20, 30, 40),
+(33, '3', 1, 'TI133011', 'Pemrograman Berorientasi Objek', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
+(34, '3', 1, 'TI143016', 'Matematika Diskrit', 3, 'Matematika Dasar', 'Lintas Prodi', 10, 20, 30, 40),
+(35, '3', 1, 'TI153021', 'Aljabar Linear', 3, 'Matematika Dasar', 'Wajib Prodi', 10, 20, 30, 40),
+(36, '4', 1, 'TI143015', 'Analisa dan Perancangan SIstem', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(37, '4', 1, 'TI143018', 'Pemrograman Web', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
+(38, '4', 1, 'TI143019', 'Sistem Terdistribusi', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
+(39, '4', 1, 'TI153024', 'Kecerdasan Buatan', 3, 'Statistik', 'Wajib Prodi', 10, 20, 30, 40),
+(40, '4', 1, 'UN193005', 'Kewirausahaan', 3, '', 'Wajib Universitas', 10, 20, 30, 40),
+(41, '5', 1, 'TI114017', 'Pemrograman Jaringan', 3, 'Pemrograman Berorientasi Objek', 'Wajib Prodi', 10, 20, 30, 40),
+(42, '5', 1, 'TI115022', 'Data Mining', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
+(43, '5', 1, 'TI115023', 'Keamanan Jaringan Komputer', 3, 'Jaringan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(44, '5', 1, 'TI153025', 'Rekayasa Perangkat Lunak', 3, 'Analisa dan Perancangan SIstem', 'Wajib Prodi', 10, 20, 30, 40),
+(45, '5', 1, 'TI163026', 'Manajemen Proyek Perangkat Lunak', 3, 'Analisa dan Perancangan SIstem', 'Wajib Prodi', 10, 20, 30, 40),
+(46, '6', 1, 'FT192001', 'Etika Bisnis dan Profesi', 2, '', 'Wajib Fakultas', 10, 20, 30, 40),
+(47, '7', 1, 'FT193005', 'Pemodelan dan Simulasi', 3, 'Statistik, Aljabar Linier', '', 10, 20, 30, 40),
+(48, '8', 1, 'TI186030', 'Skripsi', 6, 'Riset Teknologi Informasi, Minimal 120 SKS, dan menyelesaikan 133 SKS sebelum sidang', 'Wajib Prodi', 10, 20, 30, 40),
+(49, '6', 1, 'TI393001', 'Kriptografi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(50, '6', 1, 'TI393002', 'Pmerograman Perangkat Mobile', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(51, '6', 1, 'PS163023', 'Sistem Informasi Geografis Kelautan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(52, '6', 1, 'TI393006', 'Pemrograman Game', 3, '', 'Mata Kuliah Pilihan', 0, 0, 0, 0),
+(53, '6', 1, 'TL133014', 'Menggambar Teknik', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(54, '6', 1, 'TI133013', 'SistemTemu Balik Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(55, '6', 1, 'TI151192', 'Perancangan dan Manajeen Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(56, '7', 1, 'TI115179', 'Sistem Pakar', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(57, '7', 1, 'TI163027', 'Metodologi Penelitian', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(58, '7', 1, 'FT193008', 'Teknik Riset Operasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(59, '7', 1, 'SI183024', 'Big Data', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(60, '7', 1, 'TI393004', 'Pengolahan Citra Digital', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(61, '7', 1, 'TI393005', 'Internet of Things', 4, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(62, '7', 1, 'TI143020', 'Software Quality Assurance', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(63, '7', 1, 'SI163017', 'Evaluasi dan Audit Sistem Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(64, '7', 1, 'TI215161', 'Teknologi Antar Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(65, '2', 1, 'UN192101', 'Agama Islam', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(66, '2', 1, 'UN192201', 'Agama Kristen Protestan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(67, '2', 1, 'UN192301', 'Agama Kristen Katolik', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(68, '2', 1, 'UN192401', 'Agama Hindu', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(69, '2', 1, 'UN192501', 'Agama Budha', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
+(70, '2', 1, 'UN192601', 'Agama Konghucu', 2, '', 'Wajib Universitas', 10, 20, 30, 40);
 
 -- --------------------------------------------------------
 
@@ -371,25 +372,25 @@ CREATE TABLE `prodi` (
   `prd_kd` varchar(255) NOT NULL,
   `prd_jurusan` varchar(255) NOT NULL,
   `fk_id` int(11) NOT NULL,
-  `prd_kajur` varchar(255) NOT NULL
+  `dsn_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `prodi`
 --
 
-INSERT INTO `prodi` (`id`, `prd_kd`, `prd_jurusan`, `fk_id`, `prd_kajur`) VALUES
-(1, 'T1', 'Teknik Informatika', 1, 'Zulkifli'),
-(2, 'T2', 'Sistem Informasi', 1, 'Zulkifli'),
-(3, 'T3', 'Teknik Lingkungan', 1, 'Zulkifli'),
-(4, 'T4', 'Manajemen Informasi', 1, 'Zulkifli'),
-(5, 'E1', 'Akutansi', 2, 'Zulkifli'),
-(6, 'E2', 'Manajemen', 2, 'Zulkifli'),
-(7, 'F1', 'Ilmu Hubungan Internasional', 3, 'Zulkifli'),
-(8, 'F2', 'Ilmu Komunikasi', 3, 'Zulkifli'),
-(9, 'F3', 'Hukum', 3, 'Zulkifli'),
-(10, 'P1', 'Pemanfaatan Sumber Daya Perikanan', 4, 'Zulkifli'),
-(11, 'P2', 'Akuakultur', 4, 'Zulkifli');
+INSERT INTO `prodi` (`id`, `prd_kd`, `prd_jurusan`, `fk_id`, `dsn_id`) VALUES
+(1, 'T1', 'Teknik Informatika', 1, 4),
+(2, 'T2', 'Sistem Informasi', 1, 4),
+(3, 'T3', 'Teknik Lingkungan', 1, 4),
+(4, 'T4', 'Manajemen Informasi', 1, 4),
+(5, 'E1', 'Akutansi', 2, 1),
+(6, 'E2', 'Manajemen', 2, 1),
+(7, 'F1', 'Ilmu Hubungan Internasional', 3, 2),
+(8, 'F2', 'Ilmu Komunikasi', 3, 2),
+(9, 'F3', 'Hukum', 3, 5),
+(10, 'P1', 'Pemanfaatan Sumber Daya Perikanan', 4, 5),
+(11, 'P2', 'Akuakultur', 4, 5);
 
 -- --------------------------------------------------------
 
@@ -466,7 +467,7 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`
 (13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-25 20:10:40'),
 (14, 'DB Unknown', '011601503125140', '$2y$10$CG9qToP7Ev1MXUj/wfQ5xOUj.Iz0U2pugnTsNBDDcfv8M.vEN5cT2', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:03:09', 9, '2023-07-25 20:13:28'),
 (15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL),
-(16, 'Zulkifli', '001', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-29 01:47:10');
+(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-27 10:59:07');
 
 --
 -- Indexes for dumped tables

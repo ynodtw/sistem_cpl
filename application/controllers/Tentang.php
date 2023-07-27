@@ -7,6 +7,9 @@ class Tentang extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Model_tentang');
+        if (!$this->session->has_userdata('data_login')) {
+            redirect("/login");
+        }
     }
 
     public function index()

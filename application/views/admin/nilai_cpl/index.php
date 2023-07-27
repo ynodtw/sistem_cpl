@@ -17,7 +17,7 @@
 				<div class="card">
 					<div class="card-body">
 						<!-- <a href="" class="btn btn-success"><i class="fas fa-print"></i> Print</a> -->
-						<table class="table table-bordered table-striped datatable">
+						<table class="table table-bordered datatable">
 							<thead>
 								<tr>
 									<th>No.</th>
@@ -26,6 +26,7 @@
 									<th>Kode CPL</th>
 									<th>Deskripsi</th>
 									<th>Nilai</th>
+									<th>Detail</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -38,7 +39,10 @@
 											<td><?= $nc['mk_nama'] ?></td> -->
 											<td><?= $nc['cpl_kd'] ?></td>
 											<td><?= $nc['cpl_deskripsi'] ?></td>
-											<td><?= number_format($nc['cpl_akumulasi'], 2) ?></td>
+											<td><?= number_format($nc['cpl_akumulasi'], 1) ?></td>
+											<td>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $nc['cpl_kd'] ?>">Lihat</a>
+											</td>
 										</tr>
 									<?php } ?>
 								<?php } ?>
@@ -50,3 +54,40 @@
 		</div>
 	</div>
 </section>
+
+<?php $no = 1;
+if (!empty($nilai_cpl)) {
+	foreach ($nilai_cpl as $nc) { ?>
+		<div class="modal fade" id="modalLihat-<?= $nc['cpl_kd'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLihat-<?= $nc['cpl_kd'] ?>Label" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Detail Nilai</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered">
+							<tr>
+								<td>Kode Matakuliah</td>
+								<td>Matakuliah</td>
+								<td>Nilai</td>
+							</tr>
+							<?php foreach ($nc['detail'] as $detail) { ?>
+								<tr>
+									<td><?= $detail['mk_kd'] ?></td>
+									<td><?= $detail['mk_nama'] ?></td>
+									<td><?= $detail['n_cplmk'] ?></td>
+								</tr>
+							<?php } ?>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+<?php } ?>

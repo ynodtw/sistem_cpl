@@ -8,6 +8,9 @@ class Cpl extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_cpl');
+		if (!$this->session->has_userdata('data_login')) {
+			redirect("/login");
+		}
 	}
 
 	public function index()

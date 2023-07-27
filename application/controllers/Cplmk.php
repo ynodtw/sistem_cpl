@@ -11,6 +11,9 @@ class Cplmk extends CI_Controller
 		$this->load->model('Model_matakuliah');
 		$this->load->model('Model_cpl');
 		$this->load->model('Model_nilai_mk');
+		if (!$this->session->has_userdata('data_login')) {
+			redirect("/login");
+		}
 	}
 
 	public function index($id_nilai_mk)
@@ -131,26 +134,25 @@ class Cplmk extends CI_Controller
 		$id_cpl = $this->input->post("id_cpl");
 		$n_cplmk = $this->input->post("n_cplmk");
 
-		$data_insert = [
-			"id" => $id,
+		$data_update = [
 			"id_nilai_mk" => $id_nilai_mk,
 			"id_cpl" => $id_cpl,
 			"n_cplmk" => $n_cplmk,
 		];
 
-		echo '<pre>';
-		print_r($data_insert);
-		die;
+		// echo '<pre>';
+		// print_r($data_update);
+		// die;
 
-		$insert = $this->Model_cplmk->insert($data_insert);
+		$update = $this->Model_cplmk->update($id, $data_update);
 
-		if ($insert) {
-			$this->session->set_flashdata('msg', 'Sukses Insert Data');
+		if ($update) {
+			$this->session->set_flashdata('msg', 'Sukses update Data');
 			redirect(base_url("/data-cplmk/" . $id_nilai_mk));
 		} else {
 			echo "
 					<script>
-							alert('Gagal insert data!')
+							alert('Gagal update data!')
 							history.back()
 					</script>
 					";

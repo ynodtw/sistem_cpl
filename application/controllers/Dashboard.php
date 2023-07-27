@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Model_tentang');
+		$this->load->model('Model_mahasiswa');
 
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
@@ -16,8 +17,23 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['page'] = "admin/dashboard/index";
 		$data['title'] = "Dashboard";
+
+		$data['page'] = "admin/dashboard/index";
+		if ($_SESSION['data_login']['role'] == "mahasiswa") {
+			$cpl = $this->Model_mahasiswa->getChartCpl($_SESSION['data_login']['username']);
+
+			$cpl_mhs = [];
+			foreach ($cpl as $c) {
+				$cpl_mhs[$c['cpl_kategori']][] = $c['cpl_kd'];
+			}
+
+			echo "<pre>";
+			print_r($cpl_mhs);
+			die;
+			$data['page'] = "admin/dashboard/mahasiswa";
+		}
+
 		$this->load->view('admin/template', $data);
 	}
 }

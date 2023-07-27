@@ -10,6 +10,9 @@ class Mahasiswa extends CI_Controller
 		$this->load->model('Model_mahasiswa');
 		$this->load->model('Model_prodi');
 		$this->load->model('Model_dosen');
+		if (!$this->session->has_userdata('data_login')) {
+			redirect("/login");
+		}
 	}
 
 	public function index()
@@ -35,9 +38,7 @@ class Mahasiswa extends CI_Controller
 			}
 		}
 
-		// echo "<pre>";
-		// print_r($data);
-		// die;
+
 		$data['page'] = "admin/mahasiswa/index";
 		$data['title'] = "Data Mahasiswa";
 		$this->load->view('admin/template', $data);

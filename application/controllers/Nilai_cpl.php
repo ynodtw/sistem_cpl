@@ -10,6 +10,9 @@ class Nilai_cpl extends CI_Controller
 		$this->load->model('Model_nilai_cpl');
 		$this->load->model('Model_cplmk');
 		$this->load->model('Model_cpl');
+		if (!$this->session->has_userdata('data_login')) {
+			redirect("/login");
+		}
 	}
 
 	public function index($id_mhs)
@@ -33,18 +36,21 @@ class Nilai_cpl extends CI_Controller
 				@$avg_nilai_cpl[@$k]["mhs_nama"] = $v['mhs_nama'];
 				@$avg_nilai_cpl[@$k]["mhs_nim"] = $v['mhs_nim'];
 				@$avg_nilai_cpl[@$k]["cpl_akumulasi"] += @$v["n_cplmk"] / count(@$arr_ncpl);
+				@$avg_nilai_cpl[@$k]["detail"][] = [
+					"n_cplmk" => @$v["n_cplmk"],
+					"mk_kd" => @$v["mk_kd"],
+					"mk_nama" => @$v["mk_nama"]
+				];
 			}
 		}
 
 		// echo '<pre>';
-		// print_r($arr_ncpl);
+		// // print_r($arr_nilai_cpl);
 		// print_r($avg_nilai_cpl);
 		// die;
 
 		$data['nilai_cpl'] = array_values($avg_nilai_cpl);
 		$data['id_mhs'] = $id_mhs;
-
-
 
 		$data['nim'] = @$data['nilai_cpl'][0]['mhs_nim'];
 		$data['nama'] = @$data['nilai_cpl'][0]['mhs_nama'];

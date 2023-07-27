@@ -15,7 +15,7 @@ class Model_mahasiswa extends CI_Model
 		}
 	}
 
-	public function getData()
+	public function getData($id = "")
 	{
 		$this->db->select('mahasiswa.*,
 		mahasiswa.mhs_nim,
@@ -29,7 +29,9 @@ class Model_mahasiswa extends CI_Model
 		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
 		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
 		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
-		// $this->db->where('dosen.id', $id);
+		if ($id != "") {
+			$this->db->where('mahasiswa.id', $id);
+		}
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -43,7 +45,6 @@ class Model_mahasiswa extends CI_Model
 		prodi.prd_jurusan,
 		dosen.dsn_nama');
 		$this->db->from('mahasiswa');
-		// $this->db->from('fakultas');
 
 		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
 		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
@@ -109,5 +110,23 @@ class Model_mahasiswa extends CI_Model
 			$delete = $this->db->delete('mahasiswa');
 			return ($delete == true) ? true : false;
 		}
+	}
+
+	public function getChartCpl($mhs_nim)
+	{
+		$this->db->select('mahasiswa.id,
+		mahasiswa.mhs_nim,
+		mahasiswa.mhs_nama,
+		cpl.cpl_kd,
+		cpl.cpl_kategori');
+		$this->db->from('mahasiswa');
+
+		$this->db->join('nilai_mk', 'nilai_mk.id_mhs = mahasiswa.id');
+		$this->db->join('cplmk', 'cplmk.id_nilai_mk = nilai_mk.id');
+		$this->db->join('cpl', 'cplmk.id_cpl = cpl.id');
+		$this->db->where('mahasiswa.mhs_nim', $mhs_nim);
+		$this->db->group_by('cpl.cpl_kategori, cpl.cpl_kd');
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 }
