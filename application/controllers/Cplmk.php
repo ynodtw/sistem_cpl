@@ -113,6 +113,7 @@ class Cplmk extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['cplmk'] = $this->Model_cplmk->getDataById($id)[0];
+		$data['cpl'] = $this->Model_cpl->getData();
 		$data['page'] = "admin/cplmk/edit";
 		$data['title'] = "Data Nilai Matakuliah";
 		$data['matakuliah'] = $this->Model_matakuliah->getData();
@@ -126,6 +127,7 @@ class Cplmk extends CI_Controller
 	public function update()
 	{
 		$id = $this->input->post("id");
+		$id_nilai_mk = $this->input->post("id_nilai_mk");
 		$id_cpl = $this->input->post("id_cpl");
 		$n_cplmk = $this->input->post("n_cplmk");
 

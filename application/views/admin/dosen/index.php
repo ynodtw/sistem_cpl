@@ -63,8 +63,8 @@
 											<td><?= $no++ ?></td>
 											<td><?= $d['dsn_nid'] ?></td>
 											<td><?= $d['dsn_nama'] ?></td>
-											<td><?= $d['dsn_fakultas'] ?></td>
-											<td><?= $d['dsn_jurusan'] ?></td>
+											<td><?= $d['fk_nama'] ?></td>
+											<td><?= $d['prd_jurusan'] ?></td>
 											<td><?= $d['dsn_status'] ?></td>
 											<td>
 												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $d['id'] ?>">Lihat</a> -->

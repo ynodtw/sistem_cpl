@@ -14,23 +14,24 @@ class Matakuliah extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-		$mk_smt = @$_GET['mk_smt'];
-		$mk_kd = @$_GET['mk_kd'];
-		$mk_nama = @$_GET['mk_nama'];
-		$mk_sks = @$_GET['mk_sks'];
-		$mk_prasyarat = @$_GET['mk_prasyarat'];
-		$mk_keterangan = @$_GET['mk_keterangan'];
-		$cpl_kd = @$_GET['cpl_kd'];
-		$cpl_kategori = @$_GET['cpl_kategori'];
-		$cpl_deskripsi = @$_GET['cpl_deskripsi'];
+		// $mk_smt = @$_GET['mk_smt'];
+		// $mk_kd = @$_GET['mk_kd'];
+		// $mk_nama = @$_GET['mk_nama'];
+		// $mk_sks = @$_GET['mk_sks'];
+		// $mk_prasyarat = @$_GET['mk_prasyarat'];
+		// $mk_keterangan = @$_GET['mk_keterangan'];
+		// $cpl_kd = @$_GET['cpl_kd'];
+		// $cpl_kategori = @$_GET['cpl_kategori'];
+		// $cpl_deskripsi = @$_GET['cpl_deskripsi'];
 
 
 
-		if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mk_sks != "" || $mk_prasyarat != "" || $mk_keterangan != "") {
-			$data['matakuliah'] = $this->Model_matakuliah->getSearch($mk_smt, $mk_kd, $mk_nama, $mk_sks, $mk_prasyarat, $mk_keterangan);
-		} else {
-			$data['matakuliah'] = $this->Model_matakuliah->getData();
-		}
+		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mk_sks != "" || $mk_prasyarat != "" || $mk_keterangan != "") {
+		// 	$data['matakuliah'] = $this->Model_matakuliah->getSearch($mk_smt, $mk_kd, $mk_nama, $mk_sks, $mk_prasyarat, $mk_keterangan);
+		// } else {
+		// 	$data['matakuliah'] = $this->Model_matakuliah->getData();
+		// }
+		$data['matakuliah'] = $this->Model_matakuliah->getData();
 
 		// echo "<pre>";
 		// print_r($data);

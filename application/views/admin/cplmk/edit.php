@@ -4,10 +4,10 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-body">
-						<form method="POST" action="<?= base_url("cplmk/insert") ?>" enctype="multipart/form-data">
+						<form method="POST" action="<?= base_url("cplmk/update") ?>" enctype="multipart/form-data">
 							<input name="id" value="<?= $cplmk["id"] ?>" type="hidden">
-							<input name="id_nilai_mk" value="<?= $cplmk["id_nilai_mk"] ?>" type="hidden">
 							<input name="id_cpl" value="<?= $cplmk["id_cpl"] ?>" type="hidden">
+							<input name="id_nilai_mk" value="<?= $cplmk["id_nilai_mk"] ?>" type="hidden">
 							<strong style="">
 
 							</strong>
@@ -17,7 +17,7 @@
 								<label for="id_cpl">Kode CPL</label>
 								<select class="form-control" id="id_cpl" name="id_cpl" required>
 									<?php foreach ($cpl as $c) { ?>
-										<option value="<?= $c['id'] ?>" <?= $c['id'] == $cplmk['id_cpl'] ? "selected" : "";  ?>>(<?= $c['cpl_kd'];  ?>) <?= $c['cpl_kategori'];  ?></option>
+										<option value="<?= $c['id'] ?>" <?= $c['id'] == $cplmk['id_cpl'] ? "selected" : ""   ?>>(<?= $c['cpl_kd'];  ?>) <?= $c['cpl_kategori'];  ?></option>
 									<?php } ?>
 								</select>
 							</div>

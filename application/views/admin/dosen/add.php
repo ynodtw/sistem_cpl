@@ -16,19 +16,22 @@
 							</div>
 
 							<div class="form-group">
-								<label for="fakultas">Fakultas</label>
-								<select class="form-control" id="dsn_fakultas" name="dsn_fakultas" required>
-									<option value="Teknik">Teknik</option>
+								<label for="fk_id">Fakultas</label>
+								<select class="form-control" id="fk_id" name="fk_id" required>
+									<option value="">--Pilih Fakultas--</option>
+									<?php foreach ($fakultas as $f) { ?>
+										<option value="<?= $f['id'] ?>"><?= $f['fk_nama'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="jurusan">Jurusan</label>
-								<select class="form-control" id="dsn_jurusan" name="dsn_jurusan" required>
-									<option value="Teknik Informatika">Teknik Informatika</option>
-									<option value="Sistem Informasi">Sistem Informasi</option>
-									<option value="Teknik Lingkungan">Teknik Lingkungan</option>
-									<option value="Manajemen Informasi">Manajemen Informasi</option>
+								<label for="prd_id">Jurusan</label>
+								<select class="form-control" id="prd_id" name="prd_id" required>
+									<option value="">--Pilih Jurusan--</option>
+									<?php foreach ($prodi as $p) { ?>
+										<option value="<?= $p['id'] ?>">(<?= $p['prd_kd'];  ?>)<?= $p['prd_jurusan'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 

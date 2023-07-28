@@ -14,16 +14,19 @@ class Prodi extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-		$prd_kd = @$_GET['prd_kd'];
-		$prd_fakultas = @$_GET['prd_fakultas'];
-		$prd_jurusan = @$_GET['prd_jurusan'];
-		$prd_kajur = @$_GET['prd_kajur'];
+		// $prd_kd = @$_GET['prd_kd'];
+		// $prd_jurusan = @$_GET['prd_jurusan'];
+		// $prd_kajur = @$_GET['prd_kajur'];
+		// $fk_id = @$_GET['fk_id'];
 
-		if ($prd_kd != "" || $prd_fakultas != "" || $prd_jurusan != ""  || $prd_kajur != "") {
-			$data['prodi'] = $this->Model_prodi->getSearch($prd_kd, $prd_fakultas, $prd_jurusan, $prd_kajur);
-		} else {
-			$data['prodi'] = $this->Model_prodi->getData();
-		}
+		// if ($prd_kd != "" || $prd_jurusan != ""  || $prd_kajur != "" || $fk_id != "") {
+		// 	$data['prodi'] = $this->Model_prodi->getSearch($prd_kd, $prd_jurusan, $prd_kajur, $fk_id);
+		// } else {
+		// 	$data['prodi'] = $this->Model_prodi->getData();
+		// }
+
+
+		$data['prodi'] = $this->Model_prodi->getData();
 
 		// echo '<pre>';
 		// print_r($data);
@@ -37,16 +40,21 @@ class Prodi extends CI_Controller
 	public function add()
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['prodi'] = $this->Model_prodi->getDataFakultas();
 		$data['page'] = "admin/prodi/add";
 		$data['title'] = "Tambah Data prodi";
+
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 
 	public function insert()
 	{
 		$prd_kd = $this->input->post("prd_kd");
-		$prd_fakultas = $this->input->post("prd_fakultas");
 		$prd_jurusan = $this->input->post("prd_jurusan");
+		$fk_id = $this->input->post("fk_id");
 		$prd_kajur = $this->input->post("prd_kajur");
 
 		$cek_prd_kd = $this->Model_prodi->checkKdprodi($prd_kd);
@@ -63,8 +71,8 @@ class Prodi extends CI_Controller
 
 		$data_insert = [
 			"prd_kd" => $prd_kd,
-			"prd_fakultas" => $prd_fakultas,
 			"prd_jurusan" => $prd_jurusan,
+			"fk_id" => $fk_id,
 			"prd_kajur" => $prd_kajur
 		];
 
@@ -91,9 +99,13 @@ class Prodi extends CI_Controller
 	public function edit($id)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['prodi'] = $this->Model_prodi->getData($id)[0];
+		$data['prodi'] = $this->Model_prodi->getDataById($id)[0];
+		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
 		$data['page'] = "admin/prodi/edit";
 		$data['title'] = "Data prodi";
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 
@@ -101,14 +113,15 @@ class Prodi extends CI_Controller
 	{
 		$id = $this->input->post("id");
 		$prd_kd = $this->input->post("prd_kd");
-		$prd_fakultas = $this->input->post("prd_fakultas");
 		$prd_jurusan = $this->input->post("prd_jurusan");
+		$fk_id = $this->input->post("fk_id");
 		$prd_kajur = $this->input->post("prd_kajur");
 
 		$data_insert = [
+			"id" => $id,
 			"prd_kd" => $prd_kd,
-			"prd_fakultas" => $prd_fakultas,
 			"prd_jurusan" => $prd_jurusan,
+			"fk_id" => $fk_id,
 			"prd_kajur" => $prd_kajur
 		];
 

@@ -15,26 +15,58 @@ class Model_prodi extends CI_Model
 		}
 	}
 
-	public function getData($id = "")
+	public function getData()
 	{
+		$this->db->select('prodi.*,
+		prodi.prd_kd,
+		prodi.prd_jurusan,
+		prodi.prd_kajur,
+		fakultas.fk_nama');
+		$this->db->from('prodi');
+		// $this->db->from('fakultas');
 
-		if ($id != "") {
-			$sql = "
-            SELECT *
-            FROM prodi
-            WHERE id = '" . $id . "'
-            ORDER BY prd_kd ASC;
-            ";
-		} else {
-			$sql = "
-            SELECT *
-            FROM prodi
-            ORDER BY prd_kd ASC;";
-		}
-
-		$query = $this->db->query($sql);
+		$this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
+		// $this->db->where('prodi.id', $id);
+		$query = $this->db->get();
 		return $query->result_array();
 	}
+
+	public function getDataFakultas()
+	{
+		$this->db->select('fakultas.*');
+		$this->db->from('fakultas');
+		// $this->db->from('fakultas');
+
+		// $this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
+		// $this->db->where('prodi.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getDataById($id)
+	{
+		$this->db->select('prodi.*,
+		prodi.prd_kd,
+		prodi.prd_jurusan,
+		prodi.prd_kajur,
+		fakultas.fk_nama');
+		$this->db->from('prodi');
+		// $this->db->from('fakultas');
+
+		$this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
+		$this->db->where('prodi.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	// public function getDataIdProdi($id)
+	// {
+	// 	$this->db->select('prodi.*');
+	// 	$this->db->from('prodi');
+	// 	$this->db->where('id', $id);
+	// 	$query = $this->db->get();
+	// 	return $query->result_array();
+	// }
 
 	public function checkKdprodi($prd_kd)
 	{

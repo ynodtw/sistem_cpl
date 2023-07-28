@@ -17,22 +17,20 @@
 							</div>
 
 							<div class="form-group">
-								<label for="dsn_fakultas">Fakultas</label>
-								<select class="form-control" id="dsn_fakultas" name="dsn_fakultas" required>
-									<option <?= $dosen["dsn_fakultas"] == "Teknik" ? "selected" : "" ?> value="Teknik">Teknik</option>
-									<!-- <option <?= $dosen["dsn_fakultas"] == "Ekonomi" ? "selected" : "" ?> value="Ekonomi">Ekonomi</option>
-									<option <?= $dosen["dsn_fakultas"] == "FISIP" ? "selected" : "" ?> value="FISIP">FISIP</option>
-									<option <?= $dosen["dsn_fakultas"] == "Perikanan" ? "selected" : "" ?> value="Perikanan">Perikanan</option> -->
+								<label for="fk_id">Fakultas</label>
+								<select class="form-control" id="fk_id" name="fk_id" required>
+									<?php foreach ($fakultas as $f) { ?>
+										<option value="<?= $f['id'] ?>" <?= $f['id'] == $dosen['fk_id'] ? "selected" : ""  ?>><?= $f['fk_nama'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="dsn_jurusan">jurusan</label>
-								<select class="form-control" id="dsn_jurusan" name="dsn_jurusan" required>
-									<option <?= $dosen["dsn_jurusan"] == "Teknik Informatika" ? "selected" : "" ?> value="Teknik Informatika">Teknik Informatika</option>
-									<option <?= $dosen["dsn_jurusan"] == "Sistem Informasi" ? "selected" : "" ?> value="Sistem Informasi">Sistem Informasi</option>
-									<option <?= $dosen["dsn_jurusan"] == "Teknik Lingkungan" ? "selected" : "" ?> value="Teknik Lingkungan">Teknik Lingkungan</option>
-									<option <?= $dosen["dsn_jurusan"] == "Manajemen Informasi" ? "selected" : "" ?> value="Manajemen Informasi">Manajemen Informasi</option>
+								<label for="prd_id">Jurusan</label>
+								<select class="form-control" id="prd_id" name="prd_id" required>
+									<?php foreach ($prodi as $p) { ?>
+										<option value="<?= $p['id'] ?>" <?= $p['id'] == $dosen['prd_id'] ? "selected" : ""  ?>>(<?= $p['prd_kd'];  ?>)<?= $p['prd_jurusan'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 

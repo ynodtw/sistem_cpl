@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jul 2023 pada 21.10
+-- Waktu pembuatan: 29 Jul 2023 pada 00.27
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -133,7 +133,8 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (24, 8, 49, 67),
 (25, 3, 4, 67),
 (26, 3, 49, 70),
-(27, 27, 11, 89);
+(27, 27, 11, 89),
+(29, 25, 11, 78);
 
 -- --------------------------------------------------------
 
@@ -145,8 +146,8 @@ CREATE TABLE `dosen` (
   `id` int(11) NOT NULL,
   `dsn_nid` varchar(255) NOT NULL,
   `dsn_nama` varchar(255) NOT NULL,
-  `dsn_fakultas` enum('Teknik') NOT NULL,
-  `dsn_jurusan` enum('Teknik Informatika','Sistem Informasi','Teknik Lingkungan','Manajemen Informasi') NOT NULL,
+  `fk_id` int(11) NOT NULL,
+  `prd_id` int(11) NOT NULL,
   `dsn_status` enum('Aktif','Non Aktif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -154,32 +155,38 @@ CREATE TABLE `dosen` (
 -- Dumping data untuk tabel `dosen`
 --
 
-INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `dsn_fakultas`, `dsn_jurusan`, `dsn_status`) VALUES
-(1, '00001', 'Istiqomah Sumadikarta', 'Teknik', 'Teknik Informatika', 'Aktif'),
-(2, '00002', 'Bosar Panjaitan', 'Teknik', 'Teknik Informatika', 'Aktif');
+INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `fk_id`, `prd_id`, `dsn_status`) VALUES
+(1, '00001', 'Istiqomah Sumadikarta', 1, 1, 'Aktif'),
+(2, '00002', 'Bosar Panjaitan', 1, 1, 'Aktif'),
+(4, '00003', 'Zulkifli', 1, 2, 'Aktif'),
+(5, '00004', 'Agung', 1, 3, 'Aktif'),
+(6, '00005', 'Nama 1', 2, 5, 'Aktif'),
+(7, '00006', 'Nama 2', 2, 6, 'Aktif'),
+(8, '00007', 'Nama 3', 3, 7, 'Aktif'),
+(9, '00008', 'Nama 4', 3, 8, 'Aktif'),
+(10, '00009', 'Nama 5', 4, 9, 'Aktif'),
+(11, '00010', 'Nama 6', 4, 10, 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Struktur dari tabel `fakultas`
 --
 
-CREATE TABLE `jurusan` (
+CREATE TABLE `fakultas` (
   `id` int(11) NOT NULL,
-  `jrs_kd` varchar(255) NOT NULL,
-  `jrs_nama` varchar(255) NOT NULL,
-  `jrs_fakultas` enum('Teknik','Ekonomi','FISIP','Perikanan') NOT NULL
+  `fk_nama` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data untuk tabel `fakultas`
 --
 
-INSERT INTO `jurusan` (`id`, `jrs_kd`, `jrs_nama`, `jrs_fakultas`) VALUES
-(1, 'TI', 'Teknik Informatika', 'Teknik'),
-(2, 'SI', 'Sistem Informasi', 'Teknik'),
-(3, 'TL', 'Teknik Lingkungan', 'Teknik'),
-(4, 'MI', 'Majanemen Informasi', 'Teknik');
+INSERT INTO `fakultas` (`id`, `fk_nama`) VALUES
+(1, 'Teknik'),
+(2, 'Ekonomi'),
+(3, 'FISIP'),
+(4, 'Perikanan');
 
 -- --------------------------------------------------------
 
@@ -193,6 +200,7 @@ CREATE TABLE `mahasiswa` (
   `mhs_nama` varchar(255) NOT NULL,
   `mhs_fakultas` enum('Teknik') NOT NULL,
   `mhs_jurusan` enum('Teknik Informatika','Sistem Informasi','Teknik Lingkungan','Manajemen Informasi') NOT NULL,
+  `mhs_dsn_pa` int(11) NOT NULL,
   `mhs_status` enum('Aktif','Non Aktif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -200,12 +208,12 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data untuk tabel `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurusan`, `mhs_status`) VALUES
-(1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 'Aktif'),
-(2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 'Aktif'),
-(3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 'Non Aktif'),
-(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 'Aktif'),
-(7, '011601503125138', 'Lorem', 'Teknik', 'Teknik Informatika', 'Aktif');
+INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurusan`, `mhs_dsn_pa`, `mhs_status`) VALUES
+(1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 0, 'Aktif'),
+(2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 0, 'Aktif'),
+(3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 0, 'Non Aktif'),
+(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 0, 'Aktif'),
+(7, '011601503125138', 'Lorem', 'Teknik', 'Teknik Informatika', 0, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -349,8 +357,39 @@ INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, 
 (22, 1, 6, '0', '0', '0', '0', '0'),
 (25, 20, 1, '80', '78', '70', '67', '71.4'),
 (26, 21, 1, '80', '80', '80', '80', '80'),
-(27, 1, 1, '100', '67', '66', '98', '82.4'),
+(27, 1, 1, '100', '100', '50', '50', '65'),
 (28, 3, 3, '90', '100', '80', '80', '85');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `prodi`
+--
+
+CREATE TABLE `prodi` (
+  `id` int(11) NOT NULL,
+  `prd_kd` varchar(255) NOT NULL,
+  `prd_jurusan` varchar(255) NOT NULL,
+  `fk_id` int(11) NOT NULL,
+  `prd_kajur` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `prodi`
+--
+
+INSERT INTO `prodi` (`id`, `prd_kd`, `prd_jurusan`, `fk_id`, `prd_kajur`) VALUES
+(1, 'T1', 'Teknik Informatika', 1, 'Zulkifli'),
+(2, 'T2', 'Sistem Informasi', 1, 'Zulkifli'),
+(3, 'T3', 'Teknik Lingkungan', 1, 'Zulkifli'),
+(4, 'T4', 'Manajemen Informasi', 1, 'Zulkifli'),
+(5, 'E1', 'Akutansi', 2, 'Zulkifli'),
+(6, 'E2', 'Manajemen', 2, 'Zulkifli'),
+(7, 'F1', 'Ilmu Hubungan Internasional', 3, 'Zulkifli'),
+(8, 'F2', 'Ilmu Komunikasi', 3, 'Zulkifli'),
+(9, 'F3', 'Hukum', 3, 'Zulkifli'),
+(10, 'P1', 'Pemanfaatan Sumber Daya Perikanan', 4, 'Zulkifli'),
+(11, 'P2', 'Akuakultur', 4, 'Zulkifli');
 
 -- --------------------------------------------------------
 
@@ -451,9 +490,9 @@ ALTER TABLE `dosen`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jurusan`
+-- Indeks untuk tabel `fakultas`
 --
-ALTER TABLE `jurusan`
+ALTER TABLE `fakultas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -478,6 +517,12 @@ ALTER TABLE `nilai_cpl`
 -- Indeks untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `prodi`
+--
+ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -512,19 +557,19 @@ ALTER TABLE `cpl`
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `jurusan`
+-- AUTO_INCREMENT untuk tabel `fakultas`
 --
-ALTER TABLE `jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `fakultas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
@@ -548,7 +593,13 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT untuk tabel `prodi`
+--
+ALTER TABLE `prodi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`

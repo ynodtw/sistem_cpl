@@ -11,17 +11,6 @@
 							</div>
 
 							<div class="form-group">
-								<label for="prd_fakultas">Fakultas</label>
-								<select class="form-control" id="prd_fakultas" name="prd_fakultas" required>
-									<option value="">--Pilih Jurusan--</option>
-									<option value="Teknik">Teknik</option>
-									<option value="Ekonomi">Ekonomi</option>
-									<option value="FISIP">FISIP</option>
-									<option value="Perikanan">Perikanan</option>
-								</select>
-							</div>
-
-							<div class="form-group">
 								<label for="prd_jurusan">Jurusan</label>
 								<input type="text" class="form-control" id="prd_jurusan" name="prd_jurusan" placeholder="" required>
 							</div>
@@ -29,6 +18,16 @@
 							<div class="form-group">
 								<label for="prd_kajur">Kajur</label>
 								<input type="text" class="form-control" id="prd_kajur" name="prd_kajur" placeholder="" required>
+							</div>
+
+							<div class="form-group">
+								<label for="fk_id">Fakultas</label>
+								<select class="form-control" id="fk_id" name="fk_id" required>
+									<option value="">--Pilih Fakultas--</option>
+									<?php foreach ($prodi as $p) { ?>
+										<option value="<?= $p['id'] ?>"><?= $p['fk_nama'];  ?></option>
+									<?php } ?>
+								</select>
 							</div>
 
 							<button type="submit" class="btn btn-primary">Submit</button>

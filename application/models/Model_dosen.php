@@ -15,24 +15,60 @@ class Model_dosen extends CI_Model
 		}
 	}
 
-	public function getData($id = "")
+	public function getData()
 	{
+		$this->db->select('dosen.*,
+		dosen.dsn_nid,
+		dosen.dsn_nama,
+		prodi.prd_kd,
+		fakultas.fk_nama,
+		prodi.prd_jurusan');
+		$this->db->from('dosen');
+		// $this->db->from('fakultas');
 
-		if ($id != "") {
-			$sql = "
-            SELECT *
-            FROM dosen
-            WHERE id = '" . $id . "'
-            ORDER BY id ASC;
-            ";
-		} else {
-			$sql = "
-            SELECT *
-            FROM dosen
-            ORDER BY id ASC;";
-		}
+		$this->db->join('fakultas', 'fakultas.id = dosen.fk_id');
+		$this->db->join('prodi', 'prodi.id = dosen.prd_id');
+		// $this->db->where('dosen.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
-		$query = $this->db->query($sql);
+	public function getDataFakultas()
+	{
+		$this->db->select('fakultas.*');
+		$this->db->from('fakultas');
+		// $this->db->from('fakultas');
+
+		// $this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
+		// $this->db->where('prodi.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getDataProdi()
+	{
+		$this->db->select('prodi.*');
+		$this->db->from('prodi');
+		// $this->db->where('id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getDataById($id)
+	{
+		$this->db->select('dosen.*,
+		dosen.dsn_nid,
+		dosen.dsn_nama,
+		prodi.prd_kd,
+		fakultas.fk_nama,
+		prodi.prd_jurusan');
+		$this->db->from('dosen');
+		// $this->db->from('fakultas');
+
+		$this->db->join('fakultas', 'fakultas.id = dosen.fk_id');
+		$this->db->join('prodi', 'prodi.id = dosen.prd_id');
+		$this->db->where('dosen.id', $id);
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 

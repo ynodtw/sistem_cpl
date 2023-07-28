@@ -48,8 +48,8 @@
 								<tr>
 									<th>No.</th>
 									<th>Kode</th>
-									<th>Fakultas</th>
 									<th>Jurusan</th>
+									<th>Fakultas</th>
 									<th>Kepala Jurusan</th>
 									<th></th>
 								</tr>
@@ -61,8 +61,8 @@
 										<tr>
 											<td><?= $no++ ?></td>
 											<td><?= $p['prd_kd'] ?></td>
-											<td><?= $p['prd_fakultas'] ?></td>
 											<td><?= $p['prd_jurusan'] ?></td>
+											<td><?= $p['fk_nama'] ?></td>
 											<td><?= $p['prd_kajur'] ?></td>
 											<td>
 												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $p['id'] ?>">Lihat</a> -->

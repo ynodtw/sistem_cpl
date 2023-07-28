@@ -46,7 +46,7 @@
 											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 												<td>
 													<a class="btn btn-warning" href="<?= base_url() . "data-cplmk/edit/" . $cm['id'] ?>">Ubah</a>
-													<a class="btn btn-danger" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>">Hapus</a>
+													<a class="btn btn-danger" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 												</td>
 											<?php } ?>
 										</tr>
