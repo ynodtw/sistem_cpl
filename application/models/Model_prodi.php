@@ -59,15 +59,6 @@ class Model_prodi extends CI_Model
 		return $query->result_array();
 	}
 
-	// public function getDataIdProdi($id)
-	// {
-	// 	$this->db->select('prodi.*');
-	// 	$this->db->from('prodi');
-	// 	$this->db->where('id', $id);
-	// 	$query = $this->db->get();
-	// 	return $query->result_array();
-	// }
-
 	public function checkKdprodi($prd_kd)
 	{
 		$sql = "

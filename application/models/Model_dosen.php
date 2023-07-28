@@ -33,27 +33,6 @@ class Model_dosen extends CI_Model
 		return $query->result_array();
 	}
 
-	public function getDataFakultas()
-	{
-		$this->db->select('fakultas.*');
-		$this->db->from('fakultas');
-		// $this->db->from('fakultas');
-
-		// $this->db->join('fakultas', 'fakultas.id = prodi.fk_id');
-		// $this->db->where('prodi.id', $id);
-		$query = $this->db->get();
-		return $query->result_array();
-	}
-
-	public function getDataProdi()
-	{
-		$this->db->select('prodi.*');
-		$this->db->from('prodi');
-		// $this->db->where('id', $id);
-		$query = $this->db->get();
-		return $query->result_array();
-	}
-
 	public function getDataById($id)
 	{
 		$this->db->select('dosen.*,

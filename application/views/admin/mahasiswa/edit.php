@@ -17,22 +17,32 @@
 							</div>
 
 							<div class="form-group">
-								<label for="mhs_fakultas">Fakultas</label>
-								<select class="form-control" id="mhs_fakultas" name="mhs_fakultas" required>
-									<option <?= $mahasiswa["mhs_fakultas"] == "Teknik" ? "selected" : "" ?> value="Teknik">Teknik</option>
-									<!-- <option <?= $mahasiswa["mhs_fakultas"] == "Ekonomi" ? "selected" : "" ?> value="Ekonomi">Ekonomi</option>
-									<option <?= $mahasiswa["mhs_fakultas"] == "FISIP" ? "selected" : "" ?> value="FISIP">FISIP</option>
-									<option <?= $mahasiswa["mhs_fakultas"] == "Perikanan" ? "selected" : "" ?> value="Perikanan">Perikanan</option> -->
+								<label for="fk_id">Fakultas</label>
+								<select class="form-control" id="fk_id" name="fk_id" required>
+									<option value="">--Pilih Fakultas--</option>
+									<?php foreach ($fakultas as $f) { ?>
+										<option value="<?= $f['id'] ?>" <?= $f['id'] == $mahasiswa['fk_id'] ? "selected" : ""  ?>><?= $f['fk_nama'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="mhs_jurusan">jurusan</label>
-								<select class="form-control" id="mhs_jurusan" name="mhs_jurusan" required>
-									<option <?= $mahasiswa["mhs_jurusan"] == "Teknik Informatika" ? "selected" : "" ?> value="Teknik Informatika">Teknik Informatika</option>
-									<option <?= $mahasiswa["mhs_jurusan"] == "Sistem Informasi" ? "selected" : "" ?> value="Sistem Informasi">Sistem Informasi</option>
-									<option <?= $mahasiswa["mhs_jurusan"] == "Teknik Lingkungan" ? "selected" : "" ?> value="Teknik Lingkungan">Teknik Lingkungan</option>
-									<option <?= $mahasiswa["mhs_jurusan"] == "Manajemen Informasi" ? "selected" : "" ?> value="Manajemen Informasi">Manajemen Informasi</option>
+								<label for="prd_id">Jurusan</label>
+								<select class="form-control" id="prd_id" name="prd_id" required>
+									<option value="">--Pilih Jurusan--</option>
+									<?php foreach ($prodi as $p) { ?>
+										<option value="<?= $p['id'] ?>" <?= $p['id'] == $mahasiswa['prd_id'] ? "selected" : ""  ?>>(<?= $p['prd_kd'];  ?>)<?= $p['prd_jurusan'];  ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="dsn_id">Dosen PA</label>
+								<select class="form-control" id="dsn_id" name="dsn_id" required>
+									<option value="">--Dosen PA--</option>
+									<?php foreach ($dosen as $d) { ?>
+										<option value="<?= $d['id'] ?>" <?= $d['id'] == $mahasiswa['dsn_id'] ? "selected" : ""  ?>><?= $d['dsn_nama'];  ?> - <?= $d['prd_jurusan'] ?></option>
+									<?php } ?>
 								</select>
 							</div>
 

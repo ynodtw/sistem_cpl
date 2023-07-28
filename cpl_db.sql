@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Jul 2023 pada 00.27
+-- Waktu pembuatan: 29 Jul 2023 pada 01.28
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -198,9 +198,9 @@ CREATE TABLE `mahasiswa` (
   `id` int(11) NOT NULL,
   `mhs_nim` varchar(255) NOT NULL,
   `mhs_nama` varchar(255) NOT NULL,
-  `mhs_fakultas` enum('Teknik') NOT NULL,
-  `mhs_jurusan` enum('Teknik Informatika','Sistem Informasi','Teknik Lingkungan','Manajemen Informasi') NOT NULL,
-  `mhs_dsn_pa` int(11) NOT NULL,
+  `fk_id` int(11) NOT NULL,
+  `prd_id` int(11) NOT NULL,
+  `dsn_id` int(11) NOT NULL,
   `mhs_status` enum('Aktif','Non Aktif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -208,12 +208,12 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data untuk tabel `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `mhs_fakultas`, `mhs_jurusan`, `mhs_dsn_pa`, `mhs_status`) VALUES
-(1, '011601503125139', 'Dony Tanu Wijaya', 'Teknik', 'Teknik Informatika', 0, 'Aktif'),
-(2, '011601503125140', 'DB Unknown', 'Teknik', 'Sistem Informasi', 0, 'Aktif'),
-(3, '011601503125141', 'Unknown DB', 'Teknik', 'Teknik Lingkungan', 0, 'Non Aktif'),
-(4, '011601503125142', 'Unknown', 'Teknik', 'Teknik Informatika', 0, 'Aktif'),
-(7, '011601503125138', 'Lorem', 'Teknik', 'Teknik Informatika', 0, 'Aktif');
+INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `fk_id`, `prd_id`, `dsn_id`, `mhs_status`) VALUES
+(1, '011601503125139', 'Dony Tanu Wijaya', 1, 1, 1, 'Aktif'),
+(2, '011601503125140', 'DB Unknown', 2, 2, 2, 'Aktif'),
+(3, '011601503125141', 'Unknown DB', 3, 3, 3, 'Non Aktif'),
+(4, '011601503125142', 'Unknown', 4, 4, 4, 'Aktif'),
+(7, '011601503125138', 'Lorem', 1, 2, 5, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -563,7 +563,7 @@ ALTER TABLE `cplmk`
 -- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `fakultas`
@@ -575,7 +575,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `matakuliah`

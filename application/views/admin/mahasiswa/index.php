@@ -22,6 +22,7 @@
 									<th>Nama</th>
 									<th>Fakultas</th>
 									<th>Jurusan</th>
+									<th>Dosen PA</th>
 									<th>Status</th>
 									<th>Nilai</th>
 									<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
@@ -37,8 +38,9 @@
 											<td><?= $no++ ?></td>
 											<td><?= $m['mhs_nim'] ?></td>
 											<td><?= $m['mhs_nama'] ?></td>
-											<td><?= $m['mhs_fakultas'] ?></td>
-											<td><?= $m['mhs_jurusan'] ?></td>
+											<td><?= $m['prd_jurusan'] ?></td>
+											<td><?= $m['fk_nama'] ?></td>
+											<td><?= $m['dsn_nama'] ?></td>
 											<td><?= $m['mhs_status'] ?></td>
 											<td>
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>">Matakuliah</a>

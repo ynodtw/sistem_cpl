@@ -15,24 +15,41 @@ class Model_mahasiswa extends CI_Model
 		}
 	}
 
-	public function getData($id = "")
+	public function getData()
 	{
+		$this->db->select('mahasiswa.*,
+		mahasiswa.mhs_nim,
+		mahasiswa.mhs_nama,
+		fakultas.fk_nama,
+		prodi.prd_jurusan,
+		dosen.dsn_nama');
+		$this->db->from('mahasiswa');
+		// $this->db->from('fakultas');
 
-		if ($id != "") {
-			$sql = "
-            SELECT *
-            FROM mahasiswa
-            WHERE id = '" . $id . "'
-            ORDER BY id ASC;
-            ";
-		} else {
-			$sql = "
-            SELECT *
-            FROM mahasiswa
-            ORDER BY id ASC;";
-		}
+		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
+		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
+		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
+		// $this->db->where('dosen.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
-		$query = $this->db->query($sql);
+	public function getDataById($id)
+	{
+		$this->db->select('mahasiswa.*,
+		mahasiswa.mhs_nim,
+		mahasiswa.mhs_nama,
+		fakultas.fk_nama,
+		prodi.prd_jurusan,
+		dosen.dsn_nama');
+		$this->db->from('mahasiswa');
+		// $this->db->from('fakultas');
+
+		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
+		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
+		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
+		$this->db->where('mahasiswa.id', $id);
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 

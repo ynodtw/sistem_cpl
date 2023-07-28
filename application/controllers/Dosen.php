@@ -8,6 +8,7 @@ class Dosen extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_dosen');
+		$this->load->model('Model_prodi');
 	}
 
 	public function index()
@@ -39,8 +40,8 @@ class Dosen extends CI_Controller
 	public function add()
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['fakultas'] = $this->Model_dosen->getDataFakultas();
-		$data['prodi'] = $this->Model_dosen->getDataProdi();
+		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
+		$data['prodi'] = $this->Model_prodi->getData();
 		$data['page'] = "admin/dosen/add";
 		$data['title'] = "Tambah Data dosen";
 		// echo '<pre>';
@@ -101,8 +102,8 @@ class Dosen extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['dosen'] = $this->Model_dosen->getDataById($id)[0];
-		$data['fakultas'] = $this->Model_dosen->getDataFakultas();
-		$data['prodi'] = $this->Model_dosen->getDataProdi();
+		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
+		$data['prodi'] = $this->Model_prodi->getData();
 		$data['page'] = "admin/dosen/edit";
 		$data['title'] = "Data Dosen";
 		// echo '<pre>';
