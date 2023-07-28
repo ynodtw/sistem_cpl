@@ -22,7 +22,7 @@
 
 							<div class="form-group">
 								<label for="n_cplmk">Nilai CPL</label>
-								<input type="text" class="form-control" id="n_cplmk" name="n_cplmk" placeholder="" required>
+								<input type="number" class="form-control" id="n_cplmk" name="n_cplmk" placeholder="Masukkan angka 1 - 100" min="0" max="100" required>
 							</div>
 
 							<button type="submit" class="btn btn-primary">Submit</button>

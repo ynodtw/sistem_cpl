@@ -4,45 +4,27 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-body">
-						<form method="POST" action="<?= base_url("matakuliah/update") ?>" enctype="multipart/form-data">
-							<input name="id" value="<?= $matakuliah["id"] ?>" type="hidden">
+						<form method="POST" action="<?= base_url("cplmk/insert") ?>" enctype="multipart/form-data">
+							<input name="id" value="<?= $cplmk["id"] ?>" type="hidden">
+							<input name="id_nilai_mk" value="<?= $cplmk["id_nilai_mk"] ?>" type="hidden">
+							<input name="id_cpl" value="<?= $cplmk["id_cpl"] ?>" type="hidden">
+							<strong style="">
+
+							</strong>
+							<br>
+							<br>
 							<div class="form-group">
-								<label for="mk_smt">Semester</label>
-								<select class="form-control" id="mk_smt" name="mk_smt" required>
-									<option <?= $matakuliah["mk_smt"] == "1" ? "selected" : "" ?> value="1">1</option>
-									<option <?= $matakuliah["mk_smt"] == "2" ? "selected" : "" ?> value="2">2</option>
-									<option <?= $matakuliah["mk_smt"] == "3" ? "selected" : "" ?> value="3">3</option>
-									<option <?= $matakuliah["mk_smt"] == "4" ? "selected" : "" ?> value="4">4</option>
-									<option <?= $matakuliah["mk_smt"] == "5" ? "selected" : "" ?> value="5">5</option>
-									<option <?= $matakuliah["mk_smt"] == "6" ? "selected" : "" ?> value="6">6</option>
-									<option <?= $matakuliah["mk_smt"] == "7" ? "selected" : "" ?> value="7">7</option>
-									<option <?= $matakuliah["mk_smt"] == "8" ? "selected" : "" ?> value="8">8</option>
+								<label for="id_cpl">Kode CPL</label>
+								<select class="form-control" id="id_cpl" name="id_cpl" required>
+									<?php foreach ($cpl as $c) { ?>
+										<option value="<?= $c['id'] ?>" <?= $c['id'] == $cplmk['id_cpl'] ? "selected" : "";  ?>>(<?= $c['cpl_kd'];  ?>) <?= $c['cpl_kategori'];  ?></option>
+									<?php } ?>
 								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="mk_kd">Kode MK</label>
-								<input type="text" class="form-control" id="mk_kd" value="<?= $matakuliah["mk_kd"] ?>" name="mk_kd" placeholder="" readonly>
-							</div>
-
-							<div class="form-group">
-								<label for="mk_nama">Matakuliah</label>
-								<input type="text" class="form-control" id="mk_nama" value="<?= $matakuliah["mk_nama"] ?>" name="mk_nama" placeholder="" required>
-							</div>
-
-							<div class="form-group">
-								<label for="mk_sks">SKS</label>
-								<input type="text" class="form-control" id="mk_sks" value="<?= $matakuliah["mk_sks"] ?>" name="mk_sks" placeholder="" required>
-							</div>
-
-							<div class="form-group">
-								<label for="mk_prasyarat">Prasyarat</label>
-								<input type="text" class="form-control" id="mk_prasyarat" value="<?= $matakuliah["mk_prasyarat"] ?>" name="mk_prasyarat" placeholder="">
-							</div>
-
-							<div class="form-group">
-								<label for="mk_keterangan">Keterangan</label>
-								<input type="text" class="form-control" id="mk_keterangan" value="<?= $matakuliah["mk_keterangan"] ?>" name="mk_keterangan" placeholder="">
+								<label for="n_cplmk">Nilai CPL</label>
+								<input type="number" class="form-control" id="n_cplmk" name="n_cplmk" placeholder="Masukkan angka 1 - 100" min="0" max="100" value="<?= $cplmk['n_cplmk'];  ?>" required>
 							</div>
 
 							<button type="submit" class="btn btn-primary">Submit</button>

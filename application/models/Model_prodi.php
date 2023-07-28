@@ -1,6 +1,6 @@
 <?php
 
-class Model_jurusan extends CI_Model
+class Model_prodi extends CI_Model
 {
 	public function __construct()
 	{
@@ -10,7 +10,7 @@ class Model_jurusan extends CI_Model
 	public function insert($data)
 	{
 		if ($data) {
-			$insert = $this->db->insert('jurusan', $data);
+			$insert = $this->db->insert('prodi', $data);
 			return ($insert == true) ? true : false;
 		}
 	}
@@ -21,27 +21,27 @@ class Model_jurusan extends CI_Model
 		if ($id != "") {
 			$sql = "
             SELECT *
-            FROM jurusan
+            FROM prodi
             WHERE id = '" . $id . "'
-            ORDER BY id ASC;
+            ORDER BY prd_kd ASC;
             ";
 		} else {
 			$sql = "
             SELECT *
-            FROM jurusan
-            ORDER BY id ASC;";
+            FROM prodi
+            ORDER BY prd_kd ASC;";
 		}
 
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 
-	public function checkKdJurusan($jrs_kd)
+	public function checkKdprodi($prd_kd)
 	{
 		$sql = "
-		SELECT jrs_kd
-		FROM jurusan
-		WHERE jrs_kd = '" . $jrs_kd . "';
+		SELECT prd_kd
+		FROM prodi
+		WHERE prd_kd = '" . $prd_kd . "';
 		";
 		$query = $this->db->query($sql);
 		return $query->result_array();
@@ -51,7 +51,7 @@ class Model_jurusan extends CI_Model
 	// {
 	// 	$sql = "
 	//           SELECT *
-	//           FROM jurusan
+	//           FROM prodi
 	//           WHERE 
 	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
 	//       ";
@@ -78,7 +78,7 @@ class Model_jurusan extends CI_Model
 	{
 		if ($data && $id) {
 			$this->db->where('id', $id);
-			$update = $this->db->update('jurusan', $data);
+			$update = $this->db->update('prodi', $data);
 			return ($update == true) ? true : false;
 		}
 	}
@@ -87,7 +87,7 @@ class Model_jurusan extends CI_Model
 	{
 		if ($id) {
 			$this->db->where('id', $id);
-			$delete = $this->db->delete('jurusan');
+			$delete = $this->db->delete('prodi');
 			return ($delete == true) ? true : false;
 		}
 	}

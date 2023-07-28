@@ -35,7 +35,7 @@
 							</div>
 							<button type="submit" class="btn btn-info float-right">Cari</button>
 						</form> -->
-						<a href="<?= base_url("data-jurusan/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						<a href="<?= base_url("data-prodi/add") ?>" class=" btn btn-success">+ Tambah Data</a>
 
 					</div>
 				</div>
@@ -48,24 +48,26 @@
 								<tr>
 									<th>No.</th>
 									<th>Kode</th>
-									<th>Jurusan</th>
 									<th>Fakultas</th>
+									<th>Jurusan</th>
+									<th>Kepala Jurusan</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $no = 1;
-								if (!empty($jurusan)) {
-									foreach ($jurusan as $j) { ?>
+								if (!empty($prodi)) {
+									foreach ($prodi as $p) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $j['jrs_kd'] ?></td>
-											<td><?= $j['jrs_nama'] ?></td>
-											<td><?= $j['jrs_fakultas'] ?></td>
+											<td><?= $p['prd_kd'] ?></td>
+											<td><?= $p['prd_fakultas'] ?></td>
+											<td><?= $p['prd_jurusan'] ?></td>
+											<td><?= $p['prd_kajur'] ?></td>
 											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $j['id'] ?>">Lihat</a> -->
-												<a class="btn btn-warning" href="<?= base_url() . "data-jurusan/edit/" . $j['id'] ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "jurusan/delete/" . $j['id'] ?>" onclick="return confirm('Apakah Anda Yakin??')">Hapus</a>
+												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $p['id'] ?>">Lihat</a> -->
+												<a class="btn btn-warning" href="<?= base_url() . "data-prodi/edit/" . $p['id'] ?>">Ubah</a>
+												<a class="btn btn-danger" href="<?= base_url() . "prodi/delete/" . $p['id'] ?>" onclick="return confirm('Apakah Anda Yakin??')">Hapus</a>
 											</td>
 										</tr>
 									<?php } ?>

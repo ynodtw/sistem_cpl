@@ -5,6 +5,8 @@ class Model_cplmk extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Model_cpl');
+		$this->load->model('Model_nilai_mk');
 	}
 
 	public function insert($data)
@@ -36,20 +38,26 @@ class Model_cplmk extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getDataById($id)
+	{
+		$this->db->select('cplmk.*,
+		nilai_mk.id_mk,
+		nilai_mk.id_mhs,
+		matakuliah.mk_nama,
+		matakuliah.mk_kd,
+		cpl.cpl_kd,
+		cpl.cpl_kategori,
+		cpl.cpl_deskripsi');
+		$this->db->from('cplmk');
 
-	// public function getDataNilaiCpl($id_mhs)
-	// {
-	// 	$this->db->select('nilai_mk.*,cplmk.*, mahasiswa.*, cpl.cpl_kd, cpl.cpl_deskripsi, matakuliah.mk_kd, matakuliah.mk_nama');
-	// 	$this->db->from('nilai_mk');
-
-	// 	$this->db->join('cplmk', 'nilai_mk.id = cplmk.id_nilai_mk');
-	// 	$this->db->join('mahasiswa', 'mahasiswa.id = nilai_mk.id_mhs');
-	// 	$this->db->join('matakuliah', 'matakuliah.id = nilai_mk.id_mk');
-	// 	$this->db->join('cpl', 'cpl.id = cplmk.id_cpl');
-	// 	$this->db->where('nilai_mk.id_mhs', $id_mhs);
-	// 	$query = $this->db->get();
-	// 	return $query->result_array();
-	// }
+		$this->db->join('nilai_mk', 'nilai_mk.id = cplmk.id_nilai_mk');
+		$this->db->join('mahasiswa', 'mahasiswa.id = nilai_mk.id_mhs');
+		$this->db->join('matakuliah', 'matakuliah.id = nilai_mk.id_mk');
+		$this->db->join('cpl', 'cpl.id = cplmk.id_cpl');
+		$this->db->where('cplmk.id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 	public function checkKdCpl($id_nilai_mk, $id_cpl)
 	{
@@ -89,21 +97,21 @@ class Model_cplmk extends CI_Model
 	// 	return $query->result_array();
 	// }
 
-	// public function update($id, $data)
-	// {
-	// 	if ($data && $id) {
-	// 		$this->db->where('id', $id);
-	// 		$update = $this->db->update('cplmk', $data);
-	// 		return ($update == true) ? true : false;
-	// 	}
-	// }
+	public function update($id, $data)
+	{
+		if ($data && $id) {
+			$this->db->where('id', $id);
+			$update = $this->db->update('cplmk', $data);
+			return ($update == true) ? true : false;
+		}
+	}
 
-	// public function delete($id)
-	// {
-	// 	if ($id) {
-	// 		$this->db->where('id', $id);
-	// 		$delete = $this->db->delete('cplmk');
-	// 		return ($delete == true) ? true : false;
-	// 	}
-	// }
+	public function delete($id)
+	{
+		if ($id) {
+			$this->db->where('id', $id);
+			$delete = $this->db->delete('cplmk');
+			return ($delete == true) ? true : false;
+		}
+	}
 }

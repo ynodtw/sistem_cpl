@@ -47,22 +47,22 @@
 
 							<div class="form-group">
 								<label for="bobot_absen">Bobot Absen (%)</label>
-								<input type="text" class="form-control" id="bobot_absen" value="<?= $matakuliah["bobot_absen"] ?>" name="bobot_absen" placeholder="">
+								<input type="number" class="form-control" id="bobot_absen" value="<?= $matakuliah["bobot_absen"] ?>" name="bobot_absen" placeholder="" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="bobot_tugas">Bobot Tugas (%)</label>
-								<input type="text" class="form-control" id="bobot_tugas" value="<?= $matakuliah["bobot_tugas"] ?>" name="bobot_tugas" placeholder="">
+								<input type="number" class="form-control" id="bobot_tugas" value="<?= $matakuliah["bobot_tugas"] ?>" name="bobot_tugas" placeholder="" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="bobot_uts">Bobot UTS (%)</label>
-								<input type="text" class="form-control" id="bobot_uts" value="<?= $matakuliah["bobot_uts"] ?>" name="bobot_uts" placeholder="">
+								<input type="number" class="form-control" id="bobot_uts" value="<?= $matakuliah["bobot_uts"] ?>" name="bobot_uts" placeholder="" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="bobot_uas">Bobot UAS (%)</label>
-								<input type="text" class="form-control" id="bobot_uas" value="<?= $matakuliah["bobot_uas"] ?>" name="bobot_uas" placeholder="">
+								<input type="number" class="form-control" id="bobot_uas" value="<?= $matakuliah["bobot_uas"] ?>" name="bobot_uas" placeholder="" min="0" max="100" required>
 							</div>
 
 							<button type="submit" class="btn btn-primary">Submit</button>

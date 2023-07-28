@@ -95,10 +95,10 @@
 
             <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
               <li class="nav-item">
-                <a href="<?= base_url("/data-jurusan") ?>" class="nav-link <?= $title == "Data Fakultas" ? "active" : "" ?>">
+                <a href="<?= base_url("/data-prodi") ?>" class="nav-link <?= $title == "Data Prodi" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Fakultas
+                    Prodi
                   </p>
                 </a>
               </li>

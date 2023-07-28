@@ -55,7 +55,7 @@
 											</td>
 											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 												<td>
-													<a class="btn btn-warning" href="<?= base_url() . "nilai_mk/edit/" . $nm['id'] ?>">Ubah</a>
+													<a class="btn btn-warning" href="<?= base_url() . "data-nilai-matakuliah/edit/" . $nm['id'] ?>">Ubah</a>
 													<a class="btn btn-danger" href="<?= base_url() . "nilai_mk/delete/" . $nm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 												</td>
 											<?php } ?>

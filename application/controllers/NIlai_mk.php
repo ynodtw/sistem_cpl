@@ -125,9 +125,6 @@ class Nilai_mk extends CI_Controller
 		}
 	}
 
-	public function akumulasi()
-	{
-	}
 
 	public function edit($id)
 	{

@@ -76,7 +76,7 @@ class Cplmk extends CI_Controller
 		if (!empty($cek_id_cpl)) {
 			echo "
 			<script>
-					alert('Matakuliah Sudah Terdaftar!')
+					alert('CPL Sudah Terdaftar!')
 					history.back()
 			</script>
 			";
@@ -107,5 +107,60 @@ class Cplmk extends CI_Controller
 					";
 			return false;
 		}
+	}
+
+	public function edit($id)
+	{
+		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['cplmk'] = $this->Model_cplmk->getDataById($id)[0];
+		$data['page'] = "admin/cplmk/edit";
+		$data['title'] = "Data Nilai Matakuliah";
+		$data['matakuliah'] = $this->Model_matakuliah->getData();
+
+		// echo "<pre>";
+		// print_r($data['cplmk']);
+		// die;
+		$this->load->view('admin/template', $data);
+	}
+
+	public function update()
+	{
+		$id = $this->input->post("id");
+		$id_cpl = $this->input->post("id_cpl");
+		$n_cplmk = $this->input->post("n_cplmk");
+
+		$data_insert = [
+			"id" => $id,
+			"id_nilai_mk" => $id_nilai_mk,
+			"id_cpl" => $id_cpl,
+			"n_cplmk" => $n_cplmk,
+		];
+
+		echo '<pre>';
+		print_r($data_insert);
+		die;
+
+		$insert = $this->Model_cplmk->insert($data_insert);
+
+		if ($insert) {
+			$this->session->set_flashdata('msg', 'Sukses Insert Data');
+			redirect(base_url("/data-cplmk/" . $id_nilai_mk));
+		} else {
+			echo "
+					<script>
+							alert('Gagal insert data!')
+							history.back()
+					</script>
+					";
+			return false;
+		}
+	}
+
+	public function delete($id)
+	{
+		$this->Model_cplmk->delete($id);
+
+		$this->session->set_flashdata('msg', 'Sukses Hapus Data');
+		redirect($this->agent->referrer());
 	}
 }

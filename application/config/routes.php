@@ -25,10 +25,10 @@ $route['data-dosen'] = 'dosen';
 $route['data-dosen/add'] = 'dosen/add';
 $route['data-dosen/edit/(:num)'] = 'dosen/edit/$1';
 
-//CONTROLLER JURUSAN
-$route['data-jurusan'] = 'jurusan';
-$route['data-jurusan/add'] = 'jurusan/add';
-$route['data-jurusan/edit/(:num)'] = 'jurusan/edit/$1';
+//CONTROLLER PRODI
+$route['data-prodi'] = 'prodi';
+$route['data-prodi/add'] = 'prodi/add';
+$route['data-prodi/edit/(:num)'] = 'prodi/edit/$1';
 
 //CONTROLLER MATAKULIAH
 $route['data-matakuliah'] = 'matakuliah';

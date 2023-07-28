@@ -8,6 +8,9 @@ class Auth extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_auth');
+		if (empty($this->session->userdata("data_login"))) {
+			redirect(site_url(), 'refresh');
+		}
 	}
 
 	public function index()
