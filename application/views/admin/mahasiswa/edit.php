@@ -8,7 +8,7 @@
 							<input name="id" value="<?= $mahasiswa["id"] ?>" type="hidden">
 							<div class="form-group">
 								<label for="mhs_nim">NIM</label>
-								<input type="text" class="form-control" id="mhs_nim" value="<?= $mahasiswa["mhs_nim"] ?>" name="mhs_nim" placeholder="" readonly>
+								<input type="text" class="form-control" id="mhs_nim" value="<?= $mahasiswa["mhs_nim"] ?>" name="mhs_nim" placeholder="" required>
 							</div>
 
 							<div class="form-group">

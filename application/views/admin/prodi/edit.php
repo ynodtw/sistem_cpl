@@ -8,7 +8,7 @@
 							<input name="id" value="<?= $prodi["id"] ?>" type="hidden">
 							<div class="form-group">
 								<label for="prd_kd">Kode</label>
-								<input type="text" class="form-control" id="prd_kd" value="<?= $prodi["prd_kd"] ?>" name="prd_kd" placeholder="" readonly>
+								<input type="text" class="form-control" id="prd_kd" value="<?= $prodi["prd_kd"] ?>" name="prd_kd" placeholder="" required>
 							</div>
 
 							<div class="form-group">

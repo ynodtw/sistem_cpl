@@ -17,16 +17,17 @@
               </div>
 
 
-              <div class="form-group" style='<?= $_SESSION['data_login']['role'] == "admin" ? "display:none" : "" ?>'>
+              <div class="form-group" style='<?= $_SESSION['data_login']['role'] == "superadmin" ? "display:none" : "" ?>'>
                 <label for="role">Hak Akses</label>
                 <select class="form-control" id="role" name="role" required>
                   <option <?= $users["role"] == "superadmin" ? "selected" : "" ?> value="superadmin">Super Admin</option>
+                  <option <?= $users["role"] == "prodi" ? "selected" : "" ?> value="prodi">Prodi</option>
                   <option <?= $users["role"] == "dosen" ? "selected" : "" ?> value="dosen">Dosen</option>
                   <option <?= $users["role"] == "mahasiswa" ? "selected" : "" ?> value="mahasiswa">Mahasiswa</option>
                 </select>
               </div>
 
-              <div class="form-group" style='<?= $_SESSION['data_login']['role'] == "admin" ? "display:none" : "" ?>'>
+              <div class="form-group" style='<?= $_SESSION['data_login']['role'] == "superadmin" ? "display:none" : "" ?>'>
                 <label for="status">Status</label>
                 <select class="form-control" id="status" name="status" required>
                   <option <?= $users["status"] == "active" ? "selected" : "" ?> value="active">Active</option>

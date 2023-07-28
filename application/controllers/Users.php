@@ -117,6 +117,9 @@ class Users extends CI_Controller
         $data_insert["updated_by"] = $_SESSION['data_login']['id'];
         $data_insert["updated_at"] = date("Y-m-d H:i:s");
 
+        // echo '<pre>';
+        // print_r($data_insert);
+        // die;
 
         $update = $this->Model_users->update($id, $data_insert);
 

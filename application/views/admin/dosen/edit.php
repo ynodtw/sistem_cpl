@@ -8,7 +8,7 @@
 							<input name="id" value="<?= $dosen["id"] ?>" type="hidden">
 							<div class="form-group">
 								<label for="dsn_nid">NID</label>
-								<input type="text" class="form-control" id="dsn_nid" value="<?= $dosen["dsn_nid"] ?>" name="dsn_nid" placeholder="" readonly>
+								<input type="text" class="form-control" id="dsn_nid" value="<?= $dosen["dsn_nid"] ?>" name="dsn_nid" placeholder="" required>
 							</div>
 
 							<div class="form-group">

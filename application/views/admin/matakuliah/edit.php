@@ -22,7 +22,7 @@
 
 							<div class="form-group">
 								<label for="mk_kd">Kode MK</label>
-								<input type="text" class="form-control" id="mk_kd" value="<?= $matakuliah["mk_kd"] ?>" name="mk_kd" placeholder="" readonly>
+								<input type="text" class="form-control" id="mk_kd" value="<?= $matakuliah["mk_kd"] ?>" name="mk_kd" placeholder="" required>
 							</div>
 
 							<div class="form-group">
