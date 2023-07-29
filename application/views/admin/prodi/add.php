@@ -16,16 +16,21 @@
 							</div>
 
 							<div class="form-group">
-								<label for="prd_kajur">Kajur</label>
-								<input type="text" class="form-control" id="prd_kajur" name="prd_kajur" placeholder="" required>
-							</div>
-
-							<div class="form-group">
 								<label for="fk_id">Fakultas</label>
 								<select class="form-control" id="fk_id" name="fk_id" required>
 									<option value="">--Pilih Fakultas--</option>
 									<?php foreach ($prodi as $p) { ?>
 										<option value="<?= $p['id'] ?>"><?= $p['fk_nama'];  ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="dsn_id">Kepala Jurusan</label>
+								<select class="form-control" id="dsn_id" name="dsn_id" required>
+									<option value="">--Pilih Dosen--</option>
+									<?php foreach ($dosen as $d) { ?>
+										<option value="<?= $d['id'] ?>"><?= "(" . $d['fk_nama'] . ")" . " " . $d['dsn_nama']  ?></option>
 									<?php } ?>
 								</select>
 							</div>

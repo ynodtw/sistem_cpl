@@ -19,6 +19,9 @@ class Users extends CI_Controller
         $data['users'] = $this->Model_users->getData();
         $data['page'] = "admin/users/index";
         $data['title'] = "Data User/Hak Akses";
+        // echo '<pre>';
+        // print_r($data);
+        // die;
         $this->load->view('admin/template', $data);
     }
 
@@ -34,6 +37,7 @@ class Users extends CI_Controller
     {
         $username = $this->input->post("username");
         $fullname = $this->input->post("fullname");
+        $status = $this->input->post("status");
         $role = $this->input->post("role");
         $password = $this->input->post("password");
         $password2 = $this->input->post("password2");
@@ -68,11 +72,16 @@ class Users extends CI_Controller
         $data_insert = [
             "username" => $username,
             "fullname" => $fullname,
+            "status" => $status,
             "role" => $role,
             "password" => password_hash($password, PASSWORD_DEFAULT),
             "photo" => $uploaded_data['file_name'],
             "created_by" => $_SESSION['data_login']['id']
         ];
+
+        // echo '<pre>';
+        // print_r($data_insert);
+        // die;
 
         $insert = $this->Model_users->insert($data_insert);
 
@@ -96,6 +105,9 @@ class Users extends CI_Controller
         $data['users'] = $this->Model_users->getData($id)[0];
         $data['page'] = "admin/users/edit";
         $data['title'] = "Data User/Hak Akses";
+        // echo '<pre>';
+        // print_r($data);
+        // die;
         $this->load->view('admin/template', $data);
     }
 
@@ -103,8 +115,8 @@ class Users extends CI_Controller
     {
         $username = $this->input->post("username");
         $fullname = $this->input->post("fullname");
-        $role = $this->input->post("role");
         $status = $this->input->post("status");
+        $role = $this->input->post("role");
         $id = $this->input->post("id");
         $photo = $_FILES;
 
@@ -112,21 +124,21 @@ class Users extends CI_Controller
             $path = './assets/img/';
             $file_name = $_SESSION['data_login']['id'] . "-" . $_SESSION['data_login']['role'];
             $uploaded_data = uploadFile($path, $file_name);
-            $data_insert['photo'] = $uploaded_data['file_name'];
+            $data_update['photo'] = $uploaded_data['file_name'];
         }
 
-        $data_insert["username"] = $username;
-        $data_insert["fullname"] = $fullname;
-        $data_insert["role"] = $role;
-        $data_insert["status"] = $status;
-        $data_insert["updated_by"] = $_SESSION['data_login']['id'];
-        $data_insert["updated_at"] = date("Y-m-d H:i:s");
+        $data_update["username"] = $username;
+        $data_update["fullname"] = $fullname;
+        $data_update["status"] = $status;
+        $data_update["role"] = $role;
+        $data_update["updated_by"] = $_SESSION['data_login']['id'];
+        $data_update["updated_at"] = date("Y-m-d H:i:s");
 
         // echo '<pre>';
-        // print_r($data_insert);
+        // print_r($data_update);
         // die;
 
-        $update = $this->Model_users->update($id, $data_insert);
+        $update = $this->Model_users->update($id, $data_update);
 
         if ($update) {
             $this->session->set_flashdata('msg', 'Sukses Ubah Data');

@@ -23,7 +23,7 @@ class Model_mahasiswa extends CI_Model
 		fakultas.fk_nama,
 		prodi.prd_jurusan,
 		dosen.dsn_nama');
-		$this->db->from('mahasiswa');
+		$this->db->from('mahasiswa')->order_by('mhs_nim', 'ASC');
 		// $this->db->from('fakultas');
 
 		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');

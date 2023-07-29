@@ -21,6 +21,16 @@
 							</div>
 
 							<div class="form-group">
+								<label for="prd_id">Program Studi</label>
+								<select class="form-control" id="prd_id" name="prd_id" required>
+									<option value="">--Pilih Jurusan--</option>
+									<?php foreach ($prodi as $p) { ?>
+										<option value="<?= $p['id'] ?>" <?= $p['id'] == $matakuliah['prd_id'] ? "selected" : "";  ?>><?= "(" . $p['fk_nama'] . ") " . $p['prd_jurusan'];  ?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="form-group">
 								<label for="mk_kd">Kode MK</label>
 								<input type="text" class="form-control" id="mk_kd" value="<?= $matakuliah["mk_kd"] ?>" name="mk_kd" placeholder="" required>
 							</div>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Jul 2023 pada 12.51
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 30 Jul 2023 pada 01.51
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `cpl_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `biodata`
+--
+
+CREATE TABLE `biodata` (
+  `id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `nik` varchar(255) NOT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `agama` varchar(255) NOT NULL,
+  `kewarganegaraan` varchar(255) NOT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
+  `no_telp` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `biodata`
+--
+
+INSERT INTO `biodata` (`id`, `users_id`, `nik`, `tempat_lahir`, `tgl_lahir`, `agama`, `kewarganegaraan`, `jenis_kelamin`, `no_telp`) VALUES
+(1, 13, '3147010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837'),
+(2, 9, '3147010906960003', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837');
 
 -- --------------------------------------------------------
 
@@ -39,50 +65,50 @@ CREATE TABLE `cpl` (
 --
 
 INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
-(1, 'S1', 'Sikap', 'Bertakwa Kepada Tuhan Yang Maha Esa dan Mampu Menunjuka Sikap Religius'),
-(2, 'P1', 'Pengetahuan', 'Memahami pengetahuan tentang ilmu kelautan dan/atau teknologi kelautan dan mampu mengaplikasikannya sesuai dengan bidang keilmuannya masing-masing'),
-(3, 'KU1', 'Keterampilan Umum', 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan implementasi ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya.'),
-(4, 'KK1', 'Keterampilan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer'),
-(8, 'S2', 'Sikap', 'Menjunjung tinggi nilai kemanusiaan dalam menjalankan tugas berdasarkan agama,moral, dan etika'),
-(9, 'KK2', 'Keterampilan Khusus', 'Menulis kode yang diperlukan untuk digunakan sebagai instruksi dalam membangun aplikasi komputer pada berbagai platform'),
-(10, 'S4', 'Sikap', 'Berperan sebagai warga negara yang bangga dan cinta tanah air, memiliki nasionalisme serta rasa tanggungjawab pada negara dan bangsa'),
-(11, 'S9', 'Sikap', 'Menunjukkan sikap bertanggungjawab atas pekerjaan di bidang keahliannya secara mandiri'),
-(12, 'KU3', 'Keterampilan Umum', 'Mampu mengkaji implikasi pengembangan atau implementasi ilmu pengetahuan teknologi yang memperhatikan dan menerapkan nilai humaniora sesuai dengan keahliannya berdasarkan kaidah, tata cara dan etika ilmiah dalam rangka menghasilkan solusi, gagasan, desain atau kritik seni, menyusun deskripsi saintifik hasil kajiannya dalam bentuk skripsi atau laporan tugas akhir, dan mengunggahnya dalam laman perguruan tinggi'),
-(13, 'P7', 'Pengetahuan', 'Menguasai konsep-konsep bahasa pemrograman, serta mampu membandingkan berbagai solusi serta berbagai model bahasa pemrograman'),
+(1, 'S01', 'Sikap', 'Bertakwa Kepada Tuhan Yang Maha Esa dan Mampu Menunjuka Sikap Religius'),
+(2, 'P01', 'Pengetahuan', 'Memahami pengetahuan tentang ilmu kelautan dan/atau teknologi kelautan dan mampu mengaplikasikannya sesuai dengan bidang keilmuannya masing-masing'),
+(3, 'KU01', 'Keterampilan Umum', 'Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif dalam konteks pengembangan implementasi ilmu pengetahuan dan teknologi yang memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya.'),
+(4, 'KK01', 'Keterampilan Khusus', 'Membangun aplikasi perangkat lunak yang berkaitan dengan pengetahuan ilmu computer'),
+(8, 'S02', 'Sikap', 'Menjunjung tinggi nilai kemanusiaan dalam menjalankan tugas berdasarkan agama,moral, dan etika'),
+(9, 'KK02', 'Keterampilan Khusus', 'Menulis kode yang diperlukan untuk digunakan sebagai instruksi dalam membangun aplikasi komputer pada berbagai platform'),
+(10, 'S04', 'Sikap', 'Berperan sebagai warga negara yang bangga dan cinta tanah air, memiliki nasionalisme serta rasa tanggungjawab pada negara dan bangsa'),
+(11, 'S09', 'Sikap', 'Menunjukkan sikap bertanggungjawab atas pekerjaan di bidang keahliannya secara mandiri'),
+(12, 'KU03', 'Keterampilan Umum', 'Mampu mengkaji implikasi pengembangan atau implementasi ilmu pengetahuan teknologi yang memperhatikan dan menerapkan nilai humaniora sesuai dengan keahliannya berdasarkan kaidah, tata cara dan etika ilmiah dalam rangka menghasilkan solusi, gagasan, desain atau kritik seni, menyusun deskripsi saintifik hasil kajiannya dalam bentuk skripsi atau laporan tugas akhir, dan mengunggahnya dalam laman perguruan tinggi'),
+(13, 'P07', 'Pengetahuan', 'Menguasai konsep-konsep bahasa pemrograman, serta mampu membandingkan berbagai solusi serta berbagai model bahasa pemrograman'),
 (14, 'P13', 'Pengetahuan', 'Menguasai bahasa dan algoritma pemrograman yang berkaitan dengan program aplikasi untuk memanipulasi model gambar, grafis dan citra'),
-(16, 'S4', 'Sikap', 'Menghargai keanekaragaman budaya, pandangan, agama, dan kepercayaan, serta pendapat atau temuan orisinal orang lain'),
-(17, 'S6', 'Sikap', 'Bekerja sama dan memiliki kepekaan sosial serta kepedulian terhadap masyarakat dan lingkungan'),
-(18, 'S7', 'Sikap', 'Taat hukum dan disiplin dalam kehidupan bermasyarakat dan bernegara'),
-(19, 'S8', 'Sikap', 'Menginternalisasi nilai, norma, dan etika akademik'),
+(16, 'S05', 'Sikap', 'Menghargai keanekaragaman budaya, pandangan, agama, dan kepercayaan, serta pendapat atau temuan orisinal orang lain'),
+(17, 'S06', 'Sikap', 'Bekerja sama dan memiliki kepekaan sosial serta kepedulian terhadap masyarakat dan lingkungan'),
+(18, 'S07', 'Sikap', 'Taat hukum dan disiplin dalam kehidupan bermasyarakat dan bernegara'),
+(19, 'S08', 'Sikap', 'Menginternalisasi nilai, norma, dan etika akademik'),
 (20, 'S10', 'Sikap', 'Menginternalisasi semangat kemandirian, kejuangan, dan kewirausahaan'),
 (21, 'S11', 'Sikap', 'Bersikap proaktif, berorientasi pada tindakan, beradaptasi dan bersinergi disetiap kondisi apapun dalam masyarakat dan lingkungannya'),
 (22, 'S12', 'Sikap', 'Memiliki rasa keingintahuan ang tinggi dalam rangka pengembanga ipteks'),
-(23, 'S3', 'Sikap', 'Berkontribusi dalam peningkatan mutu kehidupan bermasyarakat, berbangsa, bernegara, dan kemajuan peradaban berdasarkan Pancasila'),
-(24, 'P2', 'Pengetahuan', 'Menguasai konsep-konsep matematika untuk memecahkan berbagai masalah yang berkaitan dengan logika'),
-(25, 'P3', 'Pengetahuan', 'Menguasai prinsip-prinsip pemodelan matematika, program linear serta metode numerik'),
-(26, 'P4', 'Pengetahuan', 'Menguasai konsep dan ilmu probabilitas dan statistik untuk mendukung dan menganalisis sistem komputasi'),
-(27, 'P5', 'Pengetahuan', 'Menguasai konsep dan teori konsep-konsep struktur diskrit, yang meliputi materi dasar matematika yang digunakan untuk memodelkan dan menganalisis sistem komputasi'),
-(28, 'P6', 'Pengetahuan', 'Menguasai teori dan konsep yang mendasari ilmu komputer'),
-(29, 'P8', 'Pengetahuan', 'Memahami teori dasar arsitektur komputer, termasuk perangkat keras komputer dan jaringan'),
-(30, 'P9', 'Pengetahuan', 'Menguasai bidang fokus pengetahuan ilmu komputer serta mampu beradaptasi dengan perkembangan ilmu pengetahuan dan teknologi'),
-(31, 'KU2', 'Keterampilan Umum', 'Mampu menunjukkan kinerja mandiri, bermutu, dan terukur'),
-(32, 'KU4', 'Keterampilan Umum', 'Menyusun deskripsi saintifik hasil kajian tersebut di atas dalam bentuk skripsi atau laporan tugas akhir, dan mengunggahnya dalam laman perguruan tinggi'),
-(33, 'KU5', 'Keterampilan Umum', 'Mampu mengambil keputusan secara tepat dalam konteks penyelesaian masalah di bidang keahliannya, berdasarkan hasil analisis informasi dan data'),
-(34, 'KU6', 'Keterampilan Umum', 'Mampu memelihara dan mengembang-kan jaringan kerja dengan pembimbing, kolega, sejawat baik di dalam maupun di luar lembaganya'),
-(35, 'KU7', 'Keterampilan Umum', 'Mampu bertanggungjawab atas pencapaian hasil kerja kelompok dan melakukan supervisi dan evaluasi terhadap penyelesaian pekerjaan yang ditugaskan kepada pekerja yang berada di bawah tanggungjawabnya'),
-(36, 'KU8', 'Keterampilan Umum', 'Mampu melakukan proses evaluasi diri terhadap kelompok kerja yang berada dibawah tanggung jawabnya, dan mampu mengelola pembelajaran secara mandiri'),
-(37, 'KU9', 'Keterampilan Umum', 'Mampu mendokumentasikan, menyimpan, mengamankan, dan menemukan kembali data untuk menjamin kesahihan dan mencegah plagiasi'),
+(23, 'S03', 'Sikap', 'Berkontribusi dalam peningkatan mutu kehidupan bermasyarakat, berbangsa, bernegara, dan kemajuan peradaban berdasarkan Pancasila'),
+(24, 'P02', 'Pengetahuan', 'Menguasai konsep-konsep matematika untuk memecahkan berbagai masalah yang berkaitan dengan logika'),
+(25, 'P03', 'Pengetahuan', 'Menguasai prinsip-prinsip pemodelan matematika, program linear serta metode numerik'),
+(26, 'P04', 'Pengetahuan', 'Menguasai konsep dan ilmu probabilitas dan statistik untuk mendukung dan menganalisis sistem komputasi'),
+(27, 'P05', 'Pengetahuan', 'Menguasai konsep dan teori konsep-konsep struktur diskrit, yang meliputi materi dasar matematika yang digunakan untuk memodelkan dan menganalisis sistem komputasi'),
+(28, 'P06', 'Pengetahuan', 'Menguasai teori dan konsep yang mendasari ilmu komputer'),
+(29, 'P08', 'Pengetahuan', 'Memahami teori dasar arsitektur komputer, termasuk perangkat keras komputer dan jaringan'),
+(30, 'P09', 'Pengetahuan', 'Menguasai bidang fokus pengetahuan ilmu komputer serta mampu beradaptasi dengan perkembangan ilmu pengetahuan dan teknologi'),
+(31, 'KU02', 'Keterampilan Umum', 'Mampu menunjukkan kinerja mandiri, bermutu, dan terukur'),
+(32, 'KU04', 'Keterampilan Umum', 'Menyusun deskripsi saintifik hasil kajian tersebut di atas dalam bentuk skripsi atau laporan tugas akhir, dan mengunggahnya dalam laman perguruan tinggi'),
+(33, 'KU05', 'Keterampilan Umum', 'Mampu mengambil keputusan secara tepat dalam konteks penyelesaian masalah di bidang keahliannya, berdasarkan hasil analisis informasi dan data'),
+(34, 'KU06', 'Keterampilan Umum', 'Mampu memelihara dan mengembang-kan jaringan kerja dengan pembimbing, kolega, sejawat baik di dalam maupun di luar lembaganya'),
+(35, 'KU07', 'Keterampilan Umum', 'Mampu bertanggungjawab atas pencapaian hasil kerja kelompok dan melakukan supervisi dan evaluasi terhadap penyelesaian pekerjaan yang ditugaskan kepada pekerja yang berada di bawah tanggungjawabnya'),
+(36, 'KU08', 'Keterampilan Umum', 'Mampu melakukan proses evaluasi diri terhadap kelompok kerja yang berada dibawah tanggung jawabnya, dan mampu mengelola pembelajaran secara mandiri'),
+(37, 'KU09', 'Keterampilan Umum', 'Mampu mendokumentasikan, menyimpan, mengamankan, dan menemukan kembali data untuk menjamin kesahihan dan mencegah plagiasi'),
 (38, 'KU10', 'Keterampilan Umum', 'Mampu berkomunikasi dengan efektif dalam masyarakat dan lingkungan'),
 (39, 'KU11', 'Keterampilan Umum', 'Mampu berbahasa Inggris dengan baik'),
 (40, 'KU12', 'Keterampilan Umum', 'Mampu memahami, menggunakan dan memanfaatkan Teknologi Informasi di masyarakat dan lingkungannya dengan bijak'),
 (41, 'KU13', 'Keterampilan Umum', 'Mampu mengembangkan potensi diri sesuai minat bakat yang dimiliki'),
-(42, 'KK3', 'Keterampilan Khusus', 'Memanfaatkan pengetahuan yang dimiliki berkaitan dengan konsep-konsep dasar pengembangan perangkat lunak dan kecakapan yang berhubungan dengan proses pengembangan perangkat lunak, serta mampu membuat program untuk meningkatkan efektivitas penggunaan komputer untuk memecahkan masalah tertentu'),
-(43, 'KK4', 'Keterampilan Khusus', 'Merancang dan mengembangkan program aplikasi untuk memanipulasi model gambar, grafis dan citra, serta dapat memvisualisasikannya'),
-(44, 'KK5', 'Keterampilan Khusus', 'Membangun dan mengevaluasi perangkat lunak dalam berbagai area, termasuk yang berkaitan dengan interaksi antara manusia dan komputer'),
-(45, 'KK6', 'Keterampilan Khusus', 'Membangun aplikasi perangkat lunak dalam berbagai area yang berkaitan dengan bidang robotik, pengenalan suara, sistem cerdas'),
-(46, 'KK7', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan manajemen informasi, termasuk menyusun pemodelan dan abstraksi data serta membangun aplikasi perangkat lunak untuk pengorganisasian data dan penjaminan keamanan akses data'),
-(47, 'KK8', 'Keterampilan Khusus', 'Menganalisis, merancang, dan menerapkan suatu sistem berbasis komputer secara efisien untuk menyelesaikan masalah, menggunakan pemrograman prosedural dan berorientasi objek'),
-(48, 'KK9', 'Keterampilan Khusus', 'Membangun sistem jaringan komputer dan sistem keamanannya serta melakukan pengelolaan secara kontinu terhadap proteksi profil yang ada'),
+(42, 'KK03', 'Keterampilan Khusus', 'Memanfaatkan pengetahuan yang dimiliki berkaitan dengan konsep-konsep dasar pengembangan perangkat lunak dan kecakapan yang berhubungan dengan proses pengembangan perangkat lunak, serta mampu membuat program untuk meningkatkan efektivitas penggunaan komputer untuk memecahkan masalah tertentu'),
+(43, 'KK04', 'Keterampilan Khusus', 'Merancang dan mengembangkan program aplikasi untuk memanipulasi model gambar, grafis dan citra, serta dapat memvisualisasikannya'),
+(44, 'KK05', 'Keterampilan Khusus', 'Membangun dan mengevaluasi perangkat lunak dalam berbagai area, termasuk yang berkaitan dengan interaksi antara manusia dan komputer'),
+(45, 'KK06', 'Keterampilan Khusus', 'Membangun aplikasi perangkat lunak dalam berbagai area yang berkaitan dengan bidang robotik, pengenalan suara, sistem cerdas'),
+(46, 'KK07', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan manajemen informasi, termasuk menyusun pemodelan dan abstraksi data serta membangun aplikasi perangkat lunak untuk pengorganisasian data dan penjaminan keamanan akses data'),
+(47, 'KK08', 'Keterampilan Khusus', 'Menganalisis, merancang, dan menerapkan suatu sistem berbasis komputer secara efisien untuk menyelesaikan masalah, menggunakan pemrograman prosedural dan berorientasi objek'),
+(48, 'KK09', 'Keterampilan Khusus', 'Membangun sistem jaringan komputer dan sistem keamanannya serta melakukan pengelolaan secara kontinu terhadap proteksi profil yang ada'),
 (49, 'KK10', 'Keterampilan Khusus', 'Menganalisis dan mengembangkan sistem serta prosedur yang berkaitan dengan sistem komuter serta memberikan rekomendasi ang berkaitan dengan sistem komputer yang lebih efisien dan efektif'),
 (50, 'KK11', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan arsitektur dan organisasi komputer serta memanfaatkannya untuk menunjang aplikasi komputer'),
 (51, 'KK12', 'Keterampilan Khusus', 'Menerapkan konsep-konsep yang berkaitan dengan pengembangan berbasis platform serta mampu mengembangkan program aplikasi berbasis platform untuk berbagai area'),
@@ -134,7 +160,11 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (25, 3, 4, 67),
 (26, 3, 49, 70),
 (27, 27, 11, 89),
-(29, 25, 11, 78);
+(29, 25, 11, 78),
+(32, 35, 11, 67),
+(33, 35, 50, 70),
+(34, 36, 39, 70),
+(35, 36, 11, 89);
 
 -- --------------------------------------------------------
 
@@ -242,7 +272,7 @@ CREATE TABLE `matakuliah` (
 
 INSERT INTO `matakuliah` (`id`, `mk_smt`, `prd_id`, `mk_kd`, `mk_nama`, `mk_sks`, `mk_prasyarat`, `mk_keterangan`, `bobot_absen`, `bobot_tugas`, `bobot_uts`, `bobot_uas`) VALUES
 (1, '1', 1, 'UN192003', 'Bahasa Inggris', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
-(2, '6', 1, 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi', 10, 20, 30, 40),
+(2, '6', 1, 'TI123006', 'Interaksi Manusia dan Komputer', 3, 'Pemrograman Web', 'Wajib Prodi', 0, 20, 30, 50),
 (3, '1', 1, 'UN192006', 'Pancasila', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
 (5, '7', 1, 'TI172029', 'Riset Teknologi Informasi', 2, 'Kecerdasan Buatan', '', 10, 20, 30, 40),
 (6, '2', 1, 'UN192004', 'Kewarganegaraan', 2, '', 'Wajib Universitas', 10, 20, 30, 40),
@@ -359,7 +389,9 @@ INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, 
 (25, 20, 1, '80', '78', '70', '67', '71.4'),
 (26, 21, 1, '80', '80', '80', '80', '80'),
 (27, 1, 1, '100', '100', '50', '50', '65'),
-(28, 3, 3, '90', '100', '80', '80', '85');
+(28, 3, 3, '90', '100', '80', '80', '85'),
+(35, 1, 7, '90', '89', '67', '87', '81.7'),
+(36, 3, 7, '80', '23', '80', '80', '68.6');
 
 -- --------------------------------------------------------
 
@@ -467,11 +499,18 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`
 (13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-25 20:10:40'),
 (14, 'DB Unknown', '011601503125140', '$2y$10$CG9qToP7Ev1MXUj/wfQ5xOUj.Iz0U2pugnTsNBDDcfv8M.vEN5cT2', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:03:09', 9, '2023-07-25 20:13:28'),
 (15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL),
-(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-27 10:59:07');
+(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-29 23:32:34'),
+(17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '9-superadmin.png', 'inactive', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-29 23:31:55');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `biodata`
+--
+ALTER TABLE `biodata`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `cpl`
@@ -550,6 +589,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `biodata`
+--
+ALTER TABLE `biodata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
@@ -559,13 +604,13 @@ ALTER TABLE `cpl`
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `fakultas`
@@ -583,7 +628,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT untuk tabel `matakuliah`
 --
 ALTER TABLE `matakuliah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_cpl`
@@ -595,13 +640,13 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `tamu`
@@ -619,7 +664,7 @@ ALTER TABLE `tentang`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

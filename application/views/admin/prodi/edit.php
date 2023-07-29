@@ -17,19 +17,23 @@
 							</div>
 
 							<div class="form-group">
-								<label for="prd_kajur">Kepala Jurusan</label>
-								<input type="text" class="form-control" id="prd_kajur" value="<?= $prodi["prd_kajur"] ?>" name="prd_kajur" placeholder="" required>
-							</div>
-
-							<div class="form-group">
 								<label for="fk_id">Fakultas</label>
 								<select class="form-control" id="fk_id" name="fk_id" required>
 									<?php foreach ($fakultas as $f) { ?>
-										<option value="<?= $f['id'] ?>" <?= $f['id'] == $prodi['fk_id'] ? "selected" : ""  ?>><?= $f['fk_nama'];  ?></option>
+										<option value="<?= $f['id'] ?>" <?= $f['id'] == $prodi['fk_id'] ? "selected" : ""; ?>><?= $f['fk_nama'];  ?></option>
 									<?php } ?>
 								</select>
 							</div>
 
+							<div class="form-group">
+								<label for="dsn_id">Kepala Jurusan</label>
+								<select class="form-control" id="dsn_id" name="dsn_id" required>
+									<option value="">--Pilih Dosen--</option>
+									<?php foreach ($dosen as $d) { ?>
+										<option value="<?= $d['id'] ?>" <?= $d['id'] == $prodi['dsn_id'] ? "selected" : ""; ?>><?= "(" . $d['fk_nama'] . ")" . " " . $d['dsn_nama'] . " " . $d['prd_jurusan'];  ?></option>
+									<?php } ?>
+								</select>
+							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 
 						</form>

@@ -8,6 +8,7 @@ class Matakuliah extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_matakuliah');
+		$this->load->model('Model_prodi');
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
 		}
@@ -48,11 +49,13 @@ class Matakuliah extends CI_Controller
 	public function add()
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
+		// $data['matakuliah'] = $this->Model_matakuliah->getData();
+		// $data['fakultas'] = $this->Model_prodi->getDataFakultas();
+		$data['prodi'] = $this->Model_prodi->getData();
 		$data['page'] = "admin/matakuliah/add";
 		$data['title'] = "Tambah Data matakuliah";
-		// $data['matakuliah'] = $this->Model_matakuliah->getData();
 		// echo '<pre>';
-		// print_r($data['matakuliah']);
+		// print_r($data);
 		// die;
 
 		$this->load->view('admin/template', $data);
@@ -60,6 +63,8 @@ class Matakuliah extends CI_Controller
 
 	public function insert()
 	{
+		$mk_smt = $this->input->post("mk_smt");
+		$prd_id = $this->input->post("prd_id");
 		$mk_smt = $this->input->post("mk_smt");
 		$mk_kd = $this->input->post("mk_kd");
 		$mk_nama = $this->input->post("mk_nama");
@@ -85,6 +90,7 @@ class Matakuliah extends CI_Controller
 
 		$data_insert = [
 			"mk_smt" => $mk_smt,
+			"prd_id" => $prd_id,
 			"mk_kd" => $mk_kd,
 			"mk_nama" => $mk_nama,
 			"mk_sks" => $mk_sks,
@@ -120,6 +126,7 @@ class Matakuliah extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['matakuliah'] = $this->Model_matakuliah->getData($id)[0];
+		$data['prodi'] = $this->Model_prodi->getData();
 		$data['page'] = "admin/matakuliah/edit";
 		$data['title'] = "Data Matakuliah";
 		$this->load->view('admin/template', $data);
@@ -129,6 +136,7 @@ class Matakuliah extends CI_Controller
 	{
 		$id = $this->input->post("id");
 		$mk_smt = $this->input->post("mk_smt");
+		$prd_id = $this->input->post("prd_id");
 		$mk_kd = $this->input->post("mk_kd");
 		$mk_nama = $this->input->post("mk_nama");
 		$mk_sks = $this->input->post("mk_sks");
@@ -140,8 +148,9 @@ class Matakuliah extends CI_Controller
 		$bobot_uas = $this->input->post("bobot_uas");
 
 
-		$data_insert = [
+		$data_update = [
 			"mk_smt" => $mk_smt,
+			"prd_id" => $prd_id,
 			"mk_kd" => $mk_kd,
 			"mk_nama" => $mk_nama,
 			"mk_sks" => $mk_sks,
@@ -154,12 +163,12 @@ class Matakuliah extends CI_Controller
 		];
 
 		// echo '<pre>';
-		// print_r($data_insert);
+		// print_r($data_update);
 		// die;
 
-		$insert = $this->Model_matakuliah->update($id, $data_insert);
+		$update = $this->Model_matakuliah->update($id, $data_update);
 
-		if ($insert) {
+		if ($update) {
 			$this->session->set_flashdata('msg', 'Sukses Update Data');
 			redirect(base_url("/data-matakuliah"));
 		} else {

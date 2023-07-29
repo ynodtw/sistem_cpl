@@ -35,8 +35,9 @@
 							</div>
 							<button type="submit" class="btn btn-info float-right">Cari</button>
 						</form> -->
-						<a href="<?= base_url("data-cpl/add") ?>" class=" btn btn-success">+ Tambah Data</a>
-
+						<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+							<a href="<?= base_url("data-cpl/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						<?php } ?>
 					</div>
 				</div>
 
@@ -50,7 +51,9 @@
 									<th>Kode</th>
 									<th>Kategori</th>
 									<th>Deskripsi</th>
-									<th></th>
+									<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+										<th></th>
+									<?php } ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -62,11 +65,13 @@
 											<td><?= $c['cpl_kd'] ?></td>
 											<td><?= $c['cpl_kategori'] ?></td>
 											<td><?= $c['cpl_deskripsi'] ?></td>
-											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $c['id'] ?>">Lihat</a> -->
-												<a class="btn btn-warning" href="<?= base_url() . "data-cpl/edit/" . $c['id'] ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "cpl/delete/" . $c['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
-											</td>
+											<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+												<td>
+													<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $c['id'] ?>">Lihat</a> -->
+													<a class="btn btn-warning" href="<?= base_url() . "data-cpl/edit/" . $c['id'] ?>">Ubah</a>
+													<a class="btn btn-danger" href="<?= base_url() . "cpl/delete/" . $c['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+												</td>
+											<?php } ?>
 										</tr>
 									<?php } ?>
 								<?php } ?>

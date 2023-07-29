@@ -55,7 +55,10 @@ $route['daftar-nilai/(:num)'] = 'nilai/index/';
 $route['daftar-nilai/add/(:num)'] = 'nilai/add/$1';
 $route['daftar-nilai/edit/(:num)'] = 'nilai/edit/$1';
 
-
+//CONTROLLER BIODATA
+$route['biodata/(:num)'] = 'biodata/index/$1';
+$route['biodata/add/(:num)'] = 'biodata/add/$1';
+$route['biodata/edit/(:num)'] = 'nilai/edit/$1';
 
 
 

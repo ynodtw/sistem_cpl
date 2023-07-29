@@ -16,20 +16,20 @@
               </div>
 
               <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status" required>
+                  <option value="active">Aktif</option>
+                  <option value="inactive">Tidak Aktif</option>
+                </select>
+              </div>
+
+              <div class="form-group">
                 <label for="role">Hak Akses</label>
                 <select class="form-control" id="role" name="role" required>
                   <option value="superadmin">Super Admin</option>
                   <option value="prodi">Prodi</option>
                   <option value="dosen">Dosen</option>
                   <option value="mahasiswa">Mahasiswa</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" id="status" name="status" required>
-                  <option value="active">Active</option>
-                  <option value="inactive">Tidak Aktif</option>
                 </select>
               </div>
 

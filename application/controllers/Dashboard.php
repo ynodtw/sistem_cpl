@@ -28,12 +28,11 @@ class Dashboard extends CI_Controller
 				$cpl_mhs[$c['cpl_kategori']][] = $c['cpl_kd'];
 			}
 
-			echo "<pre>";
-			print_r($cpl_mhs);
-			die;
+			// echo "<pre>";
+			// print_r($cpl_mhs);
+			// die;
 			$data['page'] = "admin/dashboard/mahasiswa";
 		}
-
 		$this->load->view('admin/template', $data);
 	}
 }

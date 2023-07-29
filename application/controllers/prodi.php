@@ -8,6 +8,7 @@ class Prodi extends CI_Controller
 		parent::__construct();
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_prodi');
+		$this->load->model('Model_dosen');
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
 		}
@@ -19,11 +20,11 @@ class Prodi extends CI_Controller
 
 		// $prd_kd = @$_GET['prd_kd'];
 		// $prd_jurusan = @$_GET['prd_jurusan'];
-		// $prd_kajur = @$_GET['prd_kajur'];
+		// $dsn_id = @$_GET['dsn_id'];
 		// $fk_id = @$_GET['fk_id'];
 
-		// if ($prd_kd != "" || $prd_jurusan != ""  || $prd_kajur != "" || $fk_id != "") {
-		// 	$data['prodi'] = $this->Model_prodi->getSearch($prd_kd, $prd_jurusan, $prd_kajur, $fk_id);
+		// if ($prd_kd != "" || $prd_jurusan != ""  || $dsn_id != "" || $fk_id != "") {
+		// 	$data['prodi'] = $this->Model_prodi->getSearch($prd_kd, $prd_jurusan, $dsn_id, $fk_id);
 		// } else {
 		// 	$data['prodi'] = $this->Model_prodi->getData();
 		// }
@@ -44,6 +45,7 @@ class Prodi extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['prodi'] = $this->Model_prodi->getDataFakultas();
+		$data['dosen'] = $this->Model_dosen->getData();
 		$data['page'] = "admin/prodi/add";
 		$data['title'] = "Tambah Data prodi";
 
@@ -58,7 +60,7 @@ class Prodi extends CI_Controller
 		$prd_kd = $this->input->post("prd_kd");
 		$prd_jurusan = $this->input->post("prd_jurusan");
 		$fk_id = $this->input->post("fk_id");
-		$prd_kajur = $this->input->post("prd_kajur");
+		$dsn_id = $this->input->post("dsn_id");
 
 		$cek_prd_kd = $this->Model_prodi->checkKdprodi($prd_kd);
 
@@ -76,7 +78,7 @@ class Prodi extends CI_Controller
 			"prd_kd" => $prd_kd,
 			"prd_jurusan" => $prd_jurusan,
 			"fk_id" => $fk_id,
-			"prd_kajur" => $prd_kajur
+			"dsn_id" => $dsn_id
 		];
 
 		// echo '<pre>';
@@ -104,6 +106,7 @@ class Prodi extends CI_Controller
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['prodi'] = $this->Model_prodi->getDataById($id)[0];
 		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
+		$data['dosen'] = $this->Model_dosen->getData();
 		$data['page'] = "admin/prodi/edit";
 		$data['title'] = "Data prodi";
 		// echo '<pre>';
@@ -118,23 +121,23 @@ class Prodi extends CI_Controller
 		$prd_kd = $this->input->post("prd_kd");
 		$prd_jurusan = $this->input->post("prd_jurusan");
 		$fk_id = $this->input->post("fk_id");
-		$prd_kajur = $this->input->post("prd_kajur");
+		$dsn_id = $this->input->post("dsn_id");
 
-		$data_insert = [
+		$data_update = [
 			"id" => $id,
 			"prd_kd" => $prd_kd,
 			"prd_jurusan" => $prd_jurusan,
 			"fk_id" => $fk_id,
-			"prd_kajur" => $prd_kajur
+			"dsn_id" => $dsn_id
 		];
 
 		// echo '<pre>';
-		// print_r($data_insert);
+		// print_r($data_update);
 		// die;
 
-		$insert = $this->Model_prodi->update($id, $data_insert);
+		$update = $this->Model_prodi->update($id, $data_update);
 
-		if ($insert) {
+		if ($update) {
 			$this->session->set_flashdata('msg', 'Sukses Update Data');
 			redirect(base_url("/data-prodi"));
 		} else {

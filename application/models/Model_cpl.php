@@ -17,22 +17,26 @@ class Model_cpl extends CI_Model
 
 	public function getData($id = "")
 	{
+		// if ($id != "") {
+		// 	$sql = "
+		//         SELECT *
+		//         FROM cpl
+		//         WHERE id = '" . $id . "'
+		//         ORDER BY cpl_kd ASC;
+		//         ";
+		// } else {
+		// 	$sql = "
+		//         SELECT *
+		//         FROM cpl
+		//         ORDER BY cpl_kd ASC;";
+		// }
 
-		if ($id != "") {
-			$sql = "
-            SELECT *
-            FROM cpl
-            WHERE id = '" . $id . "'
-            ORDER BY cpl_kd ASC;
-            ";
-		} else {
-			$sql = "
-            SELECT *
-            FROM cpl
-            ORDER BY cpl_kd ASC;";
-		}
+		// $query = $this->db->query($sql);
+		// return $query->result_array();
 
-		$query = $this->db->query($sql);
+		$this->db->select('cpl.*');
+		$this->db->from('cpl')->order_by('cpl_kd', 'asc');
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 

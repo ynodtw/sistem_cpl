@@ -35,8 +35,9 @@
 							</div>
 							<button type="submit" class="btn btn-info float-right">Cari</button>
 						</form> -->
-						<a href="<?= base_url("data-matakuliah/add") ?>" class=" btn btn-success">+ Tambah Data</a>
-
+						<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+							<a href="<?= base_url("data-matakuliah/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						<?php } ?>
 					</div>
 				</div>
 
@@ -55,11 +56,14 @@
 									<th>SKS</th>
 									<th>Prasyarat</th>
 									<th>Keterangan</th>
-									<th>Bobot Absensi (%)</th>
-									<th>Bobot Tugas (%)</th>
-									<th>Bobot UTS (%)</th>
-									<th>Bobot UAS (%)</th>
-									<th></th>
+									<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+										<th>Bobot Nilai (100%)</th>
+										<!-- <th>Bobot Absensi (%)</th>
+										<th>Bobot Tugas (%)</th>
+										<th>Bobot UTS (%)</th>
+										<th>Bobot UAS (%)</th> -->
+										<th></th>
+									<?php } ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -76,15 +80,17 @@
 											<td><?= $mk['mk_sks'] ?></td>
 											<td><?= $mk['mk_prasyarat'] ?></td>
 											<td><?= $mk['mk_keterangan'] ?></td>
-											<td><?= $mk['bobot_absen'] ?></td>
-											<td><?= $mk['bobot_tugas'] ?></td>
-											<td><?= $mk['bobot_uts'] ?></td>
-											<td><?= $mk['bobot_uas'] ?></td>
-											<td>
-												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $mk['id'] ?>">Lihat</a> -->
-												<a class="btn btn-warning" href="<?= base_url() . "data-matakuliah/edit/" . $mk['id'] ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "matakuliah/delete/" . $mk['id'] ?>" onclick="return confirm('Are you sure?')">Hapus</a>
-											</td>
+											<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+												<td><a class="btn btn-primary" data-toggle="modal" data-target="#modalBobot-<?= $mk['id'] ?>">Lihat</a></td>
+												<!-- <td><?= $mk['bobot_absen'] ?></td>
+												<td><?= $mk['bobot_tugas'] ?></td>
+												<td><?= $mk['bobot_uts'] ?></td>
+												<td><?= $mk['bobot_uas'] ?></td> -->
+												<td>
+													<a class="btn btn-warning" href="<?= base_url() . "data-matakuliah/edit/" . $mk['id'] ?>">Ubah</a>
+													<a class="btn btn-danger" href="<?= base_url() . "matakuliah/delete/" . $mk['id'] ?>" onclick="return confirm('Are you sure?')">Hapus</a>
+												</td>
+											<?php } ?>
 										</tr>
 									<?php } ?>
 								<?php } ?>
@@ -99,13 +105,13 @@
 
 
 <!-- MODAL -->
-<!-- <?php if (!empty($matakuliah)) { ?>
+<?php if (!empty($matakuliah)) { ?>
 	<?php foreach ($matakuliah as $mk) { ?>
-		<div class="modal fade" id="modalLihat-<?= $mk['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLihat-<?= $mk['id'] ?>Label" aria-hidden="true">
+		<div class="modal fade" id="modalBobot-<?= $mk['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalBobot-<?= $mk['id'] ?>Label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Detail CPL</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Bobot Nilai</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -113,20 +119,20 @@
 					<div class="modal-body">
 						<table class="table table-bordered">
 							<tr>
-								<td>Kode MK</td>
-								<td><?= $mk['mk_kd'] ?></td>
+								<td>Bobot Absen %</td>
+								<td><?= $mk['bobot_absen'] ?></td>
 							</tr>
 							<tr>
-								<td>Nama</td>
-								<td><?= $mk['mk_nama'] ?></td>
+								<td>Bobot Tugas %</td>
+								<td><?= $mk['bobot_tugas'] ?></td>
 							</tr>
 							<tr>
-								<td>Jenis Kelamin</td>
-								<td><?= $mk['mk_sks'] ?></td>
+								<td>Bobot UTS %</td>
+								<td><?= $mk['bobot_uts'] ?></td>
 							</tr>
 							<tr>
-								<td>Jurusan</td>
-								<td><?= $mk['mk_prasyarat'] ?></td>
+								<td>Bobot UAS %</td>
+								<td><?= $mk['bobot_uas'] ?></td>
 							</tr>
 						</table>
 					</div>
@@ -137,4 +143,4 @@
 			</div>
 		</div>
 	<?php } ?>
-<?php } ?> -->
+<?php } ?>

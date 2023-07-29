@@ -77,7 +77,7 @@
             <img src="<?= base_url("assets/img/" . $_SESSION['data_login']['photo']) ?>" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block"><?= strtoupper($_SESSION['data_login']['fullname']) ?></a>
+            <a href="<?= base_url() . "biodata/" . $_SESSION['data_login']['id'] ?>" class="d-block"><?= strtoupper($_SESSION['data_login']['fullname']) ?></a>
           </div>
         </div>
 
@@ -93,18 +93,18 @@
               </a>
             </li>
 
-            <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+            <?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-prodi") ?>" class="nav-link <?= $title == "Data Prodi" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Prodi
+                    Data Prodi
                   </p>
                 </a>
               </li>
             <?php } ?>
 
-            <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+            <!-- <?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-address-book"></i>
@@ -113,9 +113,18 @@
                   </p>
                 </a>
               </li>
-            <?php } ?>
+            <?php } ?> -->
 
-            <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+            <li class="nav-item">
+              <a href="<?= base_url("/data-matakuliah") ?>" class="nav-link <?= $title == "Data Matakuliah" ? "active" : "" ?>">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>
+                  Data Matakuliah
+                </p>
+              </a>
+            </li>
+
+            <!-- <?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-cpl") ?>" class="nav-link <?= $title == "Data CPL" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -124,9 +133,18 @@
                   </p>
                 </a>
               </li>
-            <?php } ?>
+            <?php } ?> -->
 
-            <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+            <li class="nav-item">
+              <a href="<?= base_url("/data-cpl") ?>" class="nav-link <?= $title == "Data CPL" ? "active" : "" ?>">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Data CPL
+                </p>
+              </a>
+            </li>
+
+            <?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-dosen") ?>" class="nav-link <?= $title == "Data Dosen" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-users"></i>
