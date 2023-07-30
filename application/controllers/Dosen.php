@@ -17,19 +17,14 @@ class Dosen extends CI_Controller
 	public function index()
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-
-		// $dsn_nid = @$_GET['dsn_nid'];
-		// $dsn_nama = @$_GET['dsn_nama'];
-		// $fk_id = @$_GET['fk_id'];
-		// $prd_id = @$_GET['prd_id'];
-		// $dsn_status = @$_GET['dsn_status'];
-
-		// if ($dsn_nid != "" || $dsn_nama != "" || $fk_id != "" || $prd_id != "" || $dsn_status != "") {
-		// 	$data['dosen'] = $this->Model_dosen->getSearch($dsn_nid, $dsn_nama, $fk_id, $prd_id, $dsn_status);
-		// } else {
-		// 	$data['dosen'] = $this->Model_dosen->getData();
-		// }
 		$data['dosen'] = $this->Model_dosen->getData();
+
+		if ($_SESSION['data_login']['role'] == "prodi") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
+			$dosen_fk_id = $data_dosen['fk_id'];
+			$dosen_prd_id = $data_dosen['prd_id'];
+			$data['dosen'] = $this->Model_dosen->getDataByJurusan($dosen_fk_id);
+		}
 
 		$data['page'] = "admin/dosen/index";
 		$data['title'] = "Data Dosen";

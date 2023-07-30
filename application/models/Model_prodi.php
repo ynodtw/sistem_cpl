@@ -74,33 +74,6 @@ class Model_prodi extends CI_Model
 		return $query->result_array();
 	}
 
-	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
-	// {
-	// 	$sql = "
-	//           SELECT *
-	//           FROM prodi
-	//           WHERE 
-	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
-	//       ";
-
-	// 	if ($nik != "") {
-	// 		$sql .= " AND nik = '" . $nik . "'";
-	// 	}
-
-	// 	if ($telp != "") {
-	// 		$sql .= " AND telp = '" . $telp . "'";
-	// 	}
-
-	// 	if ($nama != "") {
-	// 		$sql .= " AND nama LIKE  '%" . $nama . "%' ";
-	// 	}
-
-	// 	$sql .= "ORDER BY id ASC;";
-
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
-
 	public function update($id, $data)
 	{
 		if ($data && $id) {

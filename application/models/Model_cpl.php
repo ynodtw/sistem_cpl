@@ -17,22 +17,6 @@ class Model_cpl extends CI_Model
 
 	public function getData($id = "")
 	{
-		// if ($id != "") {
-		// 	$sql = "
-		//         SELECT *
-		//         FROM cpl
-		//         WHERE id = '" . $id . "'
-		//         ORDER BY cpl_kd ASC;
-		//         ";
-		// } else {
-		// 	$sql = "
-		//         SELECT *
-		//         FROM cpl
-		//         ORDER BY cpl_kd ASC;";
-		// }
-
-		// $query = $this->db->query($sql);
-		// return $query->result_array();
 
 		$this->db->select('cpl.*');
 		$this->db->from('cpl')->order_by('cpl_kd', 'asc');
@@ -51,32 +35,16 @@ class Model_cpl extends CI_Model
 		return $query->result_array();
 	}
 
-	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
-	// {
-	// 	$sql = "
-	//           SELECT *
-	//           FROM cpl
-	//           WHERE 
-	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
-	//       ";
-
-	// 	if ($nik != "") {
-	// 		$sql .= " AND nik = '" . $nik . "'";
-	// 	}
-
-	// 	if ($telp != "") {
-	// 		$sql .= " AND telp = '" . $telp . "'";
-	// 	}
-
-	// 	if ($nama != "") {
-	// 		$sql .= " AND nama LIKE  '%" . $nama . "%' ";
-	// 	}
-
-	// 	$sql .= "ORDER BY id ASC;";
-
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
+	public function getCplTot()
+	{
+		$sql = "
+		SELECT cpl_kategori, COUNT(cpl_kategori) AS cpl_tot
+		FROM cpl
+		GROUP BY cpl_kategori;
+		";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
 
 	public function update($id, $data)
 	{

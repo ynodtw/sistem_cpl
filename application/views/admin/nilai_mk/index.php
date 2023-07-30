@@ -8,7 +8,7 @@
 						<div class="col-10 d-flex justify-content-start">
 							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
 						</div>
-						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+						<?php if ($_SESSION['data_login']['role'] != "mahasiswa" && $_GET['edit'] == "yes") { ?>
 							<div class="col-2 d-flex justify-content-end">
 								<a href="<?= base_url("data-nilai-matakuliah/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class="btn btn-success">+ Tambah Data</a>
 							</div>
@@ -51,13 +51,14 @@
 											<td><?= $nm['n_uts'] ?></td>
 											<td><?= $nm['n_uas'] ?></td>
 											<td><?= $nm['n_akumulasi'] ?></td>
-											<td> <a class="btn btn-success" href="<?= base_url() . "data-cplmk/" . $nm['id'] ?>">CPLMK</a>
-											</td>
-											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+											<td> <a class="btn btn-success" href="<?= base_url() . "data-cplmk/" . $nm['id'] ?>?edit=<?= $_GET['edit'] ?>">CPLMK</a></td>
+											<?php if ($_SESSION['data_login']['role'] != "mahasiswa" && $_GET['edit'] == "yes") { ?>
 												<td>
 													<a class="btn btn-warning" href="<?= base_url() . "data-nilai-matakuliah/edit/" . $nm['id'] ?>">Ubah</a>
 													<a class="btn btn-danger" href="<?= base_url() . "nilai_mk/delete/" . $nm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 												</td>
+											<?php } else { ?>
+												<td></td>
 											<?php } ?>
 										</tr>
 									<?php } ?>

@@ -17,28 +17,22 @@ class Mahasiswa extends CI_Controller
 
 	public function index()
 	{
-		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['mahasiswa'] = $this->Model_mahasiswa->getData();
 
-		$mhs_nim = @$_GET['mhs_nim'];
-		$mhs_nama = @$_GET['mhs_nama'];
-		$fk_id = @$_GET['fk_id'];
-		$prd_id = @$_GET['prd_id'];
-		$mhs_status = @$_GET['mhs_status'];
-
-
-
-		if ($mhs_nim != "" || $mhs_nama != "" || $fk_id != "" || $prd_id != "" || $mhs_status != "") {
-			$data['mahasiswa'] = $this->Model_mahasiswa->getSearch($mhs_nim, $mhs_nama, $fk_id, $prd_id, $mhs_status);
-		} else {
-			$data['mahasiswa'] = $this->Model_mahasiswa->getData();
-
-			if ($_SESSION['data_login']['role'] == "mahasiswa") {
-				$cek_nim_mhs = $this->Model_mahasiswa->checkNIM($_SESSION['data_login']['username']);
-				$data['mahasiswa'] = $this->Model_mahasiswa->getData($cek_nim_mhs[0]['id']);
-			}
+		if ($_SESSION['data_login']['role'] == "mahasiswa") {
+			$cek_nim_mhs = $this->Model_mahasiswa->checkNIM($_SESSION['data_login']['username']);
+			$data['mahasiswa'] = $this->Model_mahasiswa->getData($cek_nim_mhs[0]['id']);
 		}
 
+		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
+			$dosen_fk_id = $data_dosen['fk_id'];
+			$dosen_prd_id = $data_dosen['prd_id'];
+			$data['dosen_fk_id'] = $dosen_fk_id;
+			$data['dosen_prd_id'] = $dosen_prd_id;
+		}
 
+		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/mahasiswa/index";
 		$data['title'] = "Data Mahasiswa";
 		$this->load->view('admin/template', $data);
@@ -49,6 +43,15 @@ class Mahasiswa extends CI_Controller
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
 		$data['prodi'] = $this->Model_prodi->getData();
+
+		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
+			$dosen_fk_id = $data_dosen['fk_id'];
+			$dosen_prd_id = $data_dosen['prd_id'];
+			$data['dosen_fk_id'] = $dosen_fk_id;
+			$data['dosen_prd_id'] = $dosen_prd_id;
+		}
+
 		$data['dosen'] = $this->Model_dosen->getData();
 		$data['page'] = "admin/mahasiswa/add";
 		$data['title'] = "Tambah Data mahasiswa";
@@ -113,10 +116,16 @@ class Mahasiswa extends CI_Controller
 		$data['prodi'] = $this->Model_prodi->getData();
 		$data['dosen'] = $this->Model_dosen->getData();
 		$data['page'] = "admin/mahasiswa/edit";
-		$data['title'] = "Data mahasiswa";
-		// echo '<pre>';
-		// print_r($data);
-		// die;
+		$data['title'] = "Data Mahasiswa";
+
+		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
+			$dosen_fk_id = $data_dosen['fk_id'];
+			$dosen_prd_id = $data_dosen['prd_id'];
+			$data['dosen_fk_id'] = $dosen_fk_id;
+			$data['dosen_prd_id'] = $dosen_prd_id;
+		}
+
 		$this->load->view('admin/template', $data);
 	}
 

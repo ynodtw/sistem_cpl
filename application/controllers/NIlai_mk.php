@@ -10,6 +10,7 @@ class Nilai_mk extends CI_Controller
 		$this->load->model('Model_nilai_mk');
 		$this->load->model('Model_matakuliah');
 		$this->load->model('Model_mahasiswa');
+		$this->load->model('Model_dosen');
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
 		}
@@ -18,35 +19,18 @@ class Nilai_mk extends CI_Controller
 	public function index($id_mhs)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-
-		// $mk_smt = @$_GET['mk_smt'];
-		// $mk_kd = @$_GET['mk_kd'];
-		// $mk_nama = @$_GET['mk_nama'];
-		// $mhs_nim = @$_GET['mhs_nim'];
-		// $mhs_nama = @$_GET['mhs_nama'];
-		// $n_absen = @$_GET['n_absen'];
-		// $n_tugas = @$_GET['n_tugas'];
-		// $n_uts = @$_GET['n_uts'];
-		// $n_uas = @$_GET['n_uas'];
-		// $n_akumulasi = @$_GET['n_akumulasi'];
-
-
-		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $mhs_nim != "" || $mhs_nama != "" || $n_tugas != "" || $n_uts != "" || $n_uas != "" || $n_akumulasi != "") {
-		// 	$data['nilai_mk'] = $this->Model_nilai_mk->getSearch($mk_smt, $mk_kd, $mk_nama, $mhs_nim, $mhs_nama, $n_tugas, $n_uts, $n_uas, $n_akumulasi);
-		// } else {
-		// 	$data['nilai_mk'] = $this->Model_nilai_mk->getData();
-		// }
-
 		$data['nilai_mk'] = $this->Model_nilai_mk->getData($id_mhs);
-
-		// echo '<pre>';
-		// print_r($data);
-		// die;
-
 		$data['id_mhs'] = $id_mhs;
 		$data['nim'] = @$data['nilai_mk'][0]['mhs_nim'];
 		$data['nama'] = @$data['nilai_mk'][0]['mhs_nama'];
 
+		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
+			$dosen_fk_id = $data_dosen['fk_id'];
+			$dosen_prd_id = $data_dosen['prd_id'];
+			$data['dosen_fk_id'] = $dosen_fk_id;
+			$data['dosen_prd_id'] = $dosen_prd_id;
+		}
 
 		$data['page'] = "admin/nilai_mk/index";
 		$data['title'] = "Data nilai";

@@ -54,6 +54,24 @@ class Model_mahasiswa extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getDataByProdi($id)
+	{
+		$this->db->select('mahasiswa.*,
+		mahasiswa.mhs_nim,
+		mahasiswa.mhs_nama,
+		fakultas.fk_nama,
+		prodi.prd_jurusan,
+		dosen.dsn_nama');
+		$this->db->from('mahasiswa');
+
+		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
+		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
+		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
+		$this->db->where('mahasiswa.prd_id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	public function checkNIM($mhs_nim)
 	{
 		$sql = "
@@ -64,35 +82,6 @@ class Model_mahasiswa extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
-
-
-
-	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
-	// {
-	// 	$sql = "
-	//           SELECT *
-	//           FROM mahasiswa
-	//           WHERE 
-	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
-	//       ";
-
-	// 	if ($nik != "") {
-	// 		$sql .= " AND nik = '" . $nik . "'";
-	// 	}
-
-	// 	if ($telp != "") {
-	// 		$sql .= " AND telp = '" . $telp . "'";
-	// 	}
-
-	// 	if ($nama != "") {
-	// 		$sql .= " AND nama LIKE  '%" . $nama . "%' ";
-	// 	}
-
-	// 	$sql .= "ORDER BY id ASC;";
-
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
 
 	public function update($id, $data)
 	{
@@ -114,19 +103,46 @@ class Model_mahasiswa extends CI_Model
 
 	public function getChartCpl($mhs_nim)
 	{
-		$this->db->select('mahasiswa.id,
-		mahasiswa.mhs_nim,
-		mahasiswa.mhs_nama,
-		cpl.cpl_kd,
-		cpl.cpl_kategori');
-		$this->db->from('mahasiswa');
+		$sql = "
+		SELECT cpl_kategori, COUNT(cpl_kategori) AS cpl_ambil
+		FROM (
+			SELECT 
+			  `mahasiswa`.`id`, 
+			  `mahasiswa`.`mhs_nim`, 
+			  `mahasiswa`.`mhs_nama`, 
+			  `cpl`.`cpl_kd`, 
+			  `cpl`.`cpl_kategori` 
+			FROM 
+			  `mahasiswa` 
+			  JOIN `nilai_mk` ON `nilai_mk`.`id_mhs` = `mahasiswa`.`id` 
+			  JOIN `cplmk` ON `cplmk`.`id_nilai_mk` = `nilai_mk`.`id` 
+			  JOIN `cpl` ON `cplmk`.`id_cpl` = `cpl`.`id` 
+			WHERE 
+			  `mahasiswa`.`mhs_nim` = '" . $mhs_nim . "' 
+			GROUP BY 
+			  `cpl`.`cpl_kategori`, 
+			  `cpl`.`cpl_kd`
+		) AS DATA
+		GROUP BY cpl_kategori		
+		";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
 
-		$this->db->join('nilai_mk', 'nilai_mk.id_mhs = mahasiswa.id');
-		$this->db->join('cplmk', 'cplmk.id_nilai_mk = nilai_mk.id');
-		$this->db->join('cpl', 'cplmk.id_cpl = cpl.id');
-		$this->db->where('mahasiswa.mhs_nim', $mhs_nim);
-		$this->db->group_by('cpl.cpl_kategori, cpl.cpl_kd');
-		$query = $this->db->get();
+	public function getChartSks($mhs_nim)
+	{
+		$sql = "
+		SELECT 
+		  SUM(matakuliah.mk_sks) AS sks
+		FROM 
+		  `mahasiswa` 
+		JOIN `nilai_mk` ON `nilai_mk`.`id_mhs` = `mahasiswa`.`id` 
+		JOIN `matakuliah` ON `nilai_mk`.`id_mk` = `matakuliah`.`id` 
+		WHERE 
+		  `mahasiswa`.`mhs_nim` = '" . $mhs_nim . "' 
+		GROUP BY `mahasiswa`.`mhs_nim`;	
+		";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 }

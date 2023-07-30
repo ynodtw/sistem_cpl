@@ -16,15 +16,28 @@
 								<input type="text" class="form-control" id="mhs_nama" value="<?= $mahasiswa["mhs_nama"] ?>" name="mhs_nama" placeholder="" required>
 							</div>
 
-							<div class="form-group">
-								<label for="fk_id">Fakultas</label>
-								<select class="form-control" id="fk_id" name="fk_id" required>
-									<option value="">--Pilih Fakultas--</option>
-									<?php foreach ($fakultas as $f) { ?>
-										<option value="<?= $f['id'] ?>" <?= $f['id'] == $mahasiswa['fk_id'] ? "selected" : ""  ?>><?= $f['fk_nama'];  ?></option>
-									<?php } ?>
-								</select>
-							</div>
+							<?php if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") { ?>
+								<div class="form-group">
+									<label for="fk_id">Fakultas</label>
+									<input type="hidden" class="form-control" id="fk_id" name="fk_id" value="<?= $dosen_fk_id ?>">
+									<select class="form-control" id="fk_id" name="fk_id" disabled>
+										<option value="">--Pilih Fakultas--</option>
+										<?php foreach ($fakultas as $f) { ?>
+											<option value="<?= $f['id'] ?>" <?= $f['id'] == $dosen_fk_id ? "selected" : "" ?>><?= $f['fk_nama'];  ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							<?php } else { ?>
+								<div class="form-group">
+									<label for="fk_id">Fakultas</label>
+									<select class="form-control" id="fk_id" name="fk_id" required>
+										<option value="">--Pilih Fakultas--</option>
+										<?php foreach ($fakultas as $f) { ?>
+											<option value="<?= $f['id'] ?>" <?= $f['id'] == $mahasiswa['fk_id'] ? "selected" : ""  ?>><?= $f['fk_nama'];  ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							<?php } ?>
 
 							<div class="form-group">
 								<label for="prd_id">Jurusan</label>

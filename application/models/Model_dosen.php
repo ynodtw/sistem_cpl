@@ -33,6 +33,38 @@ class Model_dosen extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getDataByProdi($id)
+	{
+		$this->db->select('dosen.*,
+		dosen.dsn_nid,
+		dosen.dsn_nama,
+		prodi.prd_kd,
+		fakultas.fk_nama,
+		prodi.prd_jurusan');
+		$this->db->from('dosen');
+		$this->db->join('fakultas', 'fakultas.id = dosen.fk_id');
+		$this->db->join('prodi', 'prodi.id = dosen.prd_id');
+		$this->db->where('dosen.prd_id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getDataByJurusan($id)
+	{
+		$this->db->select('dosen.*,
+		dosen.dsn_nid,
+		dosen.dsn_nama,
+		prodi.prd_kd,
+		fakultas.fk_nama,
+		prodi.prd_jurusan');
+		$this->db->from('dosen');
+		$this->db->join('fakultas', 'fakultas.id = dosen.fk_id');
+		$this->db->join('prodi', 'prodi.id = dosen.prd_id');
+		$this->db->where('dosen.fk_id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	public function getDataById($id)
 	{
 		$this->db->select('dosen.*,
@@ -54,40 +86,13 @@ class Model_dosen extends CI_Model
 	public function checkNID($dsn_nid)
 	{
 		$sql = "
-		SELECT dsn_nid
+		SELECT *
 		FROM dosen
 		WHERE dsn_nid = '" . $dsn_nid . "';
 		";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
-
-	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
-	// {
-	// 	$sql = "
-	//           SELECT *
-	//           FROM dosen
-	//           WHERE 
-	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
-	//       ";
-
-	// 	if ($nik != "") {
-	// 		$sql .= " AND nik = '" . $nik . "'";
-	// 	}
-
-	// 	if ($telp != "") {
-	// 		$sql .= " AND telp = '" . $telp . "'";
-	// 	}
-
-	// 	if ($nama != "") {
-	// 		$sql .= " AND nama LIKE  '%" . $nama . "%' ";
-	// 	}
-
-	// 	$sql .= "ORDER BY id ASC;";
-
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
 
 	public function update($id, $data)
 	{

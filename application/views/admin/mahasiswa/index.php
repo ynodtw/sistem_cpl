@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+				<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "prodi") { ?>
 					<div class="card">
 						<div class="card-body d-flex justify-content-end">
 							<a href="<?= base_url("data-mahasiswa/add") ?>" class=" btn btn-success">+ Tambah Data</a>
@@ -25,7 +25,7 @@
 									<th>Dosen PA</th>
 									<th>Status</th>
 									<th>Nilai</th>
-									<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+									<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "prodi") { ?>
 										<th></th>
 									<?php } ?>
 								</tr>
@@ -43,17 +43,57 @@
 											<td><?= $m['dsn_nama'] ?></td>
 											<td><?= $m['mhs_status'] ?></td>
 											<td>
-												<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>">Matakuliah</a>
-												<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>">CPL</a>
+												<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") { ?>
+													<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+														<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
+														<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
+													<?php } ?>
+
+													<?php if ($_SESSION['data_login']['role'] == "prodi") { ?>
+														<?php if ($m['fk_id'] == $dosen_fk_id) { ?>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
+														<?php } else { ?>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=no">Matakuliah</a>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=no">CPL</a>
+														<?php } ?>
+													<?php } ?>
+
+													<?php if ($_SESSION['data_login']['role'] == "dosen") { ?>
+														<?php if ($m['prd_id'] == $dosen_prd_id) { ?>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
+														<?php } else { ?>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=no">Matakuliah</a>
+															<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=no">CPL</a>
+														<?php } ?>
+													<?php } ?>
+												<?php } ?>
 											</td>
 
-											<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
-												<td>
-													<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $m['id'] ?>">Lihat</a> -->
-													<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
-													<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
-												</td>
-											<?php } ?>
+											<td>
+												<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") { ?>
+													<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+														<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
+														<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+													<?php } ?>
+
+													<?php if ($_SESSION['data_login']['role'] == "prodi") { ?>
+														<?php if ($m['fk_id'] == $dosen_fk_id) { ?>
+															<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
+															<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+														<?php } ?>
+													<?php } ?>
+
+													<?php if ($_SESSION['data_login']['role'] == "dosen") { ?>
+														<?php if ($m['prd_id'] == $dosen_prd_id) { ?>
+															<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
+															<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+														<?php } ?>
+													<?php } ?>
+												<?php } ?>
+											</td>
+
 										</tr>
 									<?php } ?>
 								<?php } ?>
