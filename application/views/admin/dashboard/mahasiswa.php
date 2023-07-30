@@ -74,7 +74,7 @@
     options: {
       title: {
         display: true,
-        text: "<?= $v['cpl_kategori'] ?>"
+        text: "SKS Tercapai"
       }
     }
   });

@@ -93,7 +93,7 @@
               </a>
             </li>
 
-            <?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+            <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-prodi") ?>" class="nav-link <?= $title == "Data Prodi" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -155,8 +155,20 @@
               </li>
             <?php } ?>
 
+            <?php if ($_SESSION['data_login']['role'] !== "mahasiswa") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-mahasiswa") ?>" class="nav-link <?= $title == "Data Mahasiswa Jurusan" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Data Mahasiswa Jurusan
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
+
+
             <li class="nav-item">
-              <a href="<?= base_url("/data-mahasiswa") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
+              <a href="<?= base_url("/data-mahasiswa/daftar") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Data Mahasiswa

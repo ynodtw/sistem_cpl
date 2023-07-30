@@ -1,99 +1,97 @@
 <section class="content">
   <div class="container bootstrap snippet">
     <div class="row">
-      <div class="col-sm-3"><!--left col-->
-        <div class="text-center">
-          <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          <input type="file" class="text-center center-block file-upload">
-        </div>
-        </hr><br>
-
-      </div><!--/col-3-->
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="tab-content">
           <div class="tab-pane active" id="home">
             <hr>
-            <form class="form" action="##" method="post" id="registrationForm">
+            <form class="form" action="<?= base_url("biodata/update") ?>" method="post" id="registrationForm">
+              <input name="id" value="<?= @$biodata["id"] ?>" type="hidden">
+
+              <!-- <label for="photo">Photo</label> -->
+              <div class="form-group">
+                <img src="<?= base_url("assets/img/") . @$biodata['photo'] ?>" style="width:150px;"><br>
+                <!-- <input type="file" class="form-control" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg"> -->
+              </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="first_name">
+                  <label for="fullname">
                     <h4>Nama Lengkap</h4>
                   </label>
-                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                  <input type="text" class="form-control" name="fullname" id="fullname" value="<?= @$biodata['fullname'];  ?>" placeholder="">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="last_name">
+                  <label for="nik">
                     <h4>NIK</h4>
                   </label>
-                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                  <input type="text" class="form-control" name="nik" id="nik" value="<?= @$biodata['nik'];  ?>" placeholder="">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="phone">
+                  <label for="tempat_lahir">
                     <h4>Tempat Lahir</h4>
                   </label>
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                  <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="<?= @$biodata['tempat_lahir'];  ?>" placeholder="">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="mobile">
+                  <label for="tgl_lahir">
                     <h4>Tanggal Lahir</h4>
                   </label>
-                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                  <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?= @$biodata['tgl_lahir'];  ?>" placeholder="<?= date('d-m-y H:i:s'); ?>" width="276" />
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="email">
+                  <label for="agama">
                     <h4>Agama</h4>
                   </label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                  <input type="text" class="form-control" name="agama" id="agama" value="<?= @$biodata['agama'];  ?>" placeholder="">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="email">
+                  <label for="kewarganegaranaan">
                     <h4>Kewarganegaraan</h4>
                   </label>
-                  <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+                  <input type="text" class="form-control" name="kewarganegaraan" id="kewarganegaraan" value="<?= @$biodata['kewarganegaraan'];  ?>" placeholder="">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="password">
-                    <h4>Jenis Kelamin</h4>
-                  </label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                  <label for="gender">Jenis Kelamin</label>
+                  <select class="form-control" id="gender" name="gender" required>
+                    <option <?= @$biodata['gender'] == "laki-laki" ? "selected" : "" ?> value="laki-laki">Laki-laki</option>
+                    <option <?= @$biodata['gender'] == "perempuan" ? "selected" : "" ?> value="perempuan">Perempuan</option>
+                  </select>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-xs-6">
-                  <label for="password2">
+                  <label for="no_telp">
                     <h4>No. Telpon</h4>
                   </label>
-                  <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                  <input type="text" class="form-control" name="no_telp" id="no_telp" value="<?= @$biodata['no_telp'];  ?>" placeholder="">
                 </div>
               </div>
-
 
               <div class="form-group">
                 <div class="col-xs-12">
                   <br>
-                  <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                  <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                  <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Simpan</button>
+                  <!-- <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> -->
                 </div>
               </div>
             </form>

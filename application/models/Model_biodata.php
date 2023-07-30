@@ -19,7 +19,8 @@ class Model_biodata extends CI_Model
 	{
 
 		$this->db->select('biodata.*,
-		users.*');
+		users.fullname,
+		users.photo');
 		$this->db->from('biodata');
 		// $this->db->order_by('biodata.mk_smt', 'ASC');
 		// $this->db->from('fakultas');

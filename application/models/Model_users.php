@@ -33,12 +33,14 @@ class Model_Users extends CI_Model
       $sql = "
             SELECT *
             FROM users
-            WHERE id = '" . $id . "';
+            WHERE id = '" . $id . "'
+            ORDER BY username ASC;
             ";
     } else {
       $sql = "
             SELECT *
-            FROM users;
+            FROM users
+            ORDER BY username ASC;
             ";
     }
 

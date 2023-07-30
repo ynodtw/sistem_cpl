@@ -38,8 +38,8 @@
 											<td><?= $no++ ?></td>
 											<td><?= $m['mhs_nim'] ?></td>
 											<td><?= $m['mhs_nama'] ?></td>
-											<td><?= $m['prd_jurusan'] ?></td>
 											<td><?= $m['fk_nama'] ?></td>
+											<td><?= $m['prd_jurusan'] ?></td>
 											<td><?= $m['dsn_nama'] ?></td>
 											<td><?= $m['mhs_status'] ?></td>
 											<td>
@@ -69,8 +69,11 @@
 														<?php } ?>
 													<?php } ?>
 												<?php } ?>
+												<?php if ($_SESSION['data_login']['role'] == "mahasiswa") { ?>
+													<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
+													<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
+												<?php } ?>
 											</td>
-
 											<td>
 												<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") { ?>
 													<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
@@ -93,7 +96,6 @@
 													<?php } ?>
 												<?php } ?>
 											</td>
-
 										</tr>
 									<?php } ?>
 								<?php } ?>

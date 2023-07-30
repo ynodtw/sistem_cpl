@@ -17,6 +17,7 @@ $route['data-cpl/edit/(:num)'] = 'cpl/edit/$1';
 
 //CONTROLLER MAHASISWA
 $route['data-mahasiswa'] = 'mahasiswa';
+$route['data-mahasiswa/daftar'] = 'mahasiswa/daftar';
 $route['data-mahasiswa/add'] = 'mahasiswa/add';
 $route['data-mahasiswa/edit/(:num)'] = 'mahasiswa/edit/$1';
 

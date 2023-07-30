@@ -16,10 +16,10 @@ class Biodata extends CI_Controller
 
 	public function index($users_id)
 	{
-		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['biodata'] = $this->Model_biodata->getData($users_id)[0];
-		$data['page'] = "admin/biodata/index";
-		$data['title'] = "Biodata";
+		@$data['tentang'] = $this->Model_tentang->getData()[0];
+		@$data['biodata'] = $this->Model_biodata->getData($users_id)[0];
+		@$data['page'] = "admin/biodata/index";
+		@$data['title'] = "Biodata";
 		// echo '<pre>';
 		// print_r($data);
 		// die;
@@ -34,81 +34,36 @@ class Biodata extends CI_Controller
 		$this->load->view('admin/template', $data);
 	}
 
-	public function insert()
-	{
-		$biodata_kd = $this->input->post("biodata_kd");
-		$biodata_kategori = $this->input->post("biodata_kategori");
-		$biodata_deskripsi = $this->input->post("biodata_deskripsi");
-
-		$cek_biodata = $this->Model_biodata->checkbiodataKd($biodata_kd);
-
-		if (!empty($cek_biodata)) {
-			echo "
-			<script>
-					alert('biodata Sudah Terdaftar!')
-					history.back()
-			</script>
-			";
-			return false;
-		}
-
-		$data_insert = [
-			"biodata_kd" => $biodata_kd,
-			"biodata_kategori" => $biodata_kategori,
-			"biodata_deskripsi" => $biodata_deskripsi,
-		];
-
-		// echo '<pre>';
-		// print_r($data_insert);
-		// die;
-
-		$insert = $this->Model_biodata->insert($data_insert);
-
-		if ($insert) {
-			$this->session->set_flashdata('msg', 'Sukses Insert Data');
-			redirect(base_url("/data-biodata"));
-		} else {
-			echo "
-	          <script>
-	              alert('Gagal insert data!')
-	              history.back()
-	          </script>
-	          ";
-			return false;
-		}
-	}
-
-	public function edit($id)
-	{
-		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['biodata'] = $this->Model_biodata->getData($id)[0];
-		$data['page'] = "admin/biodata/edit";
-		$data['title'] = "Data biodata";
-		$this->load->view('admin/template', $data);
-	}
-
 	public function update()
 	{
 		$id = $this->input->post("id");
-		$biodata_kd = $this->input->post("biodata_kd");
-		$biodata_kategori = $this->input->post("biodata_kategori");
-		$biodata_deskripsi = $this->input->post("biodata_deskripsi");
+		$nik = $this->input->post("nik");
+		$tempat_lahir = $this->input->post("tempat_lahir");
+		$tgl_lahir = $this->input->post("tgl_lahir");
+		$agama = $this->input->post("agama");
+		$kewarganegaraan = $this->input->post("kewarganegaraan");
+		$gender = $this->input->post("gender");
+		$no_telp = $this->input->post("no_telp");
 
 
-		$data_insert = [
-			"biodata_kd" => $biodata_kd,
-			"biodata_kategori" => $biodata_kategori,
-			"biodata_deskripsi" => $biodata_deskripsi,
+		$data_update = [
+			"nik" => $nik,
+			"tempat_lahir" => $tempat_lahir,
+			"tgl_lahir" => $tgl_lahir,
+			"agama" => $agama,
+			"kewarganegaraan" => $kewarganegaraan,
+			"gender" => $gender,
+			"no_telp" => $no_telp,
 		];
 
 		// echo '<pre>';
-		// print_r($data_insert);
+		// print_r($data_update);
 		// die;
-		$insert = $this->Model_biodata->update($id, $data_insert);
+		$update = $this->Model_biodata->update($id, $data_update);
 
-		if ($insert) {
+		if ($update) {
 			$this->session->set_flashdata('msg', 'Sukses Update Data');
-			redirect(base_url("/data-biodata"));
+			redirect($this->agent->referrer());
 		} else {
 			echo "
 	          <script>
@@ -118,13 +73,5 @@ class Biodata extends CI_Controller
 	          ";
 			return false;
 		}
-	}
-
-	public function delete($id)
-	{
-		$this->Model_biodata->delete($id);
-
-		$this->session->set_flashdata('msg', 'Sukses Hapus Data');
-		redirect(base_url("/data-biodata"));
 	}
 }

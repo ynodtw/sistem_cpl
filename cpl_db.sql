@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jul 2023 pada 01.51
+-- Waktu pembuatan: 30 Jul 2023 pada 23.16
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -35,7 +35,7 @@ CREATE TABLE `biodata` (
   `tgl_lahir` date NOT NULL,
   `agama` varchar(255) NOT NULL,
   `kewarganegaraan` varchar(255) NOT NULL,
-  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
+  `gender` enum('laki-laki','perempuan') NOT NULL,
   `no_telp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,7 +43,7 @@ CREATE TABLE `biodata` (
 -- Dumping data untuk tabel `biodata`
 --
 
-INSERT INTO `biodata` (`id`, `users_id`, `nik`, `tempat_lahir`, `tgl_lahir`, `agama`, `kewarganegaraan`, `jenis_kelamin`, `no_telp`) VALUES
+INSERT INTO `biodata` (`id`, `users_id`, `nik`, `tempat_lahir`, `tgl_lahir`, `agama`, `kewarganegaraan`, `gender`, `no_telp`) VALUES
 (1, 13, '3147010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837'),
 (2, 9, '3147010906960003', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837');
 
@@ -164,7 +164,8 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (32, 35, 11, 67),
 (33, 35, 50, 70),
 (34, 36, 39, 70),
-(35, 36, 11, 89);
+(35, 36, 11, 89),
+(36, 37, 4, 70);
 
 -- --------------------------------------------------------
 
@@ -187,15 +188,15 @@ CREATE TABLE `dosen` (
 
 INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `fk_id`, `prd_id`, `dsn_status`) VALUES
 (1, '00001', 'Istiqomah Sumadikarta', 1, 1, 'Aktif'),
-(2, '00002', 'Bosar Panjaitan', 1, 1, 'Aktif'),
+(2, '00002', 'Bosar Panjaitan', 1, 2, 'Aktif'),
 (4, '00003', 'Zulkifli', 1, 2, 'Aktif'),
 (5, '00004', 'Agung', 1, 3, 'Aktif'),
 (6, '00005', 'Nama 1', 2, 5, 'Aktif'),
 (7, '00006', 'Nama 2', 2, 6, 'Aktif'),
 (8, '00007', 'Nama 3', 3, 7, 'Aktif'),
 (9, '00008', 'Nama 4', 3, 8, 'Aktif'),
-(10, '00009', 'Nama 5', 4, 9, 'Aktif'),
-(11, '00010', 'Nama 6', 4, 10, 'Aktif');
+(10, '00009', 'Nama 5', 4, 10, 'Aktif'),
+(11, '00010', 'Nama 6', 4, 11, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -240,9 +241,9 @@ CREATE TABLE `mahasiswa` (
 
 INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `fk_id`, `prd_id`, `dsn_id`, `mhs_status`) VALUES
 (1, '011601503125139', 'Dony Tanu Wijaya', 1, 1, 1, 'Aktif'),
-(2, '011601503125140', 'DB Unknown', 2, 2, 2, 'Aktif'),
-(3, '011601503125141', 'Unknown DB', 3, 3, 3, 'Non Aktif'),
-(4, '011601503125142', 'Unknown', 4, 4, 4, 'Aktif'),
+(2, '011601503125140', 'DB Unknown', 1, 2, 2, 'Aktif'),
+(3, '011601503125141', 'Unknown DB', 3, 7, 8, 'Aktif'),
+(4, '011601503125142', 'Unknown', 4, 10, 10, 'Aktif'),
 (7, '011601503125138', 'Lorem', 1, 2, 5, 'Aktif');
 
 -- --------------------------------------------------------
@@ -391,7 +392,12 @@ INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, 
 (27, 1, 1, '100', '100', '50', '50', '65'),
 (28, 3, 3, '90', '100', '80', '80', '85'),
 (35, 1, 7, '90', '89', '67', '87', '81.7'),
-(36, 3, 7, '80', '23', '80', '80', '68.6');
+(36, 3, 7, '80', '23', '80', '80', '68.6'),
+(37, 3, 1, '80', '67', '80', '70', '73.4'),
+(39, 22, 1, '80', '67', '80', '80', '77.4'),
+(40, 23, 1, '80', '66', '76', '70', '72'),
+(41, 23, 7, '80', '66', '76', '70', '72'),
+(42, 25, 7, '80', '56', '80', '80', '75.2');
 
 -- --------------------------------------------------------
 
@@ -416,13 +422,13 @@ INSERT INTO `prodi` (`id`, `prd_kd`, `prd_jurusan`, `fk_id`, `dsn_id`) VALUES
 (2, 'T2', 'Sistem Informasi', 1, 4),
 (3, 'T3', 'Teknik Lingkungan', 1, 4),
 (4, 'T4', 'Manajemen Informasi', 1, 4),
-(5, 'E1', 'Akutansi', 2, 1),
-(6, 'E2', 'Manajemen', 2, 1),
-(7, 'F1', 'Ilmu Hubungan Internasional', 3, 2),
-(8, 'F2', 'Ilmu Komunikasi', 3, 2),
-(9, 'F3', 'Hukum', 3, 5),
-(10, 'P1', 'Pemanfaatan Sumber Daya Perikanan', 4, 5),
-(11, 'P2', 'Akuakultur', 4, 5);
+(5, 'E1', 'Akutansi', 2, 6),
+(6, 'E2', 'Manajemen', 2, 6),
+(7, 'F1', 'Ilmu Hubungan Internasional', 3, 8),
+(8, 'F2', 'Ilmu Komunikasi', 3, 8),
+(9, 'F3', 'Hukum', 3, 8),
+(10, 'P1', 'Pemanfaatan Sumber Daya Perikanan', 4, 11),
+(11, 'P2', 'Akuakultur', 4, 11);
 
 -- --------------------------------------------------------
 
@@ -499,8 +505,16 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`
 (13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-25 20:10:40'),
 (14, 'DB Unknown', '011601503125140', '$2y$10$CG9qToP7Ev1MXUj/wfQ5xOUj.Iz0U2pugnTsNBDDcfv8M.vEN5cT2', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:03:09', 9, '2023-07-25 20:13:28'),
 (15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL),
-(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-29 23:32:34'),
-(17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '9-superadmin.png', 'inactive', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-29 23:31:55');
+(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-30 19:28:51'),
+(17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '9-superadmin.png', 'inactive', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-29 23:31:55'),
+(18, 'Nama 1', '00005', '$2y$10$9gnbQ1necmqpOO/Jl833zO3tcZd5HA4ivmEMGP09PsyJ9L3Tb5.Xu', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:44:58', 9, '2023-07-30 19:36:55'),
+(19, 'Agung', '00004', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-07-30 19:35:08'),
+(20, 'Bosar Panjaitan', '00002', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-07-30 19:35:16'),
+(21, 'Nama 2', '00006', '$2y$10$PZS2IbWDIYum3.73YOvT1ODfoITdE3ckGZuQJGJQJXISbpG7jY99G', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:11', NULL, NULL),
+(22, 'Nama 4', '00008', '$2y$10$XkConrKFjLhiv1oV0FUCm.2uvmWtmzodswpR9f8FI4qaUB0WnqdYy', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:49', NULL, NULL),
+(23, 'Nama 6', '00010', '$2y$10$ooj76fKI3MprjNwd.4A70O6NssfvBjQwAmcOAM/I3eIF2f6VMiS2i', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:58:16', 9, '2023-07-30 19:36:01'),
+(24, 'Nama 3', '00007', '$2y$10$G053dFYgHmtuZl.pG.0Po.GOBN1lykPTYxY84/6CjwF0fUeM28RAm', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-31 00:36:34', NULL, NULL),
+(25, 'Nama 1', '011601503125137', '$2y$10$Qi/fg0KX774Bnl.FY0k9eeMZ6I6T5DAQxcp3Gd6t5FaAWKckVqW1u', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-31 01:09:12', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -604,7 +618,7 @@ ALTER TABLE `cpl`
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
@@ -640,7 +654,7 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `prodi`
@@ -664,7 +678,7 @@ ALTER TABLE `tentang`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

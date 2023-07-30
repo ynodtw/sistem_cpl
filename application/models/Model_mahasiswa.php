@@ -44,7 +44,7 @@ class Model_mahasiswa extends CI_Model
 		fakultas.fk_nama,
 		prodi.prd_jurusan,
 		dosen.dsn_nama');
-		$this->db->from('mahasiswa');
+		$this->db->from('mahasiswa')->order_by('mhs_nim', 'ASC');
 
 		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
 		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
@@ -62,12 +62,30 @@ class Model_mahasiswa extends CI_Model
 		fakultas.fk_nama,
 		prodi.prd_jurusan,
 		dosen.dsn_nama');
-		$this->db->from('mahasiswa');
+		$this->db->from('mahasiswa')->order_by('mhs_nim', 'ASC');
 
 		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
 		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
 		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
 		$this->db->where('mahasiswa.prd_id', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getDataByJurusan($id)
+	{
+		$this->db->select('mahasiswa.*,
+		mahasiswa.mhs_nim,
+		mahasiswa.mhs_nama,
+		dosen.dsn_nama,
+		prodi.prd_kd,
+		fakultas.fk_nama,
+		prodi.prd_jurusan');
+		$this->db->from('mahasiswa')->order_by('mhs_nim', 'ASC');
+		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
+		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
+		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
+		$this->db->where('mahasiswa.fk_id', $id);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
