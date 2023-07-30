@@ -88,12 +88,7 @@
 														<?php } ?>
 													<?php } ?>
 
-													<?php if ($_SESSION['data_login']['role'] == "dosen") { ?>
-														<?php if ($m['prd_id'] == $dosen_prd_id) { ?>
-															<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
-															<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
-														<?php } ?>
-													<?php } ?>
+
 												<?php } ?>
 											</td>
 										</tr>

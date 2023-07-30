@@ -40,7 +40,7 @@
 											<td><?= $m['dsn_nama'] ?></td>
 											<td><?= $m['mhs_status'] ?></td>
 											<td>
-												<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
+												<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/daftar/" . $m['id'] ?>?edit=yes">Matakuliah</a>
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
 											</td>
 										</tr>

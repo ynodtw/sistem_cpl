@@ -37,6 +37,27 @@ class Nilai_mk extends CI_Controller
 		$this->load->view('admin/template', $data);
 	}
 
+	public function daftar($id_mhs)
+	{
+		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['nilai_mk'] = $this->Model_nilai_mk->getData($id_mhs);
+		$data['id_mhs'] = $id_mhs;
+		$data['nim'] = @$data['nilai_mk'][0]['mhs_nim'];
+		$data['nama'] = @$data['nilai_mk'][0]['mhs_nama'];
+
+		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
+			$dosen_fk_id = $data_dosen['fk_id'];
+			$dosen_prd_id = $data_dosen['prd_id'];
+			$data['dosen_fk_id'] = $dosen_fk_id;
+			$data['dosen_prd_id'] = $dosen_prd_id;
+		}
+
+		$data['page'] = "admin/nilai_mk/daftar";
+		$data['title'] = "Data nilai";
+		$this->load->view('admin/template', $data);
+	}
+
 	public function add($id_mhs)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];

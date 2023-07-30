@@ -33,16 +33,19 @@ $route['data-prodi/edit/(:num)'] = 'prodi/edit/$1';
 
 //CONTROLLER MATAKULIAH
 $route['data-matakuliah'] = 'matakuliah';
+$route['data-matakuliah'] = 'matakuliah';
 $route['data-matakuliah/add'] = 'matakuliah/add';
 $route['data-matakuliah/edit/(:num)'] = 'matakuliah/edit/$1';
 
 //CONTROLLER NILAI MATAKULIAH
 $route['data-nilai-matakuliah/(:num)'] = 'nilai_mk/index/$1';
+$route['data-nilai-matakuliah/daftar/(:num)'] = 'nilai_mk/daftar/$1';
 $route['data-nilai-matakuliah/add/(:num)'] = 'nilai_mk/add/$1';
 $route['data-nilai-matakuliah/edit/(:num)'] = 'nilai_mk/edit/$1';
 
 //CONTROLLER CPLMK
 $route['data-cplmk/(:num)'] = 'cplmk/index/$1';
+$route['data-cplmk/daftar/(:num)'] = 'cplmk/daftar/$1';
 $route['data-cplmk/add/(:num)'] = 'cplmk/add/$1';
 $route['data-cplmk/edit/(:num)'] = 'cplmk/edit/$1';
 

@@ -9,11 +9,6 @@
 							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
 							<span style="font-size:x-large;"><?= $mk_kd ?> <?= $mk_nama ?></span>
 						</div>
-						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
-							<div class="col-2 d-flex justify-content-end">
-								<a href="<?= base_url("data-cplmk/add/" . $id_nilai_mk) ?>" class="btn btn-success">+ Tambah Data</a>
-							</div>
-						<?php } ?>
 					</div>
 				</div>
 
@@ -43,12 +38,6 @@
 											<td><?= $cm['cpl_kategori'] ?></td>
 											<td><?= $cm['cpl_deskripsi'] ?></td>
 											<td><?= $cm['n_cplmk'];  ?></td>
-											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
-												<td>
-													<a class="btn btn-warning" href="<?= base_url() . "data-cplmk/edit/" . $cm['id'] ?>">Ubah</a>
-													<a class="btn btn-danger" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
-												</td>
-											<?php } ?>
 										</tr>
 									<?php } ?>
 								<?php } ?>
