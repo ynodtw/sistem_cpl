@@ -25,6 +25,69 @@ class Users extends CI_Controller
         $this->load->view('admin/template', $data);
     }
 
+    public function biodata($id)
+    {
+        $data['tentang'] = $this->Model_tentang->getData()[0];
+        $data['users'] = $this->Model_users->getData($id)[0];
+        $data['page'] = "admin/users/biodata";
+        $data['title'] = "Biodata";
+        // echo '<pre>';
+        // print_r($data);
+        // die;
+        $this->load->view('admin/template', $data);
+    }
+
+    public function updateBiodata()
+    {
+        $id = $this->input->post("id");
+        $fullname = $this->input->post("fullname");
+        $nik = $this->input->post("nik");
+        $tempat_lahir = $this->input->post("tempat_lahir");
+        $tgl_lahir = $this->input->post("tgl_lahir");
+        $agama = $this->input->post("agama");
+        $kewarganegaraan = $this->input->post("kewarganegaraan");
+        $gender = $this->input->post("gender");
+        $no_telp = $this->input->post("no_telp");
+        $photo = $_FILES;
+
+        if ($photo["photo"]['name'] != "") {
+            $path = './assets/img/';
+            $file_name = $_SESSION['data_login']['id'] . "-" . $_SESSION['data_login']['role'];
+            $uploaded_data = uploadFile($path, $file_name);
+            $data_update['photo'] = $uploaded_data['file_name'];
+        }
+
+        $data_update["fullname"] = $fullname;
+        $data_update["nik"] = $nik;
+        $data_update["tempat_lahir"] = $tempat_lahir;
+        $data_update["tgl_lahir"] = $tgl_lahir;
+        $data_update["agama"] = $agama;
+        $data_update["kewarganegaraan"] = $kewarganegaraan;
+        $data_update["gender"] = $gender;
+        $data_update["no_telp"] = $no_telp;
+        $data_update["updated_by"] = $_SESSION['data_login']['id'];
+        $data_update["updated_at"] = date("Y-m-d H:i:s");
+
+        // echo '<pre>';
+        // print_r($data_update);
+        // die;
+
+        $update = $this->Model_users->update($id, $data_update);
+
+        if ($update) {
+            $this->session->set_flashdata('msg', 'Sukses Ubah Data');
+            redirect(base_url("/users/biodata/" . $id));
+        } else {
+            echo "
+            <script>
+                alert('Gagal update data!')
+                history.back()
+            </script>
+            ";
+            return false;
+        }
+    }
+
     public function add()
     {
         $data['tentang'] = $this->Model_tentang->getData()[0];

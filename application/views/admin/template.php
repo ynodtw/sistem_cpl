@@ -77,7 +77,7 @@
             <img src="<?= base_url("assets/img/" . $_SESSION['data_login']['photo']) ?>" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="<?= base_url() . "biodata/" . $_SESSION['data_login']['id'] ?>" class="d-block"><?= strtoupper($_SESSION['data_login']['fullname']) ?></a>
+            <a href="<?= base_url() . "users/biodata/" . $_SESSION['data_login']['id'] ?>" class="d-block"><?= strtoupper($_SESSION['data_login']['fullname']) ?></a>
           </div>
         </div>
 

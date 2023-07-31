@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jul 2023 pada 23.16
+-- Waktu pembuatan: 31 Jul 2023 pada 21.49
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -20,32 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cpl_db`
 --
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `biodata`
---
-
-CREATE TABLE `biodata` (
-  `id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
-  `nik` varchar(255) NOT NULL,
-  `tempat_lahir` varchar(255) NOT NULL,
-  `tgl_lahir` date NOT NULL,
-  `agama` varchar(255) NOT NULL,
-  `kewarganegaraan` varchar(255) NOT NULL,
-  `gender` enum('laki-laki','perempuan') NOT NULL,
-  `no_telp` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `biodata`
---
-
-INSERT INTO `biodata` (`id`, `users_id`, `nik`, `tempat_lahir`, `tgl_lahir`, `agama`, `kewarganegaraan`, `gender`, `no_telp`) VALUES
-(1, 13, '3147010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837'),
-(2, 9, '3147010906960003', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837');
 
 -- --------------------------------------------------------
 
@@ -492,39 +466,40 @@ CREATE TABLE `users` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_by` int(11) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  `nik` varchar(255) NOT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
+  `tgl_lahir` varchar(255) NOT NULL,
+  `agama` varchar(255) NOT NULL,
+  `kewarganegaraan` varchar(255) NOT NULL,
+  `gender` enum('laki-laki','perempuan') NOT NULL,
+  `no_telp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`, `role`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(9, 'Super Admin', 'admin', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53'),
-(11, 'Istiqomah Sumadikarta', '00001', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '9-superadmin.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-07-25 20:12:58'),
-(13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-25 20:10:40'),
-(14, 'DB Unknown', '011601503125140', '$2y$10$CG9qToP7Ev1MXUj/wfQ5xOUj.Iz0U2pugnTsNBDDcfv8M.vEN5cT2', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:03:09', 9, '2023-07-25 20:13:28'),
-(15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL),
-(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-07-30 19:28:51'),
-(17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '9-superadmin.png', 'inactive', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-29 23:31:55'),
-(18, 'Nama 1', '00005', '$2y$10$9gnbQ1necmqpOO/Jl833zO3tcZd5HA4ivmEMGP09PsyJ9L3Tb5.Xu', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:44:58', 9, '2023-07-30 19:36:55'),
-(19, 'Agung', '00004', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-07-30 19:35:08'),
-(20, 'Bosar Panjaitan', '00002', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-07-30 19:35:16'),
-(21, 'Nama 2', '00006', '$2y$10$PZS2IbWDIYum3.73YOvT1ODfoITdE3ckGZuQJGJQJXISbpG7jY99G', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:11', NULL, NULL),
-(22, 'Nama 4', '00008', '$2y$10$XkConrKFjLhiv1oV0FUCm.2uvmWtmzodswpR9f8FI4qaUB0WnqdYy', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:49', NULL, NULL),
-(23, 'Nama 6', '00010', '$2y$10$ooj76fKI3MprjNwd.4A70O6NssfvBjQwAmcOAM/I3eIF2f6VMiS2i', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:58:16', 9, '2023-07-30 19:36:01'),
-(24, 'Nama 3', '00007', '$2y$10$G053dFYgHmtuZl.pG.0Po.GOBN1lykPTYxY84/6CjwF0fUeM28RAm', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-31 00:36:34', NULL, NULL),
-(25, 'Nama 1', '011601503125137', '$2y$10$Qi/fg0KX774Bnl.FY0k9eeMZ6I6T5DAQxcp3Gd6t5FaAWKckVqW1u', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-31 01:09:12', NULL, NULL);
+INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`, `role`, `created_by`, `created_at`, `updated_by`, `updated_at`, `nik`, `tempat_lahir`, `tgl_lahir`, `agama`, `kewarganegaraan`, `gender`, `no_telp`) VALUES
+(9, 'Super Admin', 'admin', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53', '', '', '', '', '', 'laki-laki', ''),
+(11, 'Istiqomah Sumadikarta', '00001', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '9-superadmin.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-07-25 20:12:58', '', '', '', '', '', 'laki-laki', ''),
+(13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-31 21:46:53', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837'),
+(14, 'DB Unknown', '011601503125140', '$2y$10$CG9qToP7Ev1MXUj/wfQ5xOUj.Iz0U2pugnTsNBDDcfv8M.vEN5cT2', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:03:09', 9, '2023-07-25 20:13:28', '', '', '', '', '', 'laki-laki', ''),
+(15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
+(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 16, '2023-07-31 21:43:23', '3174010906960002', '', '', '', '', 'laki-laki', ''),
+(17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '17-superadmin.png', 'active', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-31 21:39:55', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'perempuan', '085860037837'),
+(18, 'Nama 1', '00005', '$2y$10$9gnbQ1necmqpOO/Jl833zO3tcZd5HA4ivmEMGP09PsyJ9L3Tb5.Xu', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:44:58', 9, '2023-07-30 19:36:55', '', '', '', '', '', 'laki-laki', ''),
+(19, 'Agung', '00004', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-07-30 19:35:08', '', '', '', '', '', 'laki-laki', ''),
+(20, 'Bosar Panjaitan', '00002', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-07-30 19:35:16', '', '', '', '', '', 'laki-laki', ''),
+(21, 'Nama 2', '00006', '$2y$10$PZS2IbWDIYum3.73YOvT1ODfoITdE3ckGZuQJGJQJXISbpG7jY99G', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:11', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
+(22, 'Nama 4', '00008', '$2y$10$XkConrKFjLhiv1oV0FUCm.2uvmWtmzodswpR9f8FI4qaUB0WnqdYy', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:49', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
+(23, 'Nama 6', '00010', '$2y$10$ooj76fKI3MprjNwd.4A70O6NssfvBjQwAmcOAM/I3eIF2f6VMiS2i', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:58:16', 9, '2023-07-30 19:36:01', '', '', '', '', '', 'laki-laki', ''),
+(24, 'Nama 3', '00007', '$2y$10$G053dFYgHmtuZl.pG.0Po.GOBN1lykPTYxY84/6CjwF0fUeM28RAm', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-31 00:36:34', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
+(25, 'Nama 1', '011601503125137', '$2y$10$Qi/fg0KX774Bnl.FY0k9eeMZ6I6T5DAQxcp3Gd6t5FaAWKckVqW1u', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-31 01:09:12', NULL, NULL, '', '', '', '', '', 'laki-laki', '');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indeks untuk tabel `biodata`
---
-ALTER TABLE `biodata`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `cpl`
@@ -601,12 +576,6 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
-
---
--- AUTO_INCREMENT untuk tabel `biodata`
---
-ALTER TABLE `biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `cpl`
