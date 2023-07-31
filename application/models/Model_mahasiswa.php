@@ -93,7 +93,7 @@ class Model_mahasiswa extends CI_Model
 	public function checkNIM($mhs_nim)
 	{
 		$sql = "
-		SELECT mhs_nim, id
+		SELECT *
 		FROM mahasiswa
 		WHERE mhs_nim = '" . $mhs_nim . "';
 		";

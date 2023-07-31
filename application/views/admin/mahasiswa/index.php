@@ -47,6 +47,7 @@
 													<?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
 														<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
 														<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
+
 													<?php } ?>
 
 													<?php if ($_SESSION['data_login']['role'] == "prodi") { ?>
@@ -73,6 +74,7 @@
 													<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/" . $m['id'] ?>?edit=yes">Matakuliah</a>
 													<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
 												<?php } ?>
+												<a class="btn btn-success" href="<?= base_url() . "data-nilai-chart/" . $m['mhs_nim'] ?>">Chart</a>
 											</td>
 											<td>
 												<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") { ?>

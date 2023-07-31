@@ -42,6 +42,7 @@
 											<td>
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-matakuliah/daftar/" . $m['id'] ?>?edit=yes">Matakuliah</a>
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
+												<a class="btn btn-success" href="<?= base_url() . "data-nilai-chart/" . $m['mhs_nim'] ?>">Chart</a>
 											</td>
 										</tr>
 									<?php } ?>

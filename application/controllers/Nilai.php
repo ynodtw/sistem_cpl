@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Nilai_mk extends CI_Controller
+class Nilai extends CI_Controller
 {
 	public function __construct()
 	{
@@ -10,6 +10,7 @@ class Nilai_mk extends CI_Controller
 		$this->load->model('Model_nilai_mk');
 		$this->load->model('Model_matakuliah');
 		$this->load->model('Model_mahasiswa');
+		$this->load->model('Model_cpl');
 	}
 
 	public function index($id_mhs)
@@ -116,5 +117,43 @@ class Nilai_mk extends CI_Controller
 
 		$this->session->set_flashdata('msg', 'Sukses Hapus Data');
 		redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
+	}
+
+	public function chart($mhs_nim)
+	{
+		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['title'] = "Data Mahasiswa Jurusan";
+
+		@$cpl = $this->Model_mahasiswa->getChartCpl($mhs_nim);
+		@$cpl_tot = $this->Model_cpl->getCplTot();
+
+		@$arr_cpl = [];
+		foreach ($cpl as $v) {
+			$arr_cpl[$v['cpl_kategori']] = [
+				'cpl_kategori' => $v['cpl_kategori'],
+				'cpl_ambil' => $v['cpl_ambil'],
+			];
+		}
+
+		@$arr_cpl_tot = [];
+		foreach ($cpl_tot as $ct) {
+			@$arr_cpl_tot[str_replace(" ", "-", $arr_cpl[$ct['cpl_kategori']]['cpl_kategori'])]['cpl_kategori'] = $arr_cpl[$ct['cpl_kategori']]['cpl_kategori'];
+			@$arr_cpl_tot[str_replace(" ", "-", $arr_cpl[$ct['cpl_kategori']]['cpl_kategori'])]['cpl_id'] = str_replace(" ", "-", $arr_cpl[$ct['cpl_kategori']]['cpl_kategori']);
+			@$arr_cpl_tot[str_replace(" ", "-", $arr_cpl[$ct['cpl_kategori']]['cpl_kategori'])]['cpl_ambil'] = $arr_cpl[$ct['cpl_kategori']]['cpl_ambil'];
+			@$arr_cpl_tot[str_replace(" ", "-", $arr_cpl[$ct['cpl_kategori']]['cpl_kategori'])]['cpl_belom'] = $ct['cpl_tot'] - $arr_cpl[$ct['cpl_kategori']]['cpl_ambil'];
+		}
+
+		@$cpl = $this->Model_mahasiswa->getChartCpl($mhs_nim);
+		@$sks = $this->Model_mahasiswa->getChartSks($mhs_nim)[0];
+
+		$mhs_detail = $this->Model_mahasiswa->checkNIM($mhs_nim)[0];
+		@$data['mhs_nama'] = $mhs_detail['mhs_nama'];
+		@$data['mhs_nim'] = $mhs_nim;
+
+		@$data['cpl'] = $arr_cpl_tot;
+		@$data['sks'] = $sks;
+		$data['page'] = "admin/nilai/chart";
+
+		$this->load->view('admin/template', $data);
 	}
 }
