@@ -33,7 +33,6 @@ $route['data-prodi/edit/(:num)'] = 'prodi/edit/$1';
 
 //CONTROLLER MATAKULIAH
 $route['data-matakuliah'] = 'matakuliah';
-$route['data-matakuliah'] = 'matakuliah';
 $route['data-matakuliah/add'] = 'matakuliah/add';
 $route['data-matakuliah/edit/(:num)'] = 'matakuliah/edit/$1';
 
