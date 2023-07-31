@@ -25,7 +25,7 @@
     </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/chart.js/Chart.js"></script>
 <?php foreach ($cpl as $k => $v) { ?>
   <script>
     var xValues = ["Tercapai", "Belum Tercapai"];
