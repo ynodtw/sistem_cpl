@@ -53,10 +53,12 @@ $route['data-nilai-cpl/(:num)'] = 'nilai_cpl/index/$1';
 $route['data-nilai-cpl/add/(:num)'] = 'nilai_cpl/add/$1';
 $route['data-nilai-cpl/edit/(:num)'] = 'nilai_cpl/edit/$1';
 
+//CONTROLLER KELAS
+$route['data-kelas'] = 'kelas';
+$route['data-kelas/add/(:num)'] = 'kelas/add/$1';
+$route['data-kelas/edit/(:num)'] = 'kelas/edit/$1';
+
 //CONTROLLER NILAI
-$route['daftar-nilai/(:num)'] = 'nilai/index/';
-$route['daftar-nilai/add/(:num)'] = 'nilai/add/$1';
-$route['daftar-nilai/edit/(:num)'] = 'nilai/edit/$1';
 $route['data-nilai-chart/(:num)'] = 'nilai/chart/$1';
 
 

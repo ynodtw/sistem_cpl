@@ -37,6 +37,7 @@
 									</select>
 								</div>
 							<?php } ?>
+
 							<div class="form-group">
 								<label for="prd_id">Jurusan</label>
 								<select class="form-control" id="prd_id" name="prd_id" required>

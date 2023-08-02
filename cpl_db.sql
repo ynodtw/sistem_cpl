@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Jul 2023 pada 21.49
+-- Waktu pembuatan: 02 Agu 2023 pada 13.01
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -162,10 +162,10 @@ CREATE TABLE `dosen` (
 
 INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `fk_id`, `prd_id`, `dsn_status`) VALUES
 (1, '00001', 'Istiqomah Sumadikarta', 1, 1, 'Aktif'),
-(2, '00002', 'Bosar Panjaitan', 1, 2, 'Aktif'),
-(4, '00003', 'Zulkifli', 1, 2, 'Aktif'),
-(5, '00004', 'Agung', 1, 3, 'Aktif'),
-(6, '00005', 'Nama 1', 2, 5, 'Aktif'),
+(2, '00002', 'Bosar Panjaitan', 1, 1, 'Aktif'),
+(4, '00003', 'Zulkifli', 1, 1, 'Aktif'),
+(5, '00004', 'Safrizal', 1, 1, 'Aktif'),
+(6, '00005', 'Faizal Zuli', 1, 1, 'Aktif'),
 (7, '00006', 'Nama 2', 2, 6, 'Aktif'),
 (8, '00007', 'Nama 3', 3, 7, 'Aktif'),
 (9, '00008', 'Nama 4', 3, 8, 'Aktif'),
@@ -196,6 +196,36 @@ INSERT INTO `fakultas` (`id`, `fk_nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kelas`
+--
+
+CREATE TABLE `kelas` (
+  `id` int(11) NOT NULL,
+  `prd_id` int(11) NOT NULL,
+  `dsn_id` int(11) NOT NULL,
+  `kelas_nama` varchar(255) NOT NULL,
+  `mk_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kelas`
+--
+
+INSERT INTO `kelas` (`id`, `prd_id`, `dsn_id`, `kelas_nama`, `mk_id`) VALUES
+(1, 1, 1, 'Algoritma dan Pemrograman', 20),
+(2, 1, 1, 'Pemrograman Web', 37),
+(3, 1, 2, 'Matematika Diskrit', 34),
+(4, 1, 2, 'Matematika Dasar', 22),
+(5, 1, 4, 'Organisasi dan Arsitektur Komputer', 32),
+(6, 1, 4, 'Organisasi dan Arsitektur Komputer', 52),
+(7, 1, 5, 'Analisa dan Perancangan Sistem', 36),
+(8, 1, 5, 'Pengantar Teknologi Informasi', 24),
+(9, 1, 6, 'Jaringan Komputer', 10),
+(10, 1, 6, 'Keamanan Jaringan Komputer', 43);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `mahasiswa`
 --
 
@@ -203,6 +233,7 @@ CREATE TABLE `mahasiswa` (
   `id` int(11) NOT NULL,
   `mhs_nim` varchar(255) NOT NULL,
   `mhs_nama` varchar(255) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
   `fk_id` int(11) NOT NULL,
   `prd_id` int(11) NOT NULL,
   `dsn_id` int(11) NOT NULL,
@@ -213,12 +244,17 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data untuk tabel `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `fk_id`, `prd_id`, `dsn_id`, `mhs_status`) VALUES
-(1, '011601503125139', 'Dony Tanu Wijaya', 1, 1, 1, 'Aktif'),
-(2, '011601503125140', 'DB Unknown', 1, 2, 2, 'Aktif'),
-(3, '011601503125141', 'Unknown DB', 3, 7, 8, 'Aktif'),
-(4, '011601503125142', 'Unknown', 4, 10, 10, 'Aktif'),
-(7, '011601503125138', 'Lorem', 1, 2, 5, 'Aktif');
+INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `kelas_id`, `fk_id`, `prd_id`, `dsn_id`, `mhs_status`) VALUES
+(1, '011601503125139', 'Dony Tanu Wijaya', 1, 1, 1, 1, 'Aktif'),
+(2, '011601503125140', 'DB Unknown', 1, 1, 2, 2, 'Aktif'),
+(3, '011601503125141', 'Unknown DB', 1, 3, 7, 8, 'Aktif'),
+(4, '011601503125142', 'Unknown', 1, 4, 10, 10, 'Aktif'),
+(7, '011601503125138', 'Lorem', 1, 1, 2, 5, 'Aktif'),
+(11, '011601503125139', 'Dony Tanu Wijaya', 2, 1, 1, 1, 'Aktif'),
+(12, '011601503125140', 'DB Unknown', 2, 1, 2, 2, 'Aktif'),
+(13, '011601503125141', 'Unknown DB', 2, 3, 7, 8, 'Aktif'),
+(14, '011601503125142', 'Unknown', 2, 4, 10, 10, 'Aktif'),
+(15, '011601503125138', 'Lorem', 2, 1, 2, 5, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -274,7 +310,7 @@ INSERT INTO `matakuliah` (`id`, `mk_smt`, `prd_id`, `mk_kd`, `mk_nama`, `mk_sks`
 (33, '3', 1, 'TI133011', 'Pemrograman Berorientasi Objek', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
 (34, '3', 1, 'TI143016', 'Matematika Diskrit', 3, 'Matematika Dasar', 'Lintas Prodi', 10, 20, 30, 40),
 (35, '3', 1, 'TI153021', 'Aljabar Linear', 3, 'Matematika Dasar', 'Wajib Prodi', 10, 20, 30, 40),
-(36, '4', 1, 'TI143015', 'Analisa dan Perancangan SIstem', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
+(36, '4', 1, 'TI143015', 'Analisa dan Perancangan Sistem', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40),
 (37, '4', 1, 'TI143018', 'Pemrograman Web', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40),
 (38, '4', 1, 'TI143019', 'Sistem Terdistribusi', 3, 'Basis Data', 'Wajib Prodi', 10, 20, 30, 40),
 (39, '4', 1, 'TI153024', 'Kecerdasan Buatan', 3, 'Statistik', 'Wajib Prodi', 10, 20, 30, 40),
@@ -288,12 +324,12 @@ INSERT INTO `matakuliah` (`id`, `mk_smt`, `prd_id`, `mk_kd`, `mk_nama`, `mk_sks`
 (47, '7', 1, 'FT193005', 'Pemodelan dan Simulasi', 3, 'Statistik, Aljabar Linier', '', 10, 20, 30, 40),
 (48, '8', 1, 'TI186030', 'Skripsi', 6, 'Riset Teknologi Informasi, Minimal 120 SKS, dan menyelesaikan 133 SKS sebelum sidang', 'Wajib Prodi', 10, 20, 30, 40),
 (49, '6', 1, 'TI393001', 'Kriptografi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(50, '6', 1, 'TI393002', 'Pmerograman Perangkat Mobile', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(50, '6', 1, 'TI393002', 'Pemrograman Perangkat Mobile', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
 (51, '6', 1, 'PS163023', 'Sistem Informasi Geografis Kelautan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
 (52, '6', 1, 'TI393006', 'Pemrograman Game', 3, '', 'Mata Kuliah Pilihan', 0, 0, 0, 0),
 (53, '6', 1, 'TL133014', 'Menggambar Teknik', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
 (54, '6', 1, 'TI133013', 'SistemTemu Balik Informasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
-(55, '6', 1, 'TI151192', 'Perancangan dan Manajeen Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
+(55, '6', 1, 'TI151192', 'Perancangan dan Manajemen Jaringan', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
 (56, '7', 1, 'TI115179', 'Sistem Pakar', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
 (57, '7', 1, 'TI163027', 'Metodologi Penelitian', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
 (58, '7', 1, 'FT193008', 'Teknik Riset Operasi', 3, '', 'Mata Kuliah Pilihan', 10, 20, 30, 40),
@@ -526,6 +562,12 @@ ALTER TABLE `fakultas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
@@ -602,10 +644,16 @@ ALTER TABLE `fakultas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT untuk tabel `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `matakuliah`
