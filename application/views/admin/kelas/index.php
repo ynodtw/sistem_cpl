@@ -18,7 +18,7 @@
 							<thead>
 								<tr>
 									<th>No.</th>
-									<th>Fakultas</th>
+									<!-- <th>Fakultas</th> -->
 									<th>Jurusan</th>
 									<th>Dosen</th>
 									<th>Kelas</th>
@@ -32,14 +32,14 @@
 									foreach ($kelas as $k) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<td><?= $k['fk_nama'] ?></td>
+											<!-- <td><?= $k['fk_nama'] ?></td> -->
 											<td><?= $k['prd_jurusan'] ?></td>
 											<td><?= $k['dsn_nama'] ?></td>
 											<td><?= $k['kelas_nama'] ?></td>
 											<td><?= $k['mk_nama'] ?></td>
 											<td>
 												<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $k['id'] ?>">Lihat</a> -->
-												<a class="btn btn-succes" href="<?= base_url() . "data-kelas/" ?>">Lihat</a>
+												<a class="btn btn-success" href="<?= base_url() . "data-kelas/" ?>">Lihat</a>
 												<a class="btn btn-warning" href="<?= base_url() . "data-kelas/edit/" . $k['id'] ?>">Ubah</a>
 												<a class="btn btn-danger" href="<?= base_url() . "kelas/delete/" . $k['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 											</td>

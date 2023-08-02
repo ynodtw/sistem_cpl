@@ -15,25 +15,36 @@ class Model_kelas extends CI_Model
 		}
 	}
 
-	public function getData()
+	public function getData($id = "")
 	{
 		$this->db->select('kelas.*,
 		dosen.dsn_nid,
 		dosen.dsn_nama,
-		fakultas.fk_nama,
 		prodi.prd_jurusan,
 		matakuliah.mk_nama,
 		matakuliah.mk_kd');
 		$this->db->from('kelas');
 
-		$this->db->join('fakultas', 'fakultas.id = kelas.prd_id');
+		// $this->db->join('fakultas', 'fakultas.id = kelas.prd_id');
 		$this->db->join('prodi', 'prodi.id = kelas.prd_id');
 		$this->db->join('dosen', 'dosen.id = kelas.dsn_id');
 		$this->db->join('matakuliah', 'matakuliah.id = kelas.mk_id');
-		// if ($id != "") {
-		// 	$this->db->where('kelas.id', $id);
-		// }
+		if ($id != "") {
+			$this->db->where('kelas.id', $id);
+		}
 		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+
+	public function checkMkId($mk_id)
+	{
+		$sql = "
+		SELECT mk_id
+		FROM kelas
+		WHERE mk_id = '" . $mk_id . "';
+		";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 

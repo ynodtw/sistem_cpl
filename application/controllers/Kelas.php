@@ -22,7 +22,7 @@ class Kelas extends CI_Controller
 
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/kelas/index";
-		$data['title'] = "Data kelas";
+		$data['title'] = "Data Kelas";
 
 		// echo '<pre>';
 		// print_r($data);
@@ -60,39 +60,35 @@ class Kelas extends CI_Controller
 
 	public function add()
 	{
-		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
+		$data['kelas'] = $this->Model_kelas->getData();
 		$data['prodi'] = $this->Model_prodi->getData();
-
-		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
-			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
-			$dosen_fk_id = $data_dosen['fk_id'];
-			$dosen_prd_id = $data_dosen['prd_id'];
-			$data['dosen_fk_id'] = $dosen_fk_id;
-			$data['dosen_prd_id'] = $dosen_prd_id;
-		}
-
+		// $data['fakultas'] = $this->Model_prodi->getDataFakultas();
 		$data['dosen'] = $this->Model_dosen->getData();
+		$data['matakuliah'] = $this->Model_matakuliah->getData();
+
+		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/kelas/add";
-		$data['title'] = "Tambah Data kelas";
+		$data['title'] = "Data Kelas";
+
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 
 	public function insert()
 	{
-		$mhs_nim = $this->input->post("mhs_nim");
-		$mhs_nama = $this->input->post("mhs_nama");
-		$fk_id = $this->input->post("fk_id");
 		$prd_id = $this->input->post("prd_id");
 		$dsn_id = $this->input->post("dsn_id");
-		$mhs_status = $this->input->post("mhs_status");
+		$kelas_nama = $this->input->post("kelas_nama");
+		$mk_id = $this->input->post("mk_id");
 
-		$cek_nim = $this->Model_kelas->checkNIM($mhs_nim);
+		$cek_mk_id = $this->Model_kelas->checkMkId($mk_id);
 
-		if (!empty($cek_nim)) {
+		if (!empty($cek_mk_id)) {
 			echo "
 			<script>
-					alert('NIM Sudah Terdaftar!')
+					alert('Matakuliah Sudah Terdaftar!')
 					history.back()
 			</script>
 			";
@@ -100,12 +96,10 @@ class Kelas extends CI_Controller
 		}
 
 		$data_insert = [
-			"mhs_nim" => $mhs_nim,
-			"mhs_nama" => $mhs_nama,
-			"fk_id" => $fk_id,
 			"prd_id" => $prd_id,
 			"dsn_id" => $dsn_id,
-			"mhs_status" => $mhs_status
+			"kelas_nama" => $kelas_nama,
+			"mk_id" => $mk_id
 		];
 
 		// echo '<pre>';
@@ -130,52 +124,57 @@ class Kelas extends CI_Controller
 
 	public function edit($id)
 	{
-		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['kelas'] = $this->Model_kelas->getDataById($id)[0];
-		$data['fakultas'] = $this->Model_prodi->getDataFakultas();
+		$data['kelas'] = $this->Model_kelas->getData($id)[0];
 		$data['prodi'] = $this->Model_prodi->getData();
+		// $data['fakultas'] = $this->Model_prodi->getDataFakultas();
 		$data['dosen'] = $this->Model_dosen->getData();
+		$data['matakuliah'] = $this->Model_matakuliah->getData();
+
+		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/kelas/edit";
-		$data['title'] = "Data kelas";
+		$data['title'] = "Data Kelas";
 
-		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
-			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
-			$dosen_fk_id = $data_dosen['fk_id'];
-			$dosen_prd_id = $data_dosen['prd_id'];
-			$data['dosen_fk_id'] = $dosen_fk_id;
-			$data['dosen_prd_id'] = $dosen_prd_id;
-		}
-
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 
 	public function update()
 	{
 		$id = $this->input->post("id");
-		$mhs_nim = $this->input->post("mhs_nim");
-		$mhs_nama = $this->input->post("mhs_nama");
-		$fk_id = $this->input->post("fk_id");
 		$prd_id = $this->input->post("prd_id");
 		$dsn_id = $this->input->post("dsn_id");
-		$mhs_status = $this->input->post("mhs_status");
+		$kelas_nama = $this->input->post("kelas_nama");
+		$mk_id = $this->input->post("mk_id");
 
+		// $cek_mk_id = $this->Model_kelas->checkMkId($mk_id);
 
-		$data_insert = [
-			"mhs_nim" => $mhs_nim,
-			"mhs_nama" => $mhs_nama,
-			"fk_id" => $fk_id,
+		// if (!empty($cek_mk_id)) {
+		// 	echo "
+		// 	<script>
+		// 			alert('Matakuliah Sudah Terdaftar!')
+		// 			history.back()
+		// 	</script>
+		// 	";
+		// 	return false;
+		// }
+
+		$data_update = [
+			"id" => $id,
 			"prd_id" => $prd_id,
 			"dsn_id" => $dsn_id,
-			"mhs_status" => $mhs_status
+			"kelas_nama" => $kelas_nama,
+			"mk_id" => $mk_id
 		];
 
 		// echo '<pre>';
-		// print_r($data_insert);
+		// print_r($data_update);
 		// die;
 
-		$insert = $this->Model_kelas->update($id, $data_insert);
+		$update = $this->Model_kelas->update($id, $data_update);
 
-		if ($insert) {
+		if ($update) {
 			$this->session->set_flashdata('msg', 'Sukses Update Data');
 			redirect(base_url("/data-kelas"));
 		} else {

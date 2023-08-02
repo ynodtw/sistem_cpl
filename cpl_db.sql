@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Agu 2023 pada 13.01
+-- Waktu pembuatan: 02 Agu 2023 pada 14.11
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -165,12 +165,7 @@ INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `fk_id`, `prd_id`, `dsn_status
 (2, '00002', 'Bosar Panjaitan', 1, 1, 'Aktif'),
 (4, '00003', 'Zulkifli', 1, 1, 'Aktif'),
 (5, '00004', 'Safrizal', 1, 1, 'Aktif'),
-(6, '00005', 'Faizal Zuli', 1, 1, 'Aktif'),
-(7, '00006', 'Nama 2', 2, 6, 'Aktif'),
-(8, '00007', 'Nama 3', 3, 7, 'Aktif'),
-(9, '00008', 'Nama 4', 3, 8, 'Aktif'),
-(10, '00009', 'Nama 5', 4, 10, 'Aktif'),
-(11, '00010', 'Nama 6', 4, 11, 'Aktif');
+(6, '00005', 'Faizal Zuli', 1, 1, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -217,7 +212,7 @@ INSERT INTO `kelas` (`id`, `prd_id`, `dsn_id`, `kelas_nama`, `mk_id`) VALUES
 (3, 1, 2, 'Matematika Diskrit', 34),
 (4, 1, 2, 'Matematika Dasar', 22),
 (5, 1, 4, 'Organisasi dan Arsitektur Komputer', 32),
-(6, 1, 4, 'Organisasi dan Arsitektur Komputer', 52),
+(6, 1, 4, 'Pemrograman Game', 52),
 (7, 1, 5, 'Analisa dan Perancangan Sistem', 36),
 (8, 1, 5, 'Pengantar Teknologi Informasi', 24),
 (9, 1, 6, 'Jaringan Komputer', 10),
@@ -432,8 +427,6 @@ INSERT INTO `prodi` (`id`, `prd_kd`, `prd_jurusan`, `fk_id`, `dsn_id`) VALUES
 (2, 'T2', 'Sistem Informasi', 1, 4),
 (3, 'T3', 'Teknik Lingkungan', 1, 4),
 (4, 'T4', 'Manajemen Informasi', 1, 4),
-(5, 'E1', 'Akutansi', 2, 6),
-(6, 'E2', 'Manajemen', 2, 6),
 (7, 'F1', 'Ilmu Hubungan Internasional', 3, 8),
 (8, 'F2', 'Ilmu Komunikasi', 3, 8),
 (9, 'F3', 'Hukum', 3, 8),
@@ -524,14 +517,9 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`
 (15, 'Lorem', '011601503125138', '$2y$10$N95Z1tPlxOiCmaC6V8NK5.gJeJSIbXk8AVjAkYsC6.y1pZMZM4/Ty', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-26 01:34:26', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
 (16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '9-superadmin.jpg', 'active', 'prodi', 9, '2023-07-29 06:41:24', 16, '2023-07-31 21:43:23', '3174010906960002', '', '', '', '', 'laki-laki', ''),
 (17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '17-superadmin.png', 'active', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-31 21:39:55', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'perempuan', '085860037837'),
-(18, 'Nama 1', '00005', '$2y$10$9gnbQ1necmqpOO/Jl833zO3tcZd5HA4ivmEMGP09PsyJ9L3Tb5.Xu', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:44:58', 9, '2023-07-30 19:36:55', '', '', '', '', '', 'laki-laki', ''),
 (19, 'Agung', '00004', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-07-30 19:35:08', '', '', '', '', '', 'laki-laki', ''),
 (20, 'Bosar Panjaitan', '00002', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-07-30 19:35:16', '', '', '', '', '', 'laki-laki', ''),
-(21, 'Nama 2', '00006', '$2y$10$PZS2IbWDIYum3.73YOvT1ODfoITdE3ckGZuQJGJQJXISbpG7jY99G', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:11', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
-(22, 'Nama 4', '00008', '$2y$10$XkConrKFjLhiv1oV0FUCm.2uvmWtmzodswpR9f8FI4qaUB0WnqdYy', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:57:49', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
-(23, 'Nama 6', '00010', '$2y$10$ooj76fKI3MprjNwd.4A70O6NssfvBjQwAmcOAM/I3eIF2f6VMiS2i', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-30 23:58:16', 9, '2023-07-30 19:36:01', '', '', '', '', '', 'laki-laki', ''),
-(24, 'Nama 3', '00007', '$2y$10$G053dFYgHmtuZl.pG.0Po.GOBN1lykPTYxY84/6CjwF0fUeM28RAm', '9-superadmin.png', 'active', 'prodi', 9, '2023-07-31 00:36:34', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
-(25, 'Nama 1', '011601503125137', '$2y$10$Qi/fg0KX774Bnl.FY0k9eeMZ6I6T5DAQxcp3Gd6t5FaAWKckVqW1u', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-07-31 01:09:12', NULL, NULL, '', '', '', '', '', 'laki-laki', '');
+(26, 'Faizal Zuli', '00005', '$2y$10$VbJ9lQOX.GcT.zGrGtF5DO3Npg4/vnV8PL01lcMy07Dan3PtO45M6', '9-superadmin.png', 'active', 'dosen', 9, '2023-08-02 18:25:43', NULL, NULL, '', '', '', '', '', 'laki-laki', '');
 
 --
 -- Indexes for dumped tables
@@ -647,7 +635,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
@@ -695,7 +683,7 @@ ALTER TABLE `tentang`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
