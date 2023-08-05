@@ -49,6 +49,17 @@ class Model_matakuliah extends CI_Model
 		return $query->result_array();
 	}
 
+	public function checkIdMk($id)
+	{
+		$sql = "
+		SELECT *
+		FROM matakuliah
+		WHERE id = '" . $id . "';
+		";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+
 	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
 	// {
 	// 	$sql = "

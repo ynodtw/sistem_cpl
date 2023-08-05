@@ -18,10 +18,19 @@
   <link rel="stylesheet" href="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
   <!-- summernote -->
   <link rel="stylesheet" href="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/summernote/summernote-bs4.min.css">
 </head>
+
+<style>
+  .select2-selection__choice {
+    color: black !important;
+  }
+</style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -154,16 +163,14 @@
               </li>
             <?php } ?>
 
-            <?php if ($_SESSION['data_login']['role'] !== "superadmin") { ?>
-              <li class="nav-item">
-                <a href="<?= base_url("/data-mahasiswa/daftar") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Data Mahasiswa
-                  </p>
-                </a>
-              </li>
-            <?php } ?>
+            <li class="nav-item">
+              <a href="<?= base_url("/data-mahasiswa/daftar") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Data Mahasiswa
+                </p>
+              </a>
+            </li>
 
             <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
               <li class="nav-item">
@@ -249,7 +256,8 @@
   <script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+  <!-- Select2 -->
+  <script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/select2/js/select2.full.min.js"></script>
 
   <!-- ChartJS -->
   <script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/chart.js/Chart.min.js"></script>
@@ -262,6 +270,8 @@
   <script src="<?= base_url("assets/AdminLTE-3.2.0/") ?>plugins/summernote/summernote-bs4.min.js"></script>
 
   <script>
+    $('.select2').select2();
+
     $(function() {
       $('.datatable').DataTable({
         "paging": true,

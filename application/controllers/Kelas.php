@@ -30,6 +30,20 @@ class Kelas extends CI_Controller
 		$this->load->view('admin/template', $data);
 	}
 
+	public function detail($id)
+	{
+		$data['nilai_mk'] = $this->Model_kelas->getDataByIdMk($id);
+		$data['mk_nama'] = $this->Model_matakuliah->checkIdMk($id)[0]['mk_nama'];
+		$data['id_mk'] = $id;
+		$data['tentang'] = $this->Model_tentang->getData()[0];
+		$data['page'] = "admin/kelas/detail";
+		$data['title'] = "Data Kelas";
+		// echo '<pre>';
+		// print_r($data);
+		// die;
+		$this->load->view('admin/template', $data);
+	}
+
 	public function daftar()
 	{
 		$data['kelas'] = $this->Model_kelas->getData();

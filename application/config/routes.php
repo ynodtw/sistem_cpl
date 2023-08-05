@@ -57,6 +57,7 @@ $route['data-nilai-cpl/edit/(:num)'] = 'nilai_cpl/edit/$1';
 $route['data-kelas'] = 'kelas';
 $route['data-kelas/add'] = 'kelas/add';
 $route['data-kelas/edit/(:num)'] = 'kelas/edit/$1';
+$route['data-kelas/detail/(:num)'] = 'kelas/detail/$1';
 
 //CONTROLLER NILAI
 $route['data-nilai-chart/(:num)'] = 'nilai/chart/$1';

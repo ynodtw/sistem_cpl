@@ -22,16 +22,18 @@ class Model_mahasiswa extends CI_Model
 		mahasiswa.mhs_nama,
 		fakultas.fk_nama,
 		prodi.prd_jurusan,
-		dosen.dsn_nama');
-		$this->db->from('mahasiswa')->order_by('mhs_nim', 'ASC');
-		// $this->db->from('fakultas');
+		dosen.dsn_nama,
+		users.username');
+		$this->db->from('users');
 
+		$this->db->join('mahasiswa', 'mahasiswa.mhs_nim = users.username');
 		$this->db->join('fakultas', 'fakultas.id = mahasiswa.fk_id');
 		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
 		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
 		if ($id != "") {
 			$this->db->where('mahasiswa.id', $id);
 		}
+		$this->db->group_by('mahasiswa.mhs_nim');
 		$query = $this->db->get();
 		return $query->result_array();
 	}

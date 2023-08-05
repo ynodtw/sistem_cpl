@@ -58,15 +58,16 @@ class Nilai_mk extends CI_Controller
 		$this->load->view('admin/template', $data);
 	}
 
-	public function add($id_mhs)
+	public function add($id_mk)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['id_mhs'] = $id_mhs;
+		$data['id_mk'] = $id_mk;
 		$data['page'] = "admin/nilai_mk/add";
-		$data['title'] = "Tambah Data Nilai";
+		$data['title'] = "Data Kelas";
 		$data['matakuliah'] = $this->Model_matakuliah->getData();
+		$data['mahasiswa'] = $this->Model_mahasiswa->getData();
 		// echo '<pre>';
-		// print_r($data);
+		// print_r($data['mahasiswa']);
 		// die;
 
 		$this->load->view('admin/template', $data);
@@ -121,7 +122,7 @@ class Nilai_mk extends CI_Controller
 
 		if ($insert) {
 			$this->session->set_flashdata('msg', 'Sukses Insert Data');
-			redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
+			redirect(base_url("data-kelas/detail/" . $id_mk));
 		} else {
 			echo "
 					<script>

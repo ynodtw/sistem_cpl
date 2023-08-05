@@ -9,6 +9,7 @@ class Matakuliah extends CI_Controller
 		$this->load->model('Model_tentang');
 		$this->load->model('Model_matakuliah');
 		$this->load->model('Model_prodi');
+		$this->load->model('Model_cpl');
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
 		}
@@ -31,7 +32,8 @@ class Matakuliah extends CI_Controller
 	public function add()
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		// $data['matakuliah'] = $this->Model_matakuliah->getData();
+		$data['matakuliah'] = $this->Model_matakuliah->getData();
+		$data['cpl'] = $this->Model_cpl->getData();
 		// $data['fakultas'] = $this->Model_prodi->getDataFakultas();
 		$data['prodi'] = $this->Model_prodi->getData();
 		$data['page'] = "admin/matakuliah/add";
@@ -57,6 +59,7 @@ class Matakuliah extends CI_Controller
 		$bobot_tugas = $this->input->post("bobot_tugas");
 		$bobot_uts = $this->input->post("bobot_uts");
 		$bobot_uas = $this->input->post("bobot_uas");
+		$cpl = $this->input->post("cpl");
 
 		$cek_mk_kd = $this->Model_matakuliah->checkKdMk($mk_kd);
 
@@ -81,12 +84,10 @@ class Matakuliah extends CI_Controller
 			"bobot_absen" => $bobot_absen,
 			"bobot_tugas" => $bobot_tugas,
 			"bobot_uts" => $bobot_uts,
-			"bobot_uas" => $bobot_uas
+			"bobot_uas" => $bobot_uas,
+			"cpl" => implode(",", $cpl)
 		];
 
-		// echo '<pre>';
-		// print_r($data_insert);
-		// die;
 
 		$insert = $this->Model_matakuliah->insert($data_insert);
 
@@ -111,6 +112,8 @@ class Matakuliah extends CI_Controller
 		$data['prodi'] = $this->Model_prodi->getData();
 		$data['page'] = "admin/matakuliah/edit";
 		$data['title'] = "Data Matakuliah";
+		$data['cpl'] = $this->Model_cpl->getData();
+
 		$this->load->view('admin/template', $data);
 	}
 
@@ -128,6 +131,7 @@ class Matakuliah extends CI_Controller
 		$bobot_tugas = $this->input->post("bobot_tugas");
 		$bobot_uts = $this->input->post("bobot_uts");
 		$bobot_uas = $this->input->post("bobot_uas");
+		$cpl = $this->input->post("cpl");
 
 
 		$data_update = [
@@ -141,7 +145,8 @@ class Matakuliah extends CI_Controller
 			"bobot_absen" => $bobot_absen,
 			"bobot_tugas" => $bobot_tugas,
 			"bobot_uts" => $bobot_uts,
-			"bobot_uas" => $bobot_uas
+			"bobot_uas" => $bobot_uas,
+			"cpl" => implode(",", $cpl)
 		];
 
 		// echo '<pre>';

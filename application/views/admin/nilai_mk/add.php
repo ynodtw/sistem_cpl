@@ -5,18 +5,14 @@
 				<div class="card">
 					<div class="card-body">
 						<form method="POST" action="<?= base_url("nilai_mk/insert") ?>" enctype="multipart/form-data">
-							<input type="hidden" name="id_mhs" value="<?= $id_mhs; ?>">
-							<strong style="">
-								<?= $_GET['nama-mhs'];  ?>
-								<?= $_GET['nim-mhs'];  ?>
-							</strong>
+							<input type="hidden" name="id_mk" value="<?= $id_mk; ?>">
 							<br>
 							<br>
 							<div class="form-group">
-								<label for="id_mk">Matakuliah</label>
-								<select class="form-control" id="id_mk" name="id_mk" required>
-									<?php foreach ($matakuliah as $mk) { ?>
-										<option value="<?= $mk['id'] ?>">(<?= $mk['mk_smt'];  ?>) <?= $mk['mk_kd'];  ?> - <?= $mk['mk_nama'];  ?></option>
+								<label for="id_mhs">Mahasiswa</label>
+								<select class="form-control" id="id_mhs" name="id_mhs" required>
+									<?php foreach ($mahasiswa as $m) { ?>
+										<option value="<?= $m['id'] ?>"><?= $m['mhs_nim'];  ?> - <?= $m['mhs_nama'];  ?></option>
 									<?php } ?>
 								</select>
 							</div>

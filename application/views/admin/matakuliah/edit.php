@@ -75,6 +75,24 @@
 								<input type="number" class="form-control" id="bobot_uas" value="<?= $matakuliah["bobot_uas"] ?>" name="bobot_uas" placeholder="" min="0" max="100" required>
 							</div>
 
+							<div class="form-group">
+								<label>CPL</label>
+								<?php
+								$arr = explode(",", $matakuliah['cpl']);
+
+								?>
+								<select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="cpl[]">
+									<?php foreach ($cpl as $cpl) { ?>
+										<option value="<?= $cpl['id'] ?>" <?php foreach ($arr as $a) {
+																				if ($cpl['id'] == $a) {
+																					echo "selected";
+																				}
+																			} ?>>
+											<?= $cpl['cpl_kd'] ?> - <?= $cpl['cpl_kategori'] ?>
+										</option>
+									<?php } ?>
+								</select>
+							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>
 
 						</form>
