@@ -49,7 +49,7 @@ class Mahasiswa extends CI_Controller
 
 		if ($_SESSION['data_login']['role'] == "mahasiswa") {
 			$cek_nim_mhs = $this->Model_mahasiswa->checkNIM($_SESSION['data_login']['username']);
-			@$data['mahasiswa'] = $this->Model_mahasiswa->getData($cek_nim_mhs[0]['id']);
+			$data['mahasiswa'] = $this->Model_mahasiswa->getData($cek_nim_mhs[0]['id']);
 		}
 
 		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
