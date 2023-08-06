@@ -25,7 +25,6 @@ class Model_kelas extends CI_Model
 		matakuliah.mk_kd');
 		$this->db->from('kelas');
 
-		// $this->db->join('fakultas', 'fakultas.id = kelas.prd_id');
 		$this->db->join('prodi', 'prodi.id = kelas.prd_id');
 		$this->db->join('dosen', 'dosen.id = kelas.dsn_id');
 		$this->db->join('matakuliah', 'matakuliah.id = kelas.mk_id');
@@ -36,6 +35,27 @@ class Model_kelas extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getDataAll()
+	{
+		$this->db->select('kelas.*,
+		dosen.dsn_nid,
+		dosen.dsn_nama,
+		prodi.prd_jurusan,
+		matakuliah.mk_nama,
+		matakuliah.mk_kd');
+		$this->db->from('kelas');
+
+		$this->db->join('prodi', 'prodi.id = kelas.prd_id');
+		$this->db->join('dosen', 'dosen.id = kelas.dsn_id');
+		$this->db->join('matakuliah', 'matakuliah.id = kelas.mk_id');
+
+		if ($_SESSION['data_login']["role"] == "dosen") {
+			$this->db->where('dosen.dsn_nid', $_SESSION['data_login']["username"]);
+		}
+
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 	public function checkMkId($mk_id)
 	{
@@ -47,8 +67,6 @@ class Model_kelas extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
-
-
 
 	public function update($id, $data)
 	{

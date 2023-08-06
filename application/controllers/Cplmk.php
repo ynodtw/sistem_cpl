@@ -19,30 +19,16 @@ class Cplmk extends CI_Controller
 	public function index($id_nilai_mk)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-
-		$mhs_nim = @$_GET['mhs_nim'];
-		$mhs_nama = @$_GET['mhs_nama'];
-		$mk_smt = @$_GET['mk_smt'];
-		$mk_kd = @$_GET['mk_kd'];
-		$mk_nama = @$_GET['mk_nama'];
-		$cpl_kd = @$_GET['cpl_kd'];
-		$cpl_kategori = @$_GET['cpl_kategori'];
-		$cpl_deskripsi = @$_GET['cpl_deskripsi'];
-
-
-		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $cpl_kd != "" || $cpl_kategori != "" || $cpl_deskripsi != "" || $n_uts != "" || $n_uas != "" || $n_akumulasi != "") {
-		// 	$data['cplmk'] = $this->Model_cplmk->getSearch($mk_smt, $mk_kd, $mk_nama, $cpl_kd, $cpl_kategori, $cpl_deskripsi, $n_uts, $n_uas, $n_akumulasi);
-		// } else {
-		// 	$data['cplmk'] = $this->Model_cplmk->getData();
-		// }
-
-		$data['cplmk'] = $this->Model_cplmk->getData($id_nilai_mk);
-		// $data['id_mhs'] = $id_mhs;
-		$data['nim'] = @$data['nilai_mk'][0]['mhs_nim'];
-		$data['nama'] = @$data['nilai_mk'][0]['mhs_nama'];
-		$data['mk_kd'] = @$data['cplmk'][0]['mk_kd'];
-		$data['mk_nama'] = @$data['cplmk'][0]['mk_nama'];
 		$data['id_nilai_mk'] = @$id_nilai_mk;
+		$matkul = $this->Model_nilai_mk->getDataById($id_nilai_mk);
+		$data['mk_kd'] = $matkul[0]['mk_kd'];
+		$data['mk_nama'] = $matkul[0]['mk_nama'];
+
+		$str_cpl = $matkul[0]['cpl'];
+
+		$data['cplmk'] = $this->Model_cpl->getDataCplNilai($str_cpl, $id_nilai_mk);
+		$data['mhs_nama'] = (@$_GET['mhs_nama'] != "" ? @$_GET['mhs_nama'] : $data['cplmk'][0]['mhs_nama']);
+		$data['mhs_nim'] = (@$_GET['mhs_nim'] != "" ? @$_GET['mhs_nim'] : $data['cplmk'][0]['mhs_nim']);
 
 		// echo '<pre>';
 		// print_r($data['cplmk']);
@@ -57,24 +43,7 @@ class Cplmk extends CI_Controller
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 
-		$mhs_nim = @$_GET['mhs_nim'];
-		$mhs_nama = @$_GET['mhs_nama'];
-		$mk_smt = @$_GET['mk_smt'];
-		$mk_kd = @$_GET['mk_kd'];
-		$mk_nama = @$_GET['mk_nama'];
-		$cpl_kd = @$_GET['cpl_kd'];
-		$cpl_kategori = @$_GET['cpl_kategori'];
-		$cpl_deskripsi = @$_GET['cpl_deskripsi'];
-
-
-		// if ($mk_smt != "" || $mk_kd != "" || $mk_nama != "" || $cpl_kd != "" || $cpl_kategori != "" || $cpl_deskripsi != "" || $n_uts != "" || $n_uas != "" || $n_akumulasi != "") {
-		// 	$data['cplmk'] = $this->Model_cplmk->getSearch($mk_smt, $mk_kd, $mk_nama, $cpl_kd, $cpl_kategori, $cpl_deskripsi, $n_uts, $n_uas, $n_akumulasi);
-		// } else {
-		// 	$data['cplmk'] = $this->Model_cplmk->getData();
-		// }
-
 		$data['cplmk'] = $this->Model_cplmk->getData($id_nilai_mk);
-		// $data['id_mhs'] = $id_mhs;
 		$data['nim'] = @$data['nilai_mk'][0]['mhs_nim'];
 		$data['nama'] = @$data['nilai_mk'][0]['mhs_nama'];
 		$data['mk_kd'] = @$data['cplmk'][0]['mk_kd'];
@@ -97,10 +66,12 @@ class Cplmk extends CI_Controller
 		$data['page'] = "admin/cplmk/add";
 		$data['title'] = "Tambah Data Nilai";
 		$data['cplmk'] = $this->Model_cplmk->getData($id_nilai_mk);
-		$data['cpl'] = $this->Model_cpl->getData();
-		// echo '<pre>';
-		// print_r($data);
-		// die;
+
+		$matkul = $this->Model_nilai_mk->getDataById($id_nilai_mk);
+		$str_cpl = $matkul[0]['cpl'];
+		$arr_cpl = explode(",", $str_cpl);
+
+		$data['cpl'] = $this->Model_cpl->getDataCpl($arr_cpl);
 
 		$this->load->view('admin/template', $data);
 	}

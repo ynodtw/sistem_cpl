@@ -11,64 +11,78 @@ class Kelas extends CI_Controller
 		$this->load->model('Model_prodi');
 		$this->load->model('Model_dosen');
 		$this->load->model('Model_matakuliah');
+		$this->load->model('Model_cplmk');
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
+		}
+
+		if ($_SESSION['data_login']["role"] == "mahasiswa") {
+			echo "
+				<script>
+						alert('Akses Ditolak')
+						history.back()
+				</script>
+				";
+			return false;
 		}
 	}
 
 	public function index()
 	{
-		$data['kelas'] = $this->Model_kelas->getData();
+		$data['kelas'] = $this->Model_kelas->getDataAll();
 
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/kelas/index";
 		$data['title'] = "Data Kelas";
 
-		// echo '<pre>';
-		// print_r($data);
-		// die;
 		$this->load->view('admin/template', $data);
 	}
 
 	public function detail($id)
 	{
-		$data['nilai_mk'] = $this->Model_kelas->getDataByIdMk($id);
+		$nilai_mk = $this->Model_kelas->getDataByIdMk($id);
+		$data['nilai_mk'] = $nilai_mk;
+		$count_nilai_mk = count($nilai_mk);
+		$sum_nilai_mk = 0;
+		foreach ($nilai_mk as $nmk) {
+			$sum_nilai_mk += $nmk['n_akumulasi'];
+		}
+		$data['avg_nilai_mk'] = $sum_nilai_mk / $count_nilai_mk;
+
+		$nilai_cpl = $this->Model_cplmk->getByIdNilaiMk($id);
+		$count_nilai_cpl = count($nilai_cpl);
+		$sum_nilai_cpl = 0;
+		foreach ($nilai_cpl as $ncpl) {
+			$sum_nilai_cpl += $ncpl['n_cplmk'];
+		}
+		$data['avg_nilai_cpl'] = $sum_nilai_cpl / $count_nilai_cpl;
+
+		$avg_cplmk = $this->Model_cplmk->getAvg($id);
+		$data['avg_cplmk'] = $avg_cplmk;
+		$title_cplmk = "";
+		$num_cplmk = "";
+
+		foreach ($avg_cplmk as $ac) {
+			$title_cplmk .= $ac['cpl_kd'] . ",";
+			$num_cplmk .= $ac['avg_cplmk'] . ",";
+		}
+		$title_cplmk = substr($title_cplmk, 0, -1);
+		$num_cplmk = substr($num_cplmk, 0, -1);
+
+		$data['title_cplmk'] = json_encode(explode(",", $title_cplmk));
+		$data['num_cplmk'] = json_encode(explode(",", $num_cplmk));
+
 		$data['mk_nama'] = $this->Model_matakuliah->checkIdMk($id)[0]['mk_nama'];
 		$data['id_mk'] = $id;
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/kelas/detail";
 		$data['title'] = "Data Kelas";
-		// echo '<pre>';
-		// print_r($data);
-		// die;
-		$this->load->view('admin/template', $data);
-	}
 
-	public function daftar()
-	{
-		$data['kelas'] = $this->Model_kelas->getData();
-
-		if ($_SESSION['data_login']['role'] == "kelas") {
-			$cek_nim_mhs = $this->Model_kelas->checkNIM($_SESSION['data_login']['username']);
-			@$data['kelas'] = $this->Model_kelas->getData($cek_nim_mhs[0]['id']);
-		}
-
-		if ($_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "dosen") {
-			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username'])[0];
-			$dosen_fk_id = $data_dosen['fk_id'];
-			$dosen_prd_id = $data_dosen['prd_id'];
-			$data['dosen_fk_id'] = $dosen_fk_id;
-			$data['dosen_prd_id'] = $dosen_prd_id;
-			// $data['kelas'] = $this->Model_kelas->getDataByProdi($dosen_prd_id);
-		}
-
-		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['page'] = "admin/kelas/daftar";
-		$data['title'] = "Data kelas";
 
 		// echo '<pre>';
-		// print_r($data);
+		// print_r($data['avg_cplmk']);
 		// die;
+
 		$this->load->view('admin/template', $data);
 	}
 

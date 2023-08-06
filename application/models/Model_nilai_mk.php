@@ -45,6 +45,7 @@ class Model_nilai_mk extends CI_Model
 		matakuliah.mk_smt, 
 		matakuliah.mk_kd, 
 		matakuliah.mk_nama, 
+		matakuliah.cpl, 
 		mahasiswa.mhs_nim, 
 		mahasiswa.mhs_nama');
 		$this->db->from('nilai_mk');
@@ -66,33 +67,6 @@ class Model_nilai_mk extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-
-	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
-	// {
-	// 	$sql = "
-	//           SELECT *
-	//           FROM nilai
-	//           WHERE 
-	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
-	//       ";
-
-	// 	if ($nik != "") {
-	// 		$sql .= " AND nik = '" . $nik . "'";
-	// 	}
-
-	// 	if ($telp != "") {
-	// 		$sql .= " AND telp = '" . $telp . "'";
-	// 	}
-
-	// 	if ($nama != "") {
-	// 		$sql .= " AND nama LIKE  '%" . $nama . "%' ";
-	// 	}
-
-	// 	$sql .= "ORDER BY id ASC;";
-
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
 
 	public function update($id, $data)
 	{

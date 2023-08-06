@@ -6,7 +6,7 @@
 				<div class="card">
 					<div class="card-body d-flex">
 						<div class="col-10 d-flex justify-content-start">
-							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
+							<span style="font-size:x-large;"><?= $mhs_nama ?> <?= $mhs_nim ?> | </span>
 							<span style="font-size:x-large;"><?= $mk_kd ?> <?= $mk_nama ?></span>
 						</div>
 						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
@@ -42,11 +42,18 @@
 											<td><?= $cm['cpl_kd'] ?></td>
 											<td><?= $cm['cpl_kategori'] ?></td>
 											<td><?= $cm['cpl_deskripsi'] ?></td>
-											<td><?= $cm['n_cplmk'];  ?></td>
+											<td>
+												<?php
+												if ($cm['n_cplmk'] == "") {
+													echo "-";
+												}
+												?>
+												<?= $cm['n_cplmk'];  ?>
+											</td>
 											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 												<td>
-													<a class="btn btn-warning" href="<?= base_url() . "data-cplmk/edit/" . $cm['id'] ?>">Ubah</a>
-													<a class="btn btn-danger" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+													<a class="btn btn-warning btn-sm" href="<?= base_url() . "data-cplmk/edit/" . $cm['id'] ?>">Ubah</a>
+													<a class="btn btn-danger btn-sm" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 												</td>
 											<?php } ?>
 										</tr>

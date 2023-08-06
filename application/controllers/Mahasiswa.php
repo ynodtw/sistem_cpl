@@ -35,7 +35,7 @@ class Mahasiswa extends CI_Controller
 
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/mahasiswa/index";
-		$data['title'] = "Data Mahasiswa Jurusan";
+		$data['title'] = "Data Mahasiswa";
 
 		// echo '<pre>';
 		// print_r($data);

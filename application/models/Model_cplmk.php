@@ -38,6 +38,33 @@ class Model_cplmk extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getAvg($id_mk)
+	{
+		$sql = "
+		SELECT cpl_kd, AVG(n_cplmk) AS avg_cplmk
+		FROM `cplmk` 
+		JOIN `nilai_mk` ON `nilai_mk`.`id` = `cplmk`.`id_nilai_mk` 
+		JOIN `matakuliah` ON `matakuliah`.`id` = `nilai_mk`.`id_mk` 
+		JOIN `cpl` ON `cpl`.`id` = `cplmk`.`id_cpl` 
+		WHERE `matakuliah`.`id` = '" . $id_mk . "'
+		GROUP BY cpl.cpl_kd;
+		";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+
+	public function getByIdNilaiMk($id_mk)
+	{
+		$this->db->select('cplmk.n_cplmk, nilai_mk.id_mk, matakuliah.mk_nama');
+		$this->db->from('cplmk');
+
+		$this->db->join('nilai_mk', 'nilai_mk.id = cplmk.id_nilai_mk');
+		$this->db->join('matakuliah', 'matakuliah.id = nilai_mk.id_mk');
+		$this->db->where('matakuliah.id', $id_mk);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	public function getDataById($id)
 	{
 		$this->db->select('cplmk.*,
@@ -69,33 +96,6 @@ class Model_cplmk extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-
-	// public function getSearch($nik = "", $nama = "", $telp = "", $tgl_datang = "", $tgl_pulang = "")
-	// {
-	// 	$sql = "
-	//           SELECT *
-	//           FROM cplmk
-	//           WHERE 
-	//           (tgl_datang >= '" . $tgl_datang . "' AND tgl_pulang <= '" . $tgl_pulang . "')
-	//       ";
-
-	// 	if ($nik != "") {
-	// 		$sql .= " AND nik = '" . $nik . "'";
-	// 	}
-
-	// 	if ($telp != "") {
-	// 		$sql .= " AND telp = '" . $telp . "'";
-	// 	}
-
-	// 	if ($nama != "") {
-	// 		$sql .= " AND nama LIKE  '%" . $nama . "%' ";
-	// 	}
-
-	// 	$sql .= "ORDER BY id ASC;";
-
-	// 	$query = $this->db->query($sql);
-	// 	return $query->result_array();
-	// }
 
 	public function update($id, $data)
 	{

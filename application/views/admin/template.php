@@ -130,15 +130,16 @@
                 </p>
               </a>
             </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url("/data-kelas") ?>" class="nav-link <?= $title == "Data Kelas" ? "active" : "" ?>">
-                <i class="nav-icon fas fa-address-book"></i>
-                <p>
-                  Data Kelas
-                </p>
-              </a>
-            </li>
+            <?php if ($_SESSION['data_login']['role'] !== "mahasiswa") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-kelas") ?>" class="nav-link <?= $title == "Data Kelas" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-address-book"></i>
+                  <p>
+                    Data Kelas
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
 
             <?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
               <li class="nav-item">
@@ -157,20 +158,21 @@
                 <a href="<?= base_url("/data-mahasiswa") ?>" class="nav-link <?= $title == "Data Mahasiswa Jurusan" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
-                    Data Mahasiswa Jurusan
+                    Data Mahasiswa
                   </p>
                 </a>
               </li>
             <?php } ?>
-
-            <li class="nav-item">
-              <a href="<?= base_url("/data-mahasiswa/daftar") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                  Data Mahasiswa
-                </p>
-              </a>
-            </li>
+            <?php if ($_SESSION['data_login']['role'] == "mahasiswa") { ?>
+              <li class="nav-item">
+                <a href="<?= base_url("/data-mahasiswa/daftar") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Data Mahasiswa
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
 
             <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
               <li class="nav-item">
@@ -276,7 +278,7 @@
       $('.datatable').DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "info": true,
         "autoWidth": false,
@@ -285,7 +287,7 @@
 
       $("#example1").DataTable({
         "responsive": true,
-        "searching": false,
+        "searching": true,
         "lengthChange": false,
         "autoWidth": false,
         "buttons": [{

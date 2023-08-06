@@ -60,6 +60,9 @@ class Dashboard extends CI_Controller
 		@$data['sks'] = $sks;
 		$data['page'] = "admin/dashboard/mahasiswa";
 
+		// echo "<pre>";
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 }
