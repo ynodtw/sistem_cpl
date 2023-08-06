@@ -122,7 +122,7 @@ class Nilai extends CI_Controller
 	public function chart($mhs_nim)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-		$data['title'] = "Data Mahasiswa Jurusan";
+		$data['title'] = "Data Mahasiswa";
 
 		@$cpl = $this->Model_mahasiswa->getChartCpl($mhs_nim);
 		@$cpl_tot = $this->Model_cpl->getCplTot();

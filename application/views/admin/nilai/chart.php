@@ -7,16 +7,12 @@
           <div class="card-body">
             <table style="">
               <tr>
-                <th>Name</th>
-                <td>: Bill Gates</td>
+                <th>Nama</th>
+                <td>: <?= $mhs_nama;  ?></td>
               </tr>
               <tr>
                 <th>NIM</th>
-                <td>: 555 77 854</td>
-              </tr>
-              <tr>
-                <th>Jurusan</th>
-                <td>: 555 77 855</td>
+                <td>: <?= $mhs_nim;  ?></td>
               </tr>
             </table>
           </div>

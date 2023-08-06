@@ -121,6 +121,7 @@ class Model_mahasiswa extends CI_Model
 		}
 	}
 
+
 	public function getChartCpl($mhs_nim)
 	{
 		$sql = "

@@ -3,9 +3,24 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <div class="alert alert-info">Selamat Datang <?= $_SESSION['data_login']['username'] ?></div>
+        <div class="alert alert-info">Selamat Datang</div>
       </div>
-
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <table style="">
+              <tr>
+                <th>Nama</th>
+                <td>: <?= $_SESSION['data_login']['fullname'] ?></td>
+              </tr>
+              <tr>
+                <th>NIM</th>
+                <td>: <?= $_SESSION['data_login']['username'] ?></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
       <?php if (!empty($sks)) { ?>
         <div class="col-12">
           <div class="card">
