@@ -155,7 +155,7 @@
 
             <?php if ($_SESSION['data_login']['role'] !== "mahasiswa") { ?>
               <li class="nav-item">
-                <a href="<?= base_url("/data-mahasiswa") ?>" class="nav-link <?= $title == "Data Mahasiswa Jurusan" ? "active" : "" ?>">
+                <a href="<?= base_url("/data-mahasiswa") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
                     Data Mahasiswa
@@ -163,6 +163,7 @@
                 </a>
               </li>
             <?php } ?>
+
             <?php if ($_SESSION['data_login']['role'] == "mahasiswa") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-mahasiswa/daftar") ?>" class="nav-link <?= $title == "Data Mahasiswa" ? "active" : "" ?>">

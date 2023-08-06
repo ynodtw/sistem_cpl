@@ -18,7 +18,6 @@ class Nilai_cpl extends CI_Controller
 	public function index($id_mhs)
 	{
 		$data['tentang'] = $this->Model_tentang->getData()[0];
-
 		$nilai_cpl = $this->Model_nilai_cpl->getDataNilaiCpl($id_mhs);
 
 		$arr_nilai_cpl = [];
@@ -44,18 +43,11 @@ class Nilai_cpl extends CI_Controller
 			}
 		}
 
-		// echo '<pre>';
-		// // print_r($arr_nilai_cpl);
-		// print_r($avg_nilai_cpl);
-		// die;
 
 		$data['nilai_cpl'] = array_values($avg_nilai_cpl);
 		$data['id_mhs'] = $id_mhs;
-
 		$data['nim'] = @$data['nilai_cpl'][0]['mhs_nim'];
 		$data['nama'] = @$data['nilai_cpl'][0]['mhs_nama'];
-
-
 		$data['page'] = "admin/nilai_cpl/index";
 		$data['title'] = "Data nilai";
 		$this->load->view('admin/template', $data);

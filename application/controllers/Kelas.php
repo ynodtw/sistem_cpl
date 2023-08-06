@@ -47,7 +47,7 @@ class Kelas extends CI_Controller
 		foreach ($nilai_mk as $nmk) {
 			$sum_nilai_mk += $nmk['n_akumulasi'];
 		}
-		$data['avg_nilai_mk'] = $sum_nilai_mk / $count_nilai_mk;
+		@$data['avg_nilai_mk'] = $sum_nilai_mk / $count_nilai_mk;
 
 		$nilai_cpl = $this->Model_cplmk->getByIdNilaiMk($id);
 		$count_nilai_cpl = count($nilai_cpl);
@@ -55,7 +55,7 @@ class Kelas extends CI_Controller
 		foreach ($nilai_cpl as $ncpl) {
 			$sum_nilai_cpl += $ncpl['n_cplmk'];
 		}
-		$data['avg_nilai_cpl'] = $sum_nilai_cpl / $count_nilai_cpl;
+		@$data['avg_nilai_cpl'] = $sum_nilai_cpl / $count_nilai_cpl;
 
 		$avg_cplmk = $this->Model_cplmk->getAvg($id);
 		$data['avg_cplmk'] = $avg_cplmk;
@@ -80,7 +80,7 @@ class Kelas extends CI_Controller
 
 
 		// echo '<pre>';
-		// print_r($data['avg_cplmk']);
+		// print_r($data);
 		// die;
 
 		$this->load->view('admin/template', $data);

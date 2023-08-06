@@ -25,6 +25,9 @@
 									<th>Dosen PA</th>
 									<th>Status</th>
 									<th>Nilai</th>
+									<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "prodi") { ?>
+										<th></th>
+									<?php } ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -44,6 +47,13 @@
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-cpl/" . $m['id'] ?>?edit=yes">CPL</a>
 												<a class="btn btn-success" href="<?= base_url() . "data-nilai-chart/" . $m['mhs_nim'] ?>">Chart</a>
 											</td>
+											<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "prodi") { ?>
+												<td>
+													<!-- <a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $m['id'] ?>">Lihat</a> -->
+													<a class="btn btn-warning" href="<?= base_url() . "data-mahasiswa/edit/" . $m['id'] ?>">Ubah</a>
+													<a class="btn btn-danger" href="<?= base_url() . "mahasiswa/delete/" . $m['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+												</td>
+											<?php } ?>
 										</tr>
 									<?php } ?>
 								<?php } ?>

@@ -5,23 +5,66 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h3><?= $mhs_nim . " - " . $mhs_nama ?></h3>
-            <canvas id="sks" style="width:100%; height:400px"></canvas>
+            <table style="">
+              <tr>
+                <th>Name</th>
+                <td>: Bill Gates</td>
+              </tr>
+              <tr>
+                <th>NIM</th>
+                <td>: 555 77 854</td>
+              </tr>
+              <tr>
+                <th>Jurusan</th>
+                <td>: 555 77 855</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
-      <hr>
-      <?php foreach (@$cpl as $k => $v) { ?>
-        <?php if ($k != "") { ?>
+      <?php if (!empty($sks)) { ?>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <canvas id="sks" style="width:100%; height:400px"></canvas>
+              <br>
+              <table class="table table-bordered">
+                <tr>
+                  <td>SKS Diambil</td>
+                  <td><b><?= $sks['sks'] ?>/144</b></td>
+                </tr>
+                <!-- <tr>
+                  <td>SKS Belum Diambil</td>
+                  <td><b><?= 144 - $sks['sks'] ?></b></td>
+                </tr> -->
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+        <?php foreach ($cpl as $k => $v) { ?>
           <div class="col-3">
             <div class="card">
               <div class="card-body">
                 <canvas id="<?= $k ?>" style="width:100%; height:400px"></canvas>
+                <br>
+                <table class="table table-bordered">
+                  <tr>
+                    <td>CPL Diambil</td>
+                    <td><b><?= $v['cpl_ambil'] ?></b></td>
+                  </tr>
+                  <tr>
+                    <td>Total CPL</td>
+                    <td><b><?= $v['cpl_ambil'] + $v['cpl_belom'] ?></b></td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
         <?php } ?>
       <?php } ?>
+
     </div>
 </section>
 

@@ -154,6 +154,9 @@ class Nilai extends CI_Controller
 		@$data['sks'] = $sks;
 		$data['page'] = "admin/nilai/chart";
 
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 }

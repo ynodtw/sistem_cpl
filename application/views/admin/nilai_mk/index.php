@@ -32,9 +32,9 @@
 									<th>UAS</th>
 									<th>Akumulasi</th>
 									<th>Nilai</th>
-									<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+									<!-- <?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 										<th></th>
-									<?php } ?>
+									<?php } ?> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -52,14 +52,14 @@
 											<td><?= $nm['n_uas'] ?></td>
 											<td><?= $nm['n_akumulasi'] ?></td>
 											<td> <a class="btn btn-success" href="<?= base_url() . "data-cplmk/" . $nm['id'] ?>">CPLMK</a></td>
-											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+											<!-- <?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 												<td>
 													<a class="btn btn-warning" href="<?= base_url() . "data-nilai-matakuliah/edit/" . $nm['id'] ?>">Ubah</a>
 													<a class="btn btn-danger" href="<?= base_url() . "nilai_mk/delete/" . $nm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
 												</td>
 											<?php } else { ?>
 												<td></td>
-											<?php } ?>
+											<?php } ?> -->
 										</tr>
 									<?php } ?>
 								<?php } ?>

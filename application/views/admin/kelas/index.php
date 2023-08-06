@@ -39,8 +39,10 @@
 											<td><?= $k['mk_nama'] ?></td>
 											<td>
 												<a class="btn btn-success" href="<?= base_url() . "data-kelas/detail/" . $k['mk_id'] . "?kelas=" . $k['kelas_nama'] ?>">Lihat</a>
-												<a class="btn btn-warning" href="<?= base_url() . "data-kelas/edit/" . $k['id'] ?>">Ubah</a>
-												<a class="btn btn-danger" href="<?= base_url() . "kelas/delete/" . $k['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+												<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "prodi") { ?>
+													<a class="btn btn-warning" href="<?= base_url() . "data-kelas/edit/" . $k['id'] ?>">Ubah</a>
+													<a class="btn btn-danger" href="<?= base_url() . "kelas/delete/" . $k['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+												<?php } ?>
 											</td>
 										</tr>
 									<?php } ?>
