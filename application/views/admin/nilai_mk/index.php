@@ -8,11 +8,11 @@
 						<div class="col-10 d-flex justify-content-start">
 							<span style="font-size:x-large;"><?= $nama ?> <?= $nim ?></span>
 						</div>
-						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+						<!-- <?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 							<div class="col-2 d-flex justify-content-end">
 								<a href="<?= base_url("data-nilai-matakuliah/add/" . $id_mhs . "?nama-mhs=" . $nama . "&nim-mhs=" . $nim) ?>" class="btn btn-success">+ Tambah Data</a>
 							</div>
-						<?php } ?>
+						<?php } ?> -->
 					</div>
 				</div>
 

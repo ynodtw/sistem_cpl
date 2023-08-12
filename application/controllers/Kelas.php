@@ -30,11 +30,13 @@ class Kelas extends CI_Controller
 	public function index()
 	{
 		$data['kelas'] = $this->Model_kelas->getDataAll();
-
 		$data['tentang'] = $this->Model_tentang->getData()[0];
 		$data['page'] = "admin/kelas/index";
 		$data['title'] = "Data Kelas";
 
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 
@@ -108,10 +110,12 @@ class Kelas extends CI_Controller
 	{
 		$prd_id = $this->input->post("prd_id");
 		$dsn_id = $this->input->post("dsn_id");
+		// $kelas_kd = $this->input->post("kelas_kd");
 		$kelas_nama = $this->input->post("kelas_nama");
 		$mk_id = $this->input->post("mk_id");
 
 		$cek_mk_id = $this->Model_kelas->checkMkId($mk_id);
+		// $cek_kelas_kode = $this->Model_kelas->checkKelasKode($kelas_kd);
 
 		if (!empty($cek_mk_id)) {
 			echo "
@@ -126,6 +130,7 @@ class Kelas extends CI_Controller
 		$data_insert = [
 			"prd_id" => $prd_id,
 			"dsn_id" => $dsn_id,
+			// "kelas_kd" => $kelas_kd,
 			"kelas_nama" => $kelas_nama,
 			"mk_id" => $mk_id
 		];
@@ -173,6 +178,7 @@ class Kelas extends CI_Controller
 		$id = $this->input->post("id");
 		$prd_id = $this->input->post("prd_id");
 		$dsn_id = $this->input->post("dsn_id");
+		// $kelas_kd = $this->input->post("kelas_kd");
 		$kelas_nama = $this->input->post("kelas_nama");
 		$mk_id = $this->input->post("mk_id");
 
@@ -192,6 +198,7 @@ class Kelas extends CI_Controller
 			"id" => $id,
 			"prd_id" => $prd_id,
 			"dsn_id" => $dsn_id,
+			// "kelas_kd" => $kelas_kd,
 			"kelas_nama" => $kelas_nama,
 			"mk_id" => $mk_id
 		];

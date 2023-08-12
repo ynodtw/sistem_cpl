@@ -36,6 +36,11 @@
 								</select>
 							</div>
 
+							<!-- <div class="form-group">
+								<label for="kelas_kd">Kode</label>
+								<input type="text" class="form-control" id="kelas_kd" name="kelas_kd" value="<?= $kelas['kelas_kd'];  ?>" placeholder="" required>
+							</div> -->
+
 							<div class="form-group">
 								<label for="kelas_nama">Kelas</label>
 								<input type="text" class="form-control" id="kelas_nama" name="kelas_nama" value="<?= $kelas['kelas_nama'];  ?>" placeholder="" required>

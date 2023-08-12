@@ -4,11 +4,11 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-body d-flex justify-content-end">
-						<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+					<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
+						<div class="card-body d-flex justify-content-end">
 							<a href="<?= base_url("data-cpl/add") ?>" class=" btn btn-success">+ Tambah Data</a>
-						<?php } ?>
-					</div>
+						</div>
+					<?php } ?>
 				</div>
 
 				<div class="card">

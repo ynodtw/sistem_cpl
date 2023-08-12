@@ -42,8 +42,9 @@ class Model_kelas extends CI_Model
 		dosen.dsn_nama,
 		prodi.prd_jurusan,
 		matakuliah.mk_nama,
+		matakuliah.mk_smt,
 		matakuliah.mk_kd');
-		$this->db->from('kelas');
+		$this->db->from('kelas')->order_by('mk_smt');
 
 		$this->db->join('prodi', 'prodi.id = kelas.prd_id');
 		$this->db->join('dosen', 'dosen.id = kelas.dsn_id');
@@ -63,6 +64,17 @@ class Model_kelas extends CI_Model
 		SELECT mk_id
 		FROM kelas
 		WHERE mk_id = '" . $mk_id . "';
+		";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+
+	public function checkKelasKode($kelas_kd)
+	{
+		$sql = "
+		SELECT kelas_kd
+		FROM kelas
+		WHERE kelas_kd = '" . $kelas_kd . "';
 		";
 		$query = $this->db->query($sql);
 		return $query->result_array();

@@ -7,15 +7,13 @@
 						<form method="POST" action="<?= base_url("nilai_mk/update") ?>" enctype="multipart/form-data">
 							<input name="id" value="<?= $nilai_mk["id"] ?>" type="hidden">
 							<input name="id_mhs" value="<?= $nilai_mk["id_mhs"] ?>" type="hidden">
-							<strong style="">
+							<h3 style="">
 								<?= $nilai_mk['mhs_nama'];  ?>
 								<?= $nilai_mk['mhs_nim'];  ?>
-							</strong>
-							<br>
-							<br>
+							</h3>
 							<div class="form-group">
-								<label for="id_mk">Matakuliah</label>
-								<select class="form-control" id="id_mk" name="id_mk" required>
+								<!-- <label for="id_mk">Matakuliah</label> -->
+								<select class="form-control" id="id_mk" name="id_mk" hidden>
 									<?php foreach ($matakuliah as $mk) { ?>
 										<option value="<?= $mk['id'] ?>" <?= $mk['id'] == $nilai_mk['id_mk'] ? "selected" : "" ?>>(<?= $mk['mk_smt'];  ?>) <?= $mk['mk_kd'];  ?> - <?= $mk['mk_nama'];  ?></option>
 									<?php } ?>
@@ -23,10 +21,14 @@
 							</div>
 
 							<div class="form-group">
-								<label for="n_absen">Nilai Absen</label>
-								<input type="number" class="form-control" id="n_absen" c value="<?= $nilai_mk['n_absen'];  ?>" name="n_absen" value="" placeholder="Masukkan angka 0 - 100" min="0" max="100" required>
+								<label for="mk_nama">Matakuliah</label>
+								<input type="text" class="form-control" id="mk_nama" value="<?= $nilai_mk['mk_nama'];  ?>" name="mk_nama" placeholder="Masukkan angka 0 - 100" min="0" max="100" readonly>
 							</div>
 
+							<div class="form-group">
+								<label for="n_absen">Nilai Absen</label>
+								<input type="number" class="form-control" id="n_absen" value="<?= $nilai_mk['n_absen'];  ?>" name="n_absen" placeholder="Masukkan angka 0 - 100" min="0" max="100" required>
+							</div>
 
 							<div class="form-group">
 								<label for="n_tugas">Nilai Tugas</label>

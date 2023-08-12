@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Agu 2023 pada 22.20
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 13 Agu 2023 pada 01.34
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -167,11 +167,11 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`id`, `dsn_nid`, `dsn_nama`, `fk_id`, `prd_id`, `dsn_status`) VALUES
-(1, '00001', 'Istiqomah Sumadikarta', 1, 1, 'Aktif'),
-(2, '00002', 'Bosar Panjaitan', 1, 1, 'Aktif'),
-(4, '00003', 'Zulkifli', 1, 1, 'Aktif'),
-(5, '00004', 'Safrizal', 1, 1, 'Aktif'),
-(6, '00005', 'Faizal Zuli', 1, 1, 'Aktif');
+(1, '0310017605', 'Istiqomah Sumadikarta, ST., M.Kom  ', 1, 1, 'Aktif'),
+(2, '0325077101', 'Bosar Panjaitan, S.Si, M.Kom', 1, 1, 'Aktif'),
+(4, '0316076803', 'Dr. Zulkifli , S.Kom.,M.Kom', 1, 1, 'Aktif'),
+(5, '0319037001', 'Dr. Safrizal, ST., MM., M.Kom', 1, 1, 'Aktif'),
+(6, '0323098001', 'Faizal Zuli, S.Kom., M.Kom', 1, 1, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -204,6 +204,7 @@ CREATE TABLE `kelas` (
   `id` int(11) NOT NULL,
   `prd_id` int(11) NOT NULL,
   `dsn_id` int(11) NOT NULL,
+  `kelas_kd` varchar(255) DEFAULT NULL,
   `kelas_nama` varchar(255) NOT NULL,
   `mk_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -212,17 +213,18 @@ CREATE TABLE `kelas` (
 -- Dumping data untuk tabel `kelas`
 --
 
-INSERT INTO `kelas` (`id`, `prd_id`, `dsn_id`, `kelas_nama`, `mk_id`) VALUES
-(1, 1, 1, 'Algoritma dan Pemrograman', 20),
-(2, 1, 1, 'Pemrograman Web', 37),
-(3, 1, 2, 'Matematika Diskrit', 34),
-(4, 1, 2, 'Matematika Dasar', 22),
-(5, 1, 4, 'Organisasi dan Arsitektur Komputer', 32),
-(6, 1, 4, 'Bahasa Inggris', 1),
-(7, 1, 5, 'Analisa dan Perancangan Sistem', 36),
-(8, 1, 5, 'Pengantar Teknologi Informasi', 24),
-(9, 1, 6, 'Jaringan Komputer', 10),
-(10, 1, 6, 'Keamanan Jaringan Komputer', 43);
+INSERT INTO `kelas` (`id`, `prd_id`, `dsn_id`, `kelas_kd`, `kelas_nama`, `mk_id`) VALUES
+(1, 1, 1, 'Sore A', 'Algoritma dan Pemrograman', 20),
+(2, 1, 1, 'Sore A', 'Pemrograman Web', 37),
+(3, 1, 2, 'Sore A', 'Matematika Diskrit', 34),
+(4, 1, 2, 'Sore A', 'Matematika Dasar', 22),
+(5, 1, 4, 'Sore A', 'Organisasi dan Arsitektur Komputer', 32),
+(6, 1, 4, 'Sore A', 'Bahasa Inggris', 1),
+(7, 1, 5, 'Sore A', 'Analisa dan Perancangan Sistem', 36),
+(8, 1, 5, 'Sore A', 'Pengantar Teknologi Informasi', 24),
+(9, 1, 6, 'Sore A', 'Jaringan Komputer', 10),
+(10, 1, 6, 'Sore A', 'Keamanan Jaringan Komputer', 43),
+(19, 1, 1, NULL, 'Pemrograman Berorientasi Objek', 33);
 
 -- --------------------------------------------------------
 
@@ -246,7 +248,7 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `kelas_id`, `fk_id`, `prd_id`, `dsn_id`, `mhs_status`) VALUES
-(1, '011601503125139', 'Dony Tanu Wijaya', 1, 1, 1, 1, 'Aktif'),
+(1, '011601503125139', 'Dony Tanu Wijaya', 1, 1, 1, 4, 'Aktif'),
 (11, '011601503125139', 'Dony Tanu Wijaya', 2, 1, 1, 1, 'Aktif'),
 (17, '011701503125107', 'Rijal Fathan Zafiri', 0, 1, 1, 1, 'Aktif'),
 (18, '011701503125112', 'Andreno Ramadani', 0, 1, 1, 2, 'Aktif'),
@@ -408,10 +410,10 @@ CREATE TABLE `nilai_mk` (
 --
 
 INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
-(1, 20, 1, '70', '80', '60', '79', '72.6'),
+(1, 0, 1, '80', '80', '60', '79', '73.6'),
 (2, 20, 21, '90', '70', '80', '78', '78.2'),
 (3, 20, 22, '90', '99', '78', '89', '87.8'),
-(4, 37, 1, '90', '89', '99', '78', '87.7'),
+(4, 37, 1, '100', '89', '99', '78', '88.7'),
 (5, 37, 21, '90', '99', '88', '77', '86'),
 (6, 37, 22, '77', '88', '99', '89', '90.6'),
 (7, 20, 20, '89', '78', '68', '90', '80.9'),
@@ -420,7 +422,8 @@ INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, 
 (10, 20, 27, '90', '89', '67', '76', '77.3'),
 (12, 20, 19, NULL, NULL, NULL, NULL, '0'),
 (13, 20, 30, NULL, NULL, NULL, NULL, '0'),
-(14, 20, 25, NULL, NULL, NULL, NULL, '0');
+(14, 20, 25, NULL, NULL, NULL, NULL, '0'),
+(15, 20, 1, '80', '66', '80', '80', '77.2');
 
 -- --------------------------------------------------------
 
@@ -444,12 +447,7 @@ INSERT INTO `prodi` (`id`, `prd_kd`, `prd_jurusan`, `fk_id`, `dsn_id`) VALUES
 (1, 'T1', 'Teknik Informatika', 1, 4),
 (2, 'T2', 'Sistem Informasi', 1, 4),
 (3, 'T3', 'Teknik Lingkungan', 1, 4),
-(4, 'T4', 'Manajemen Informasi', 1, 4),
-(7, 'F1', 'Ilmu Hubungan Internasional', 3, 8),
-(8, 'F2', 'Ilmu Komunikasi', 3, 8),
-(9, 'F3', 'Hukum', 3, 8),
-(10, 'P1', 'Pemanfaatan Sumber Daya Perikanan', 4, 11),
-(11, 'P2', 'Akuakultur', 4, 11);
+(4, 'T4', 'Manajemen Informasi', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -504,13 +502,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`, `role`, `created_by`, `created_at`, `updated_by`, `updated_at`, `nik`, `tempat_lahir`, `tgl_lahir`, `agama`, `kewarganegaraan`, `gender`, `no_telp`) VALUES
 (9, 'Super Admin', 'admin', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53', '', '', '', '', '', 'laki-laki', ''),
-(11, 'Istiqomah Sumadikarta', '00001', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '9-superadmin.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-07-25 20:12:58', '', '', '', '', '', 'laki-laki', ''),
+(11, 'Istiqomah Sumadikarta, ST., M.Kom  ', '0310017605', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '11-dosen.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-08-13 00:34:03', '', '', '', '', '', 'laki-laki', ''),
 (13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-31 21:46:53', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837'),
-(16, 'Zulkifli', '00003', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '16-prodi.png', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-08-11 10:12:05', '3174010906960002', '', '', '', '', 'laki-laki', ''),
+(16, 'Dr. Zulkifli , S.Kom.,M.Kom', '0316076803', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '16-prodi.png', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-08-13 00:34:51', '3174010906960002', '', '', '', '', 'laki-laki', ''),
 (17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '17-superadmin.png', 'active', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-31 21:39:55', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'perempuan', '085860037837'),
-(19, 'Agung', '00004', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-07-30 19:35:08', '', '', '', '', '', 'laki-laki', ''),
-(20, 'Bosar Panjaitan', '00002', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-07-30 19:35:16', '', '', '', '', '', 'laki-laki', ''),
-(26, 'Faizal Zuli', '00005', '$2y$10$VbJ9lQOX.GcT.zGrGtF5DO3Npg4/vnV8PL01lcMy07Dan3PtO45M6', '9-superadmin.png', 'active', 'dosen', 9, '2023-08-02 18:25:43', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
+(19, 'Dr. Safrizal, ST., MM., M.Kom', '0319037001', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-08-13 00:33:39', '', '', '', '', '', 'laki-laki', ''),
+(20, 'Bosar Panjaitan, S.Si, M.Kom', '0325077101', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-08-13 00:34:31', '', '', '', '', '', 'laki-laki', ''),
+(26, 'Faizal Zuli, S.Kom., M.Kom', '0323098001', '$2y$10$VbJ9lQOX.GcT.zGrGtF5DO3Npg4/vnV8PL01lcMy07Dan3PtO45M6', '9-superadmin.png', 'active', 'dosen', 9, '2023-08-02 18:25:43', 9, '2023-08-13 00:35:37', '', '', '', '', '', 'laki-laki', ''),
 (30, 'Rijal Fathan Zafiri', '011701503125107', '$2y$10$mgOiYpXSuHuPdFED/mkMXOSuLlGkl0sJ938lqciN.Yzd1hJeGJ.76', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-08-06 04:37:32', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
 (31, 'Andreno Ramadani', '011701503125112', '$2y$10$OWDq75w2s3PoIcX5CH6ateZnAfa.fBnBSDNRGayI2ZBmlG0heN.dm', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-08-06 04:38:13', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
 (32, 'Muhamad Danu', '011701503125066', '$2y$10$llBvV7B3Q9lqH4TttluNr.hyhRLVv.tUB0nt/bru7kvH.5FA5PYCO', '9-superadmin.png', 'active', 'mahasiswa', 9, '2023-08-06 04:39:19', NULL, NULL, '', '', '', '', '', 'laki-laki', ''),
@@ -635,13 +633,13 @@ ALTER TABLE `dosen`
 -- AUTO_INCREMENT untuk tabel `fakultas`
 --
 ALTER TABLE `fakultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
@@ -665,13 +663,13 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tentang`

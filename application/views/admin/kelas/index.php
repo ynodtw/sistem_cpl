@@ -4,11 +4,11 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-body d-flex justify-content-end">
-
-						<a href="<?= base_url("data-kelas/add") ?>" class=" btn btn-success">+ Tambah Data</a>
-
-					</div>
+					<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi" || $_SESSION['data_login']['role'] == "prodi") { ?>
+						<div class="card-body d-flex justify-content-end">
+							<a href="<?= base_url("data-kelas/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						</div>
+					<?php } ?>
 				</div>
 
 				<div class="card">
@@ -18,8 +18,9 @@
 							<thead>
 								<tr>
 									<th>No.</th>
-									<!-- <th>Fakultas</th> -->
+									<th>Semester</th>
 									<th>Jurusan</th>
+									<!-- <th>Kode</th> -->
 									<th>Dosen</th>
 									<th>Kelas</th>
 									<th>Matakuliah</th>
@@ -32,8 +33,9 @@
 									foreach ($kelas as $k) { ?>
 										<tr>
 											<td><?= $no++ ?></td>
-											<!-- <td><?= $k['fk_nama'] ?></td> -->
+											<td><?= $k['mk_smt'] ?></td>
 											<td><?= $k['prd_jurusan'] ?></td>
+											<!-- <td><?= $k['kelas_kd'] ?></td> -->
 											<td><?= $k['dsn_nama'] ?></td>
 											<td><?= $k['kelas_nama'] ?></td>
 											<td><?= $k['mk_nama'] ?></td>
