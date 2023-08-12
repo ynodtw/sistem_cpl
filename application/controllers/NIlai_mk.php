@@ -168,7 +168,7 @@ class Nilai_mk extends CI_Controller
 		$bobot_uts = $matakuliah['bobot_uts'];
 		$bobot_uas = $matakuliah['bobot_uas'];
 
-		$data_insert = [
+		$data_update = [
 			"id_mk" => $id_mk,
 			"n_absen" => $n_absen,
 			"n_tugas" => $n_tugas,
@@ -178,14 +178,27 @@ class Nilai_mk extends CI_Controller
 		];
 
 		// echo '<pre>';
-		// print_r($data_insert);
+		// print_r($data_update);
 		// die;
 
-		$insert = $this->Model_nilai_mk->update($id, $data_insert);
+		$update = $this->Model_nilai_mk->update($id, $data_update);
 
-		if ($insert) {
+		// if ($update) {
+		// 	$this->session->set_flashdata('msg', 'Sukses Update Data');
+		// 	redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
+		// } else {
+		// 	echo "
+		//         <script>
+		//             alert('Gagal update data!')
+		//             history.back()
+		//         </script>
+		//         ";
+		// 	return false;
+		// }
+
+		if ($update) {
 			$this->session->set_flashdata('msg', 'Sukses Update Data');
-			redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
+			redirect(base_url("/data-kelas/detail/" . $id_mk));
 		} else {
 			echo "
 	          <script>

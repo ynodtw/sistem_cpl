@@ -88,6 +88,7 @@ class Model_mahasiswa extends CI_Model
 		$this->db->join('prodi', 'prodi.id = mahasiswa.prd_id');
 		$this->db->join('dosen', 'dosen.id = mahasiswa.dsn_id');
 		$this->db->where('mahasiswa.fk_id', $id);
+		$this->db->group_by('mahasiswa.mhs_nim');
 		$query = $this->db->get();
 		return $query->result_array();
 	}

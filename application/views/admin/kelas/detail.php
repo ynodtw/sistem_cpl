@@ -14,7 +14,7 @@
             <table class="table table-bordered">
               <tr>
                 <td>Rata-rata Nilai Akumulasi Nilai</td>
-                <td><b><?= $avg_nilai_mk ?></b></td>
+                <td><b><?= number_format($avg_nilai_mk, 2) ?></b></td>
               </tr>
 
               <?php foreach ($avg_cplmk as $avg) { ?>

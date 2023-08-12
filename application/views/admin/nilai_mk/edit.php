@@ -24,23 +24,23 @@
 
 							<div class="form-group">
 								<label for="n_absen">Nilai Absen</label>
-								<input type="number" class="form-control" id="n_absen" c value="<?= $nilai_mk['n_absen'];  ?>" name="n_absen" value="" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="n_absen" c value="<?= $nilai_mk['n_absen'];  ?>" name="n_absen" value="" placeholder="Masukkan angka 0 - 100" min="0" max="100" required>
 							</div>
 
 
 							<div class="form-group">
 								<label for="n_tugas">Nilai Tugas</label>
-								<input type="number" class="form-control" id="n_tugas" value="<?= $nilai_mk['n_tugas'];  ?>" name="n_tugas" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="n_tugas" value="<?= $nilai_mk['n_tugas'];  ?>" name="n_tugas" placeholder="Masukkan angka 0 - 100" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="n_uts">Nilai UTS</label>
-								<input type="number" class="form-control" id="n_uts" value="<?= $nilai_mk['n_uts'];  ?>" name="n_uts" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="n_uts" value="<?= $nilai_mk['n_uts'];  ?>" name="n_uts" placeholder="Masukkan angka 0 - 100" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="n_uas">Nilai UAS</label>
-								<input type="number" class="form-control" id="n_uas" value="<?= $nilai_mk['n_uas'];  ?>" name="n_uas" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="n_uas" value="<?= $nilai_mk['n_uas'];  ?>" name="n_uas" placeholder="Masukkan angka 0 - 100" min="0" max="100" required>
 							</div>
 
 							<button type="submit" class="btn btn-primary">Submit</button>
