@@ -88,7 +88,7 @@ class Nilai_mk extends CI_Controller
 		if (!empty($cek_id_mk)) {
 			echo "
 			<script>
-					alert('Matakuliah Sudah Terdaftar!')
+					alert('Mahasiswa Sudah Terdaftar!')
 					history.back()
 			</script>
 			";

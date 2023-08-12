@@ -58,7 +58,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <a href="<?= base_url() . "users/edit/" . $_SESSION['data_login']['id'] ?>" class="dropdown-item">
-              <i class="fas fa-user-edit"></i> Ubah Profil
+              <i class="fas fa-user-edit"></i> Ubah Password
             </a>
             <div class="dropdown-divider"></div>
             <a href="<?= base_url("sign-out") ?>" class="dropdown-item">

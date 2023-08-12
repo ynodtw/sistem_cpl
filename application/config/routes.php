@@ -31,6 +31,11 @@ $route['data-prodi'] = 'prodi';
 $route['data-prodi/add'] = 'prodi/add';
 $route['data-prodi/edit/(:num)'] = 'prodi/edit/$1';
 
+//CONTROLLER FAKULTAS
+$route['data-fakultas'] = 'fakultas';
+$route['data-fakultas/add'] = 'fakultas/add';
+$route['data-fakultas/edit/(:num)'] = 'fakultas/edit/$1';
+
 //CONTROLLER MATAKULIAH
 $route['data-matakuliah'] = 'matakuliah';
 $route['data-matakuliah/add'] = 'matakuliah/add';

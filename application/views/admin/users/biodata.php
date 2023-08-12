@@ -15,12 +15,12 @@
 
 							<div class="form-group">
 								<label for="fullname">Nama Lengkap</label>
-								<input type="text" class="form-control" id="fullname" name="fullname" placeholder="" value="<?= $users["fullname"] ?>" required>
+								<input type="text" class="form-control" id="fullname" name="fullname" placeholder="" value="<?= $users["fullname"] ?>">
 							</div>
 
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input type="text" class="form-control" id="nik" name="nik" placeholder="" value="<?= $users["nik"] ?>" required>
+								<input type="text" class="form-control" id="nik" name="nik" placeholder="" value="<?= $users["nik"] ?>">
 							</div>
 
 							<div class="form-group">
@@ -45,13 +45,13 @@
 
 							<!-- <div class="form-group">
 								<label for="gender">Gender</label>
-								<input type="text" class="form-control" id="gender" name="gender" placeholder="" value="<?= $users["gender"] ?>" required>
+								<input type="text" class="form-control" id="gender" name="gender" placeholder="" value="<?= $users["gender"] ?>">
 							</div> -->
 
 							<div class="form-group">
 								<div class="col-xs-6">
 									<label for="gender">Jenis Kelamin</label>
-									<select class="form-control" id="gender" name="gender" required>
+									<select class="form-control" id="gender" name="gender">
 										<option <?= $users['gender'] == "laki-laki" ? "selected" : "" ?> value="laki-laki">Laki-laki</option>
 										<option <?= $users['gender'] == "perempuan" ? "selected" : "" ?> value="perempuan">Perempuan</option>
 									</select>

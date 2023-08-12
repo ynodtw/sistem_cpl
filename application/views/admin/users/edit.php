@@ -1,22 +1,22 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-6">
-        <div class="card">
-          <div class="card-body">
-            <form method="POST" action="<?= base_url("users/update") ?>" enctype="multipart/form-data">
-              <input name="id" value="<?= $users["id"] ?>" type="hidden">
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input type="username" class="form-control" id="username" name="username" placeholder="Masukan username" value="<?= $users["username"] ?>" required>
-              </div>
+      <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <form method="POST" action="<?= base_url("users/update") ?>" enctype="multipart/form-data">
+                <input name="id" value="<?= $users["id"] ?>" type="hidden">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="username" class="form-control" id="username" name="username" placeholder="Masukan username" value="<?= $users["username"] ?>" required>
+                </div>
 
-              <div class="form-group">
-                <label for="fullname">Nama Lengkap</label>
-                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Masukan Nama Lengkap" value="<?= $users["fullname"] ?>" required>
-              </div>
+                <div class="form-group">
+                  <label for="fullname">Nama Lengkap</label>
+                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Masukan Nama Lengkap" value="<?= $users["fullname"] ?>" required>
+                </div>
 
-              <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
                 <div class="form-group">
                   <label for="status">Status</label>
                   <select class="form-control" id="status" name="status" required>
@@ -24,8 +24,7 @@
                     <option <?= $users["status"] == "inactive" ? "selected" : "" ?> value="inactive">Tidak Aktif</option>
                   </select>
                 </div>
-              <?php } ?>
-              <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
+
                 <div class="form-group">
                   <label for="role">Hak Akses</label>
                   <select class="form-control" id="role" name="role" required>
@@ -35,20 +34,20 @@
                     <option <?= $users["role"] == "mahasiswa" ? "selected" : "" ?> value="mahasiswa">Mahasiswa</option>
                   </select>
                 </div>
-              <?php } ?>
 
-              <div class="form-group">
-                <img src="<?= base_url("assets/img/") . $users['photo'] ?>" style="width:150px;"><br>
-                <label for="Photo">Photo</label>
-                <input type="file" class="form-control" id="Photo" name="photo" accept="image/png, image/jpeg, image/jpg">
-              </div>
+                <div class="form-group">
+                  <img src="<?= base_url("assets/img/") . $users['photo'] ?>" style="width:150px;"><br>
+                  <label for="Photo">Photo</label>
+                  <input type="file" class="form-control" id="Photo" name="photo" accept="image/png, image/jpeg, image/jpg">
+                </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
 
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      <?php } ?>
 
       <div class="col-6">
         <div class="card">

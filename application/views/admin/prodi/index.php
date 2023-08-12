@@ -5,10 +5,14 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body d-flex justify-content-end">
-
-						<a href="<?= base_url("data-prodi/add") ?>" class=" btn btn-success">+ Tambah Data</a>
-
+						<div style="padding-right: 5px;">
+							<a href="<?= base_url("data-fakultas") ?>" class=" btn btn-success">Fakultas</a>
+						</div>
+						<div>
+							<a href="<?= base_url("data-prodi/add") ?>" class=" btn btn-success">+ Tambah Data</a>
+						</div>
 					</div>
+
 				</div>
 
 				<div class="card">
@@ -54,7 +58,7 @@
 
 
 <!-- MODAL -->
-<?php if (!empty($jurusan)) { ?>
+<!-- <?php if (!empty($jurusan)) { ?>
 	<?php foreach ($jurusan as $j) { ?>
 		<div class="modal fade" id="modalLihat-<?= $j['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLihat-<?= $j['id'] ?>Label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -92,4 +96,4 @@
 			</div>
 		</div>
 	<?php } ?>
-<?php } ?>
+<?php } ?> -->
