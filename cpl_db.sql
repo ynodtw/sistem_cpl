@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Agu 2023 pada 01.34
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 7.4.30
+-- Waktu pembuatan: 13 Agu 2023 pada 11.50
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -121,7 +121,7 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (5, 1, 14, 89),
 (6, 2, 9, 50),
 (7, 2, 11, 89),
-(8, 2, 12, 99),
+(8, 2, 12, 90),
 (9, 2, 13, 87),
 (10, 2, 14, 87),
 (11, 3, 9, 98),
@@ -145,7 +145,42 @@ INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
 (30, 8, 10, 78),
 (31, 8, 26, 67),
 (32, 8, 32, 56),
-(33, 8, 43, 78);
+(33, 8, 43, 78),
+(34, 16, 9, 78),
+(35, 16, 11, 78),
+(36, 16, 12, 78),
+(37, 16, 13, 49),
+(38, 16, 14, 78),
+(39, 17, 9, 89),
+(40, 17, 11, 78),
+(41, 17, 12, 78),
+(42, 17, 13, 78),
+(43, 17, 14, 78),
+(44, 18, 9, 78),
+(45, 18, 11, 78),
+(46, 18, 12, 89),
+(47, 18, 13, 98),
+(48, 18, 14, 67),
+(49, 19, 9, 89),
+(50, 19, 11, 90),
+(51, 19, 12, 49),
+(52, 19, 13, 89),
+(53, 19, 14, 89),
+(54, 20, 9, 0),
+(55, 20, 11, 0),
+(56, 20, 12, 0),
+(57, 20, 13, 0),
+(58, 20, 14, 0),
+(59, 21, 9, 67),
+(60, 21, 11, 87),
+(61, 21, 12, 76),
+(62, 21, 13, 89),
+(63, 21, 14, 67),
+(64, 22, 9, 0),
+(65, 22, 11, 0),
+(66, 22, 12, 0),
+(67, 22, 13, 0),
+(68, 22, 14, 0);
 
 -- --------------------------------------------------------
 
@@ -214,17 +249,15 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `prd_id`, `dsn_id`, `kelas_kd`, `kelas_nama`, `mk_id`) VALUES
-(1, 1, 1, 'Sore A', 'Algoritma dan Pemrograman', 20),
-(2, 1, 1, 'Sore A', 'Pemrograman Web', 37),
 (3, 1, 2, 'Sore A', 'Matematika Diskrit', 34),
 (4, 1, 2, 'Sore A', 'Matematika Dasar', 22),
 (5, 1, 4, 'Sore A', 'Organisasi dan Arsitektur Komputer', 32),
-(6, 1, 4, 'Sore A', 'Bahasa Inggris', 1),
 (7, 1, 5, 'Sore A', 'Analisa dan Perancangan Sistem', 36),
 (8, 1, 5, 'Sore A', 'Pengantar Teknologi Informasi', 24),
 (9, 1, 6, 'Sore A', 'Jaringan Komputer', 10),
 (10, 1, 6, 'Sore A', 'Keamanan Jaringan Komputer', 43),
-(19, 1, 1, NULL, 'Pemrograman Berorientasi Objek', 33);
+(19, 1, 1, NULL, 'Pemrograman Berorientasi Objek', 33),
+(20, 1, 1, NULL, 'Algoritma dan Pemrograman', 20);
 
 -- --------------------------------------------------------
 
@@ -412,18 +445,14 @@ CREATE TABLE `nilai_mk` (
 INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
 (1, 0, 1, '80', '80', '60', '79', '73.6'),
 (2, 20, 21, '90', '70', '80', '78', '78.2'),
-(3, 20, 22, '90', '99', '78', '89', '87.8'),
 (4, 37, 1, '100', '89', '99', '78', '88.7'),
 (5, 37, 21, '90', '99', '88', '77', '86'),
 (6, 37, 22, '77', '88', '99', '89', '90.6'),
-(7, 20, 20, '89', '78', '68', '90', '80.9'),
-(8, 22, 38, '80', '78', '77', '67', '73.5'),
-(9, 20, 31, '100', '87', '67', '87', '82.3'),
-(10, 20, 27, '90', '89', '67', '76', '77.3'),
-(12, 20, 19, NULL, NULL, NULL, NULL, '0'),
-(13, 20, 30, NULL, NULL, NULL, NULL, '0'),
-(14, 20, 25, NULL, NULL, NULL, NULL, '0'),
-(15, 20, 1, '80', '66', '80', '80', '77.2');
+(16, 20, 1, '100', '78', '49', '49', '59.9'),
+(18, 20, 20, '80', '78', '98', '67', '79.8'),
+(19, 20, 31, '89', '89', '87', '89', '88.4'),
+(20, 20, 28, '0', '0', '0', '0', '0'),
+(22, 20, 24, '0', '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -621,7 +650,7 @@ ALTER TABLE `cpl`
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
@@ -639,7 +668,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
@@ -663,7 +692,7 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `prodi`

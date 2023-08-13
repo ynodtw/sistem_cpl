@@ -130,7 +130,7 @@ class Cplmk extends CI_Controller
 		$data['cplmk'] = $this->Model_cplmk->getDataById($id)[0];
 		$data['cpl'] = $this->Model_cpl->getData();
 		$data['page'] = "admin/cplmk/edit";
-		$data['title'] = "Data Nilai Matakuliah";
+		$data['title'] = "Data Nilai CPL Matakuliah";
 		$data['matakuliah'] = $this->Model_matakuliah->getData();
 
 		// echo "<pre>";

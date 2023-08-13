@@ -8,18 +8,19 @@
 							<input name="id" value="<?= $cplmk["id"] ?>" type="hidden">
 							<input name="id_cpl" value="<?= $cplmk["id_cpl"] ?>" type="hidden">
 							<input name="id_nilai_mk" value="<?= $cplmk["id_nilai_mk"] ?>" type="hidden">
-							<strong style="">
 
-							</strong>
-							<br>
-							<br>
 							<div class="form-group">
-								<label for="id_cpl">Kode CPL</label>
-								<select class="form-control" id="id_cpl" name="id_cpl" required>
+								<!-- <label for="id_cpl">Kode CPL</label> -->
+								<select class="form-control" id="id_cpl" name="id_cpl" hidden>
 									<?php foreach ($cpl as $c) { ?>
 										<option value="<?= $c['id'] ?>" <?= $c['id'] == $cplmk['id_cpl'] ? "selected" : ""   ?>>(<?= $c['cpl_kd'];  ?>) <?= $c['cpl_kategori'];  ?></option>
 									<?php } ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="cpl_deskripsi">Capaian Pembelajaran Lulusan</label>
+								<textarea name="cpl_deskripsi" class="form-control" id="cpl_deskripsi" cols="30" rows="8" readonly><?= $cplmk['cpl_kd'];  ?> - <?= $cplmk['cpl_deskripsi'];  ?></textarea>
 							</div>
 
 							<div class="form-group">

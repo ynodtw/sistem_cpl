@@ -13,8 +13,16 @@
           <div class="card-body d-flex">
             <table class="table table-bordered">
               <tr>
-                <td><b>Rata-rata Nilai Akumulasi Nilai</b></td>
-                <td><b><?= number_format($avg_nilai_mk, 2) ?></b></td>
+                <td><b>Rata-rata Nilai Akumulasi Nilai Matakuliah</b></td>
+                <td>
+                  <?php
+                  if ($avg_nilai_mk < 50) {
+                    echo "<b style='color:red'>" . number_format($avg_nilai_mk, 2) . "</b>";
+                  } else {
+                    echo "<b>" . number_format($avg_nilai_mk, 2) . "</b>";
+                  }
+                  ?>
+                </td>
               </tr>
 
               <?php foreach ($avg_cplmk as $avg) { ?>
@@ -25,7 +33,16 @@
                       <?= $avg['cpl_deskripsi'] ?>
                     </small>
                   </td>
-                  <td><b><?= number_format($avg['avg_cplmk'], 2) ?></b></td>
+                  <!-- <td><b><?= number_format($avg['avg_cplmk'], 2) ?></b></td> -->
+                  <td>
+                    <?php
+                    if ($avg['avg_cplmk'] < 50) {
+                      echo "<b style='color:red'>" . number_format($avg['avg_cplmk'], 2) . "</b>";
+                    } else {
+                      echo "<b>" . number_format($avg['avg_cplmk'], 2) . "</b>";
+                    }
+                    ?>
+                  </td>
 
                 </tr>
               <?php } ?>
@@ -78,11 +95,51 @@
                       <td><?= $no++ ?></td>
                       <td><?= $nm['mhs_nim'] ?></td>
                       <td><?= $nm['mhs_nama'] ?></td>
-                      <td><?= $nm['n_absen'] ?></td>
-                      <td><?= $nm['n_tugas'] ?></td>
-                      <td><?= $nm['n_uts'] ?></td>
-                      <td><?= $nm['n_uas'] ?></td>
-                      <td><?= $nm['n_akumulasi'] ?></td>
+                      <td>
+                        <?php
+                        if ($nm['n_absen'] < 50) {
+                          echo "<span style='color:red'>" . $nm['n_absen'] . "</span>";
+                        } else {
+                          echo "<span>" . $nm['n_absen'] . "</span>";
+                        }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                        if ($nm['n_tugas'] < 50) {
+                          echo "<span style='color:red'>" . $nm['n_tugas'] . "</span>";
+                        } else {
+                          echo "<span>" . $nm['n_tugas'] . "</span>";
+                        }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                        if ($nm['n_uts'] < 50) {
+                          echo "<span style='color:red'>" . $nm['n_uts'] . "</span>";
+                        } else {
+                          echo "<span>" . $nm['n_uts'] . "</span>";
+                        }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                        if ($nm['n_uas'] < 50) {
+                          echo "<span style='color:red'>" . $nm['n_uas'] . "</span>";
+                        } else {
+                          echo "<span>" . $nm['n_uas'] . "</span>";
+                        }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                        if ($nm['n_akumulasi'] < 50) {
+                          echo "<span style='color:red'>" . $nm['n_akumulasi'] . "</span>";
+                        } else {
+                          echo "<span>" . $nm['n_akumulasi'] . "</span>";
+                        }
+                        ?>
+                      </td>
                       <td> <a class="btn btn-success" href="<?= base_url() . "data-cplmk/" . $nm['id'] . "?mhs_nim=" . $nm['mhs_nim'] . "&mhs_nama=" . $nm['mhs_nama'] ?>">CPLMK</a></td>
                       <?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
                         <td>

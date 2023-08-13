@@ -9,11 +9,11 @@
 							<span style="font-size:x-large;"><?= $mhs_nama ?> <?= $mhs_nim ?> | </span>
 							<span style="font-size:x-large;"><?= $mk_kd ?> <?= $mk_nama ?></span>
 						</div>
-						<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
+						<!-- <?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 							<div class="col-2 d-flex justify-content-end">
 								<a href="<?= base_url("data-cplmk/add/" . $id_nilai_mk) ?>" class="btn btn-success">+ Tambah Data</a>
 							</div>
-						<?php } ?>
+						<?php } ?> -->
 					</div>
 				</div>
 
@@ -44,16 +44,17 @@
 											<td><?= $cm['cpl_deskripsi'] ?></td>
 											<td>
 												<?php
-												if ($cm['n_cplmk'] == "") {
-													echo "-";
+												if ($cm['n_cplmk'] < 50) {
+													echo "<span style='color:red'>" . $cm['n_cplmk'] . "</span>";
+												} else {
+													echo "<span'>" . $cm['n_cplmk'] . "</span>";
 												}
 												?>
-												<?= $cm['n_cplmk'];  ?>
 											</td>
 											<?php if ($_SESSION['data_login']['role'] != "mahasiswa") { ?>
 												<td>
 													<a class="btn btn-warning btn-sm" href="<?= base_url() . "data-cplmk/edit/" . $cm['id'] ?>">Ubah</a>
-													<a class="btn btn-danger btn-sm" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a>
+													<!-- <a class="btn btn-danger btn-sm" href="<?= base_url() . "cplmk/delete/" . $cm['id'] ?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a> -->
 												</td>
 											<?php } ?>
 										</tr>
