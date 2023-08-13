@@ -88,7 +88,7 @@
 								<label>CPL</label>
 								<select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="cpl[]">
 									<?php foreach ($cpl as $cpl) { ?>
-										<option value="<?= $cpl['id'] ?>"><?= $cpl['cpl_kd'] ?> - <?= $cpl['cpl_kategori'] ?></option>
+										<option value="<?= $cpl['id'] ?>"><?= $cpl['cpl_kd'] ?> - <?= $cpl['cpl_deskripsi'] ?></option>
 									<?php } ?>
 								</select>
 							</div>

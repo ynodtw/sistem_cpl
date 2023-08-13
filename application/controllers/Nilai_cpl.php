@@ -49,7 +49,11 @@ class Nilai_cpl extends CI_Controller
 		$data['nim'] = @$data['nilai_cpl'][0]['mhs_nim'];
 		$data['nama'] = @$data['nilai_cpl'][0]['mhs_nama'];
 		$data['page'] = "admin/nilai_cpl/index";
-		$data['title'] = "Data nilai";
+		$data['title'] = "Data Mahasiswa";
+
+		// echo '<pre>';
+		// print_r($data);
+		// die;
 		$this->load->view('admin/template', $data);
 	}
 

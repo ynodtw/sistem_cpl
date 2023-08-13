@@ -35,7 +35,7 @@ class Cplmk extends CI_Controller
 		// die;
 
 		$data['page'] = "admin/cplmk/index";
-		$data['title'] = "Data cplmk";
+		$data['title'] = "Data CPL Matakuliah";
 		$this->load->view('admin/template', $data);
 	}
 
@@ -55,7 +55,7 @@ class Cplmk extends CI_Controller
 		// die;
 
 		$data['page'] = "admin/cplmk/daftar";
-		$data['title'] = "Data cplmk";
+		$data['title'] = "Data CPL Matakuliah";
 		$this->load->view('admin/template', $data);
 	}
 
