@@ -69,6 +69,19 @@ class Auth extends CI_Controller
 			}
 		}
 
+		if ($_SESSION['data_login']['role'] == "prodi") {
+			$data_dosen = $this->Model_dosen->checkNID($_SESSION['data_login']['username']);
+			if (empty($data_dosen)) {
+				echo "
+				<script>
+					alert('Akses Ditolak!')
+					window.location.href = '" . base_url("sign-out") . "';
+				</script>
+				";
+				return false;
+			}
+		}
+
 
 
 		redirect($_SERVER['HTTP_REFERER']);
