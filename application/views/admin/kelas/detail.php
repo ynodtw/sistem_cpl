@@ -13,7 +13,7 @@
           <div class="card-body d-flex">
             <table class="table table-bordered">
               <tr>
-                <td><b>Rata-rata Nilai Akumulasi Nilai Matakuliah</b></td>
+                <td><b>Rata-rata Nilai Matakuliah Mahasiswa</b></td>
                 <td>
                   <?php
                   if ($avg_nilai_mk < 50) {

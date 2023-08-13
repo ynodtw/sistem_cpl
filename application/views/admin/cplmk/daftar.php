@@ -37,7 +37,16 @@
 											<td><?= $cm['cpl_kd'] ?></td>
 											<td><?= $cm['cpl_kategori'] ?></td>
 											<td><?= $cm['cpl_deskripsi'] ?></td>
-											<td><?= $cm['n_cplmk'];  ?></td>
+											<!-- <td><?= $cm['n_cplmk'];  ?></td> -->
+											<td>
+												<?php
+												if ($cm['n_cplmk'] < 50) {
+													echo "<span style='color:red'>" . $cm['n_cplmk'] . "</span>";
+												} else {
+													echo "<span'>" . $cm['n_cplmk'] . "</span>";
+												}
+												?>
+											</td>
 										</tr>
 									<?php } ?>
 								<?php } ?>

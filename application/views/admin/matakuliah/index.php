@@ -26,8 +26,8 @@
 									<th>SKS</th>
 									<th>Prasyarat</th>
 									<th>Keterangan</th>
+									<th>Bobot Nilai (100%)</th>
 									<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
-										<th>Bobot Nilai (100%)</th>
 										<!-- <th>Bobot Absensi (%)</th>
 										<th>Bobot Tugas (%)</th>
 										<th>Bobot UTS (%)</th>
@@ -50,8 +50,8 @@
 											<td><?= $mk['mk_sks'] ?></td>
 											<td><?= $mk['mk_prasyarat'] ?></td>
 											<td><?= $mk['mk_keterangan'] ?></td>
+											<td><a class="btn btn-primary" data-toggle="modal" data-target="#modalBobot-<?= $mk['id'] ?>">Lihat</a></td>
 											<?php if ($_SESSION['data_login']['role'] == "superadmin" || $_SESSION['data_login']['role'] == "prodi") { ?>
-												<td><a class="btn btn-primary" data-toggle="modal" data-target="#modalBobot-<?= $mk['id'] ?>">Lihat</a></td>
 												<!-- <td><?= $mk['bobot_absen'] ?></td>
 												<td><?= $mk['bobot_tugas'] ?></td>
 												<td><?= $mk['bobot_uts'] ?></td>

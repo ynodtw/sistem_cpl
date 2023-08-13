@@ -51,7 +51,7 @@
 
 							<div class="form-group">
 								<label for="mk_sks">SKS</label>
-								<input type="text" class="form-control" id="mk_sks" name="mk_sks" placeholder="" required>
+								<input type="number" class="form-control" id="mk_sks" name="mk_sks" placeholder="" min="1" max="10" required>
 							</div>
 
 							<div class="form-group">
@@ -66,22 +66,22 @@
 
 							<div class="form-group">
 								<label for="bobot_absen">Bobot Absen (%)</label>
-								<input type="number" class="form-control" id="bobot_absen" name="bobot_absen" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="bobot_absen" name="bobot_absen" placeholder="Masukkan nilai 0 - 100" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="bobot_tugas">Bobot Tugas (%)</label>
-								<input type="number" class="form-control" id="bobot_tugas" name="bobot_tugas" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="bobot_tugas" name="bobot_tugas" placeholder="Masukkan nilai 0 - 100" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="bobot_uts">Bobot UTS (%)</label>
-								<input type="number" class="form-control" id="bobot_uts" name="bobot_uts" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="bobot_uts" name="bobot_uts" placeholder="Masukkan nilai 0 - 100" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">
 								<label for="bobot_uas">Bobot UAS (%)</label>
-								<input type="number" class="form-control" id="bobot_uas" name="bobot_uas" placeholder="" min="0" max="100" required>
+								<input type="number" class="form-control" id="bobot_uas" name="bobot_uas" placeholder="Masukkan nilai 0 - 100" min="0" max="100" required>
 							</div>
 
 							<div class="form-group">

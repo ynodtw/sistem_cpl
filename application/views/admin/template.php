@@ -105,7 +105,7 @@
             <?php if ($_SESSION['data_login']['role'] == "superadmin") { ?>
               <li class="nav-item">
                 <a href="<?= base_url("/data-prodi") ?>" class="nav-link <?= $title == "Data Prodi" ? "active" : "" ?>">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fas fa-address-book"></i>
                   <p>
                     Data Prodi
                   </p>
@@ -124,7 +124,7 @@
 
             <li class="nav-item">
               <a href="<?= base_url("/data-cpl") ?>" class="nav-link <?= $title == "Data CPL" ? "active" : "" ?>">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-address-book"></i>
                 <p>
                   Data CPL
                 </p>

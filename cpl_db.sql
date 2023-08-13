@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Agu 2023 pada 11.50
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 13 Agu 2023 pada 18.20
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,7 +94,8 @@ INSERT INTO `cpl` (`id`, `cpl_kd`, `cpl_kategori`, `cpl_deskripsi`) VALUES
 (57, 'P15', 'Pengetahuan', 'Memahami Kecerdasan Buatan yang mampu mengenali suatu objek, baik secara visual, suara, maupun keduanya'),
 (58, 'P16', 'Pengetahuan', 'Menguasai konsep-konsep Machine Learning, baik untuk Supervised Learning maupun Unsupervised Learning'),
 (59, 'P17', 'Pengetahuan', 'Menguasai konsep-konsep keamanan data melalui enskripsi data'),
-(60, 'P10', 'Pengetahuan', 'Menguasai metodologi pengembangan sistem, yaitu perencanaan, desain, penerapan, pengujian, dan pemeliharaan sistem');
+(60, 'P10', 'Pengetahuan', 'Menguasai metodologi pengembangan sistem, yaitu perencanaan, desain, penerapan, pengujian, dan pemeliharaan sistem'),
+(61, 'S13', 'Sikap', 'Memiliki rasa keingintahuan yang tinggi dalam rangka pengembangan ipteks');
 
 -- --------------------------------------------------------
 
@@ -114,73 +115,72 @@ CREATE TABLE `cplmk` (
 --
 
 INSERT INTO `cplmk` (`id`, `id_nilai_mk`, `id_cpl`, `n_cplmk`) VALUES
-(1, 1, 9, 81),
-(2, 1, 11, 98),
-(3, 1, 12, 78),
-(4, 1, 13, 99),
-(5, 1, 14, 89),
-(6, 2, 9, 50),
-(7, 2, 11, 89),
-(8, 2, 12, 90),
-(9, 2, 13, 87),
+(1, 1, 9, 78),
+(2, 1, 11, 78),
+(3, 1, 12, 87),
+(4, 1, 13, 67),
+(5, 1, 14, 69),
+(6, 2, 9, 88),
+(7, 2, 11, 67),
+(8, 2, 12, 79),
+(9, 2, 13, 58),
 (10, 2, 14, 87),
-(11, 3, 9, 98),
-(12, 3, 11, 98),
-(13, 3, 12, 76),
-(14, 3, 14, 88),
-(15, 4, 21, 66),
-(16, 4, 34, 67),
-(17, 4, 44, 88),
-(18, 4, 55, 99),
-(19, 5, 21, 99),
-(20, 5, 34, 98),
-(21, 5, 44, 98),
-(23, 6, 21, 98),
-(24, 6, 34, 77),
-(25, 6, 44, 89),
-(26, 6, 55, 88),
-(27, 5, 55, 87),
-(28, 7, 9, 89),
-(29, 7, 11, 89),
-(30, 8, 10, 78),
-(31, 8, 26, 67),
-(32, 8, 32, 56),
-(33, 8, 43, 78),
-(34, 16, 9, 78),
-(35, 16, 11, 78),
-(36, 16, 12, 78),
-(37, 16, 13, 49),
-(38, 16, 14, 78),
-(39, 17, 9, 89),
-(40, 17, 11, 78),
-(41, 17, 12, 78),
-(42, 17, 13, 78),
-(43, 17, 14, 78),
-(44, 18, 9, 78),
-(45, 18, 11, 78),
-(46, 18, 12, 89),
-(47, 18, 13, 98),
-(48, 18, 14, 67),
-(49, 19, 9, 89),
-(50, 19, 11, 90),
-(51, 19, 12, 49),
-(52, 19, 13, 89),
-(53, 19, 14, 89),
-(54, 20, 9, 0),
-(55, 20, 11, 0),
-(56, 20, 12, 0),
-(57, 20, 13, 0),
-(58, 20, 14, 0),
-(59, 21, 9, 67),
-(60, 21, 11, 87),
-(61, 21, 12, 76),
-(62, 21, 13, 89),
-(63, 21, 14, 67),
-(64, 22, 9, 0),
-(65, 22, 11, 0),
-(66, 22, 12, 0),
-(67, 22, 13, 0),
-(68, 22, 14, 0);
+(11, 3, 9, 0),
+(12, 3, 11, 0),
+(13, 3, 12, 0),
+(14, 3, 13, 0),
+(15, 3, 14, 0),
+(16, 4, 8, 0),
+(17, 4, 9, 0),
+(18, 4, 24, 0),
+(19, 4, 31, 0),
+(20, 5, 8, 0),
+(21, 5, 9, 0),
+(22, 5, 24, 0),
+(23, 5, 31, 0),
+(24, 6, 8, 0),
+(25, 6, 9, 0),
+(26, 6, 24, 0),
+(27, 6, 31, 0),
+(28, 7, 3, 0),
+(29, 7, 11, 0),
+(30, 7, 31, 0),
+(31, 7, 33, 0),
+(32, 7, 61, 0),
+(33, 8, 3, 0),
+(34, 8, 11, 0),
+(35, 8, 31, 0),
+(36, 8, 33, 0),
+(37, 8, 61, 0),
+(38, 9, 3, 0),
+(39, 9, 11, 0),
+(40, 9, 31, 0),
+(41, 9, 33, 0),
+(42, 9, 61, 0),
+(43, 10, 10, 0),
+(44, 10, 26, 0),
+(45, 10, 32, 0),
+(46, 10, 43, 0),
+(47, 11, 10, 0),
+(48, 11, 26, 0),
+(49, 11, 32, 0),
+(50, 11, 43, 0),
+(51, 12, 10, 0),
+(52, 12, 26, 0),
+(53, 12, 32, 0),
+(54, 12, 43, 0),
+(55, 13, 16, 0),
+(56, 13, 27, 0),
+(57, 13, 32, 0),
+(58, 13, 43, 0),
+(59, 14, 16, 0),
+(60, 14, 27, 0),
+(61, 14, 32, 0),
+(62, 14, 43, 0),
+(63, 15, 16, 0),
+(64, 15, 27, 0),
+(65, 15, 32, 0),
+(66, 15, 43, 0);
 
 -- --------------------------------------------------------
 
@@ -249,15 +249,16 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `prd_id`, `dsn_id`, `kelas_kd`, `kelas_nama`, `mk_id`) VALUES
-(3, 1, 2, 'Sore A', 'Matematika Diskrit', 34),
-(4, 1, 2, 'Sore A', 'Matematika Dasar', 22),
-(5, 1, 4, 'Sore A', 'Organisasi dan Arsitektur Komputer', 32),
-(7, 1, 5, 'Sore A', 'Analisa dan Perancangan Sistem', 36),
-(8, 1, 5, 'Sore A', 'Pengantar Teknologi Informasi', 24),
-(9, 1, 6, 'Sore A', 'Jaringan Komputer', 10),
-(10, 1, 6, 'Sore A', 'Keamanan Jaringan Komputer', 43),
-(19, 1, 1, NULL, 'Pemrograman Berorientasi Objek', 33),
-(20, 1, 1, NULL, 'Algoritma dan Pemrograman', 20);
+(22, 1, 1, NULL, 'Algoritma dan Pemrograman', 20),
+(23, 1, 1, NULL, 'Pemrograman Berorientasi Objek', 33),
+(24, 1, 2, NULL, 'Matematika Diskrit', 34),
+(25, 1, 2, NULL, 'Matematika Dasar', 22),
+(27, 1, 4, NULL, 'Organisasi dan Arsitektur Komputer', 32),
+(28, 1, 4, NULL, 'Pengantar Teknologi Informasi', 24),
+(29, 1, 5, NULL, 'Analisa dan Perancangan Sistem', 36),
+(30, 1, 5, NULL, 'Sistem Terdistribusi', 38),
+(31, 1, 6, NULL, 'Jaringan Komputer', 10),
+(32, 1, 6, NULL, 'Keamanan Jaringan Komputer', 43);
 
 -- --------------------------------------------------------
 
@@ -302,8 +303,7 @@ INSERT INTO `mahasiswa` (`id`, `mhs_nim`, `mhs_nama`, `kelas_id`, `fk_id`, `prd_
 (33, '190100063', 'Farrisa Nanindhiya Rifqah Aygi', 0, 1, 1, 4, 'Aktif'),
 (34, '180100051', 'Ajhi Bayu Saputra', 0, 1, 1, 5, 'Aktif'),
 (35, '180100048', 'Aditiya Dwi Putra', 0, 1, 1, 6, 'Aktif'),
-(36, '180100096', 'Nico Demus Indra Ade Wicaksono', 0, 1, 1, 1, 'Aktif'),
-(38, '011605503125043', 'Fathur Rahman Elsam', 0, 1, 2, 5, 'Aktif');
+(36, '180100096', 'Nico Demus Indra Ade Wicaksono', 0, 1, 1, 1, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -347,7 +347,7 @@ INSERT INTO `matakuliah` (`id`, `mk_smt`, `prd_id`, `mk_kd`, `mk_nama`, `mk_sks`
 (15, '6', 1, 'TI393003', 'Machine Learning', 3, 'Kecerdasan Buatan', 'Wajib Prodi', 10, 20, 30, 40, '42,36,41,59,10'),
 (20, '1', 1, 'TI113001', 'Algoritma dan Pemrograman', 3, '', 'Wajib Prodi', 10, 20, 30, 40, '9,12,13,14,11'),
 (21, '1', 1, 'UN192002', 'Bahasa Indonesia', 2, '', 'Wajib Universitas', 10, 20, 30, 40, '42,12,25,23'),
-(22, '1', 1, 'TI113002', 'Matermatika Dasar', 3, '', 'Wajib Prodi', 10, 20, 30, 40, '43,32,26,10'),
+(22, '1', 1, 'TI113002', 'Matermatika Dasar', 3, '', 'Wajib Prodi', 10, 20, 30, 40, '43,32,27,16'),
 (23, '1', 1, 'FT192003', 'Kecapakan Antar Personal', 2, '', 'Wajib Fakultas', 10, 20, 30, 40, '44,33,27,16'),
 (24, '1', 1, 'TI113003', 'Pengantar Teknologi Informasi', 3, '', 'Wajib Prodi', 10, 20, 30, 40, '45,34,28,17'),
 (25, '1', 1, 'TI123007', 'Komunikasi Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40, '46,35,13,18'),
@@ -357,7 +357,7 @@ INSERT INTO `matakuliah` (`id`, `mk_smt`, `prd_id`, `mk_kd`, `mk_nama`, `mk_sks`
 (30, '2', 1, 'TI133014', 'Struktur Data', 3, '', 'Wajib Prodi', 10, 20, 30, 40, '53,56'),
 (31, '3', 1, 'TI133009', 'Kumputasi Numerik', 3, 'Kalkulus', 'Wajib Prodi', 10, 20, 30, 40, '4,31,24,8'),
 (32, '3', 1, 'TI133010', 'Organisasi dan Arsitektur Komputer', 3, 'Pengantar Teknologi Informasi', 'Wajib Prodi', 10, 20, 30, 40, '4,3,2,1'),
-(33, '3', 1, 'TI133011', 'Pemrograman Berorientasi Objek', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40, '9,31,24,8'),
+(33, '3', 1, 'TI133011', 'Pemrograman Berorientasi Objek', 3, 'Algoritma dan Pemrograman', 'Wajib Prodi', 10, 20, 30, 40, '3,31,33,11,61'),
 (34, '3', 1, 'TI143016', 'Matematika Diskrit', 3, 'Matematika Dasar', 'Lintas Prodi', 10, 20, 30, 40, '42,12,25,23'),
 (35, '3', 1, 'TI153021', 'Aljabar Linear', 3, 'Matematika Dasar', 'Wajib Prodi', 10, 20, 30, 40, '43,32,26,10'),
 (36, '4', 1, 'TI143015', 'Analisa dan Perancangan Sistem', 3, 'Organisasi Arsitektur dan Komputer', 'Wajib Prodi', 10, 20, 30, 40, '46,35,13,18'),
@@ -443,16 +443,15 @@ CREATE TABLE `nilai_mk` (
 --
 
 INSERT INTO `nilai_mk` (`id`, `id_mk`, `id_mhs`, `n_absen`, `n_tugas`, `n_uts`, `n_uas`, `n_akumulasi`) VALUES
-(1, 0, 1, '80', '80', '60', '79', '73.6'),
-(2, 20, 21, '90', '70', '80', '78', '78.2'),
-(4, 37, 1, '100', '89', '99', '78', '88.7'),
-(5, 37, 21, '90', '99', '88', '77', '86'),
-(6, 37, 22, '77', '88', '99', '89', '90.6'),
-(16, 20, 1, '100', '78', '49', '49', '59.9'),
-(18, 20, 20, '80', '78', '98', '67', '79.8'),
-(19, 20, 31, '89', '89', '87', '89', '88.4'),
-(20, 20, 28, '0', '0', '0', '0', '0'),
-(22, 20, 24, '0', '0', '0', '0', '0');
+(1, 20, 1, '100', '78', '76', '67', '75.2'),
+(2, 20, 21, '90', '67', '78', '87', '80.6'),
+(3, 20, 22, '0', '0', '0', '0', '0'),
+(7, 33, 1, '0', '0', '0', '0', '0'),
+(8, 33, 21, '0', '0', '0', '0', '0'),
+(9, 33, 22, '0', '0', '0', '0', '0'),
+(13, 22, 1, '0', '0', '0', '0', '0'),
+(14, 22, 21, '0', '0', '0', '0', '0'),
+(15, 22, 22, '0', '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -533,7 +532,7 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `photo`, `status`
 (9, 'Super Admin', 'admin', '$2y$10$5sfoiew1iJ0DLpBTM.O5UOauIYqELVZ3ShqxWLYgKVrQMQy4X9alO', '9-superadmin.png', 'active', 'superadmin', 1, '2023-05-31 11:05:03', 9, '2023-07-16 19:21:53', '', '', '', '', '', 'laki-laki', ''),
 (11, 'Istiqomah Sumadikarta, ST., M.Kom  ', '0310017605', '$2y$10$BOA2wmETl5an1JgQG4Pnfed4gpWbNxjuPbmLinvvwdlv3nb2dyXlS', '11-dosen.png', 'active', 'dosen', 9, '2023-05-31 14:41:44', 9, '2023-08-13 00:34:03', '', '', '', '', '', 'laki-laki', ''),
 (13, 'Dony Tanu Wijaya', '011601503125139', '$2y$10$J/4lKLvb.njyBqDh2q.MqOQuj63Xe3zTE61TjT24BaqSK/UI8N8r6', '13-mahasiswa.jpg', 'active', 'mahasiswa', 9, '2023-07-09 02:15:55', 13, '2023-07-31 21:46:53', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'laki-laki', '085860037837'),
-(16, 'Dr. Zulkifli , S.Kom.,M.Kom', '0316076803', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '16-prodi.png', 'active', 'prodi', 9, '2023-07-29 06:41:24', 9, '2023-08-13 00:34:51', '3174010906960002', '', '', '', '', 'laki-laki', ''),
+(16, 'Dr. Zulkifli , S.Kom.,M.Kom', '0316076803', '$2y$10$OTomExGQ6NhyKP.t2kOlvONjGdUkgEmYk7ZQOPNb/gnI785yquf86', '16-prodi.png', 'active', 'prodi', 9, '2023-07-29 06:41:24', 16, '2023-08-13 15:55:49', '', '', '', '', '', 'laki-laki', ''),
 (17, 'admin2', 'admin2', '$2y$10$CKh5LdHFoFrYeYv7bG0/6OyEXjxPcjHiqjkrgY0QCK611wfs5R0WC', '17-superadmin.png', 'active', 'superadmin', 9, '2023-07-30 04:26:15', 17, '2023-07-31 21:39:55', '3174010906960002', 'Jakarta', '1996-06-09', 'Islam', 'Indonesia', 'perempuan', '085860037837'),
 (19, 'Dr. Safrizal, ST., MM., M.Kom', '0319037001', '$2y$10$kSO.ipgjFNg/it0Gt31BOetfMImQ4iOvCiA/SLZA4EfT/AtxpJ326', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:52:50', 9, '2023-08-13 00:33:39', '', '', '', '', '', 'laki-laki', ''),
 (20, 'Bosar Panjaitan, S.Si, M.Kom', '0325077101', '$2y$10$1qa7HHjBARXprL58xv4c..NXEd/fRV/XlmAWDmOzN4FTNzo9Vl4SG', '9-superadmin.png', 'active', 'dosen', 9, '2023-07-30 23:55:09', 9, '2023-08-13 00:34:31', '', '', '', '', '', 'laki-laki', ''),
@@ -644,13 +643,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cpl`
 --
 ALTER TABLE `cpl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT untuk tabel `cplmk`
 --
 ALTER TABLE `cplmk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
@@ -668,7 +667,7 @@ ALTER TABLE `fakultas`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa`
@@ -692,7 +691,7 @@ ALTER TABLE `nilai_cpl`
 -- AUTO_INCREMENT untuk tabel `nilai_mk`
 --
 ALTER TABLE `nilai_mk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `prodi`

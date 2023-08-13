@@ -39,7 +39,16 @@
 											<td><?= $nc['mk_nama'] ?></td> -->
 											<td><?= $nc['cpl_kd'] ?></td>
 											<td><?= $nc['cpl_deskripsi'] ?></td>
-											<td><?= number_format($nc['cpl_akumulasi'], 1) ?></td>
+											<!-- <td><?= number_format($nc['cpl_akumulasi'], 1) ?></td> -->
+											<td>
+												<?php
+												if ($nc['cpl_akumulasi'] < 50) {
+													echo "<span style='color:red'>" . $nc['cpl_akumulasi'] . "</span>";
+												} else {
+													echo "<span>" . $nc['cpl_akumulasi'] . "</span>";
+												}
+												?>
+											</td>
 											<td>
 												<a class="btn btn-primary" data-toggle="modal" data-target="#modalLihat-<?= $nc['cpl_kd'] ?>">Lihat</a>
 											</td>
@@ -78,7 +87,16 @@ if (!empty($nilai_cpl)) {
 								<tr>
 									<td><?= $detail['mk_kd'] ?></td>
 									<td><?= $detail['mk_nama'] ?></td>
-									<td><?= $detail['n_cplmk'] ?></td>
+									<!-- <td><?= $detail['n_cplmk'] ?></td> -->
+									<td>
+										<?php
+										if ($detail['n_cplmk'] < 50) {
+											echo "<span style='color:red'>" . $detail['n_cplmk'] . "</span>";
+										} else {
+											echo "<span>" . $detail['n_cplmk'] . "</span>";
+										}
+										?>
+									</td>
 								</tr>
 							<?php } ?>
 						</table>

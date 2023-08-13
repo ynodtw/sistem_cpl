@@ -84,11 +84,11 @@
 								<select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="cpl[]">
 									<?php foreach ($cpl as $cpl) { ?>
 										<option value="<?= $cpl['id'] ?>" <?php foreach ($arr as $a) {
-																				if ($cpl['id'] == $a) {
-																					echo "selected";
-																				}
-																			} ?>>
-											<?= $cpl['cpl_kd'] ?> - <?= $cpl['cpl_kategori'] ?>
+																												if ($cpl['id'] == $a) {
+																													echo "selected";
+																												}
+																											} ?>>
+											<?= $cpl['cpl_kd'] ?> - <?= $cpl['cpl_deskripsi'] ?>
 										</option>
 									<?php } ?>
 								</select>
