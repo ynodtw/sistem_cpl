@@ -4,13 +4,13 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-body">
-						<form method="POST" action="<?= base_url("nilai_mk/insert") ?>" enctype="multipart/form-data">
+						<form method="POST" action="<?= base_url("nilai_mk/preinsert") ?>" enctype="multipart/form-data">
 							<input type="hidden" name="id_mk" value="<?= $id_mk; ?>">
 							<br>
 							<br>
 							<div class="form-group">
 								<label for="id_mhs">Mahasiswa</label>
-								<select class="form-control" id="id_mhs" name="id_mhs" required>
+								<select class="select2" multiple="multiple" data-placeholder="Pilih Mahasiswa" style="width: 100%;" id="id_mhs" name="id_mhs[]" required>
 									<?php foreach ($mahasiswa as $m) { ?>
 										<option value="<?= $m['id'] ?>"><?= $m['mhs_nim'];  ?> - <?= $m['mhs_nama'];  ?></option>
 									<?php } ?>

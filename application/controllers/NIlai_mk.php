@@ -11,6 +11,7 @@ class Nilai_mk extends CI_Controller
 		$this->load->model('Model_matakuliah');
 		$this->load->model('Model_mahasiswa');
 		$this->load->model('Model_dosen');
+		$this->load->model('Model_cplmk');
 		if (!$this->session->has_userdata('data_login')) {
 			redirect("/login");
 		}
@@ -73,15 +74,32 @@ class Nilai_mk extends CI_Controller
 		$this->load->view('admin/template', $data);
 	}
 
-	public function insert()
-	{
 
+	function preinsert()
+	{
 		$id_mk = $this->input->post("id_mk");
 		$id_mhs = $this->input->post("id_mhs");
-		$n_absen = $this->input->post("n_absen");
-		$n_tugas = $this->input->post("n_tugas");
-		$n_uts = $this->input->post("n_uts");
-		$n_uas = $this->input->post("n_uas");
+
+		$insert = false;
+		foreach ($id_mhs as $id_mhs) {
+			$this->insert($id_mk, $id_mhs);
+		}
+
+		if (!$insert) {
+			$this->session->set_flashdata('msg', 'Sukses Insert Data');
+			redirect(base_url("data-kelas/detail/" . $id_mk));
+		} else {
+			echo "
+					<script>
+							alert('Gagal insert data!')
+							history.back()
+					</script>
+					";
+			return false;
+		}
+	}
+	public function insert($id_mk, $id_mhs)
+	{
 
 		$cek_id_mk = $this->Model_nilai_mk->checkMdMk($id_mk, $id_mhs);
 
@@ -96,34 +114,22 @@ class Nilai_mk extends CI_Controller
 		}
 
 		$matakuliah = $this->Model_matakuliah->getData($id_mk)[0];
-		// echo '<pre>';
-		// print_r($matakuliah);
-		// die;
-		$bobot_absen = $matakuliah['bobot_absen'];
-		$bobot_tugas = $matakuliah['bobot_tugas'];
-		$bobot_uts = $matakuliah['bobot_uts'];
-		$bobot_uas = $matakuliah['bobot_uas'];
+
 
 		$data_insert = [
 			"id_mk" => $id_mk,
 			"id_mhs" => $id_mhs,
-			"n_absen" => $n_absen,
-			"n_tugas" => $n_tugas,
-			"n_uts" => $n_uts,
-			"n_uas" => $n_uas,
-			"n_akumulasi" => ($n_absen * $bobot_absen) / 100 + ($n_tugas * $bobot_tugas) / 100 + ($n_uts * $bobot_uts) / 100 + ($n_uas * $bobot_uas) / 100
+
+			"n_absen" => 0,
+			"n_tugas" => 0,
+			"n_uts" => 0,
+			"n_uas" => 0,
+			"n_akumulasi" => 0
 		];
 
-		// echo '<pre>';
-		// print_r($data_insert);
-		// die;
+		$id_nilai_mk = $this->Model_nilai_mk->insert($data_insert);
 
-		$insert = $this->Model_nilai_mk->insert($data_insert);
-
-		if ($insert) {
-			$this->session->set_flashdata('msg', 'Sukses Insert Data');
-			redirect(base_url("data-kelas/detail/" . $id_mk));
-		} else {
+		if (empty($id_nilai_mk)) {
 			echo "
 					<script>
 							alert('Gagal insert data!')
@@ -132,6 +138,27 @@ class Nilai_mk extends CI_Controller
 					";
 			return false;
 		}
+
+		$matkul = $this->Model_nilai_mk->getDataById($id_nilai_mk);
+		$str_cpl = $matkul[0]['cpl'];
+		$arr_cpl = explode(",", $str_cpl);
+
+		$cpl = $this->Model_cpl->getDataCpl($arr_cpl);
+
+		$insert = false;
+
+		if (!empty($cpl)) {
+			foreach ($cpl as $c) {
+				$insert_cplmk = [
+					"id_nilai_mk" => $id_nilai_mk,
+					"id_cpl" => $c['id'],
+					"n_cplmk" => 0
+				];
+				$insert = $this->Model_cplmk->insert($insert_cplmk);
+			}
+		}
+
+		return $insert;
 	}
 
 
@@ -183,19 +210,6 @@ class Nilai_mk extends CI_Controller
 
 		$update = $this->Model_nilai_mk->update($id, $data_update);
 
-		// if ($update) {
-		// 	$this->session->set_flashdata('msg', 'Sukses Update Data');
-		// 	redirect(base_url("/data-nilai-matakuliah/" . $id_mhs));
-		// } else {
-		// 	echo "
-		//         <script>
-		//             alert('Gagal update data!')
-		//             history.back()
-		//         </script>
-		//         ";
-		// 	return false;
-		// }
-
 		if ($update) {
 			$this->session->set_flashdata('msg', 'Sukses Update Data');
 			redirect(base_url("/data-kelas/detail/" . $id_mk));
@@ -213,6 +227,7 @@ class Nilai_mk extends CI_Controller
 	public function delete($id)
 	{
 		$this->Model_nilai_mk->delete($id);
+		$this->Model_nilai_mk->delete($deleteCplmk);
 
 		$this->session->set_flashdata('msg', 'Sukses Hapus Data');
 		redirect($this->agent->referrer());

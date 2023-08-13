@@ -11,8 +11,13 @@ class Model_nilai_mk extends CI_Model
 	public function insert($data)
 	{
 		if ($data) {
-			$insert = $this->db->insert('nilai_mk', $data);
-			return ($insert == true) ? true : false;
+			// $insert = $this->db->insert('nilai_mk', $data);
+			// return ($insert == true) ? true : false;
+
+			$this->db->insert('nilai_mk', $data);
+			$insert_id = $this->db->insert_id();
+
+			return  $insert_id;
 		}
 	}
 
@@ -82,6 +87,15 @@ class Model_nilai_mk extends CI_Model
 		if ($id) {
 			$this->db->where('id', $id);
 			$delete = $this->db->delete('nilai_mk');
+			return ($delete == true) ? true : false;
+		}
+	}
+
+	public function deleteCplmk($id)
+	{
+		if ($id) {
+			$this->db->where('id_nilai_mk', $id);
+			$delete = $this->db->delete('cplmk');
 			return ($delete == true) ? true : false;
 		}
 	}
