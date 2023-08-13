@@ -73,6 +73,10 @@ class Cplmk extends CI_Controller
 
 		$data['cpl'] = $this->Model_cpl->getDataCpl($arr_cpl);
 
+		// echo '<pre>';
+		// print_r($data);
+		// die;
+
 		$this->load->view('admin/template', $data);
 	}
 

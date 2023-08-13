@@ -6,11 +6,6 @@
 					<div class="card-body">
 						<form method="POST" action="<?= base_url("cplmk/insert") ?>" enctype="multipart/form-data">
 							<input type="hidden" name="id_nilai_mk" value="<?= $id_nilai_mk; ?>">
-							<strong style="">
-
-							</strong>
-							<br>
-							<br>
 							<div class="form-group">
 								<label for="id_cpl">Kode CPL</label>
 								<select class="form-control" id="id_cpl" name="id_cpl" required>
@@ -28,6 +23,24 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 
 						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-bordered">
+							<?php foreach ($cplmk as $cplmk) { ?>
+								<tr>
+									<td>
+										<b><?= $cplmk['cpl_kd'] . " - " . $cplmk['cpl_kategori'] ?></b><br>
+										<small>
+											<?= $cplmk['cpl_deskripsi'] ?>
+										</small>
+									</td>
+								</tr>
+							<?php } ?>
+						</table>
 					</div>
 				</div>
 			</div>

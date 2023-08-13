@@ -13,13 +13,18 @@
           <div class="card-body d-flex">
             <table class="table table-bordered">
               <tr>
-                <td>Rata-rata Nilai Akumulasi Nilai</td>
+                <td><b>Rata-rata Nilai Akumulasi Nilai</b></td>
                 <td><b><?= number_format($avg_nilai_mk, 2) ?></b></td>
               </tr>
 
               <?php foreach ($avg_cplmk as $avg) { ?>
                 <tr>
-                  <td><?= $avg['cpl_kd'] ?></td>
+                  <td style="width:70%">
+                    <b><?= $avg['cpl_kategori'] ?> - <?= $avg['cpl_kd'] ?></b><br>
+                    <small>
+                      <?= $avg['cpl_deskripsi'] ?>
+                    </small>
+                  </td>
                   <td><b><?= number_format($avg['avg_cplmk'], 2) ?></b></td>
 
                 </tr>

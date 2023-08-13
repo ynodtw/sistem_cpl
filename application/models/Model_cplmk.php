@@ -41,7 +41,7 @@ class Model_cplmk extends CI_Model
 	public function getAvg($id_mk)
 	{
 		$sql = "
-		SELECT cpl_kd, AVG(n_cplmk) AS avg_cplmk
+		SELECT cpl_kd,cpl_kategori,cpl_deskripsi, AVG(n_cplmk) AS avg_cplmk
 		FROM `cplmk` 
 		JOIN `nilai_mk` ON `nilai_mk`.`id` = `cplmk`.`id_nilai_mk` 
 		JOIN `matakuliah` ON `matakuliah`.`id` = `nilai_mk`.`id_mk` 
